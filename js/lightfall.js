@@ -25,8 +25,15 @@
 
     var left = rand(2, 98);
     var top = rand(2, 90);
-    var dur = rand(10, 20);
-    var delay = rand(0, 20);
+    // 快慢混合：55% 快档 7-14s，45% 慢档 28-45s
+    var dur, delay;
+    if (Math.random() < 0.55) {
+      dur = rand(7, 14);
+      delay = rand(0, 8);
+    } else {
+      dur = rand(28, 45);
+      delay = rand(0, 20);
+    }
     var scale = rand(0.6, 1.3);
     var angle = rand(-45, -25);
 
@@ -46,8 +53,15 @@
 
     var cleft = rand(5, 95);
     var ctop = rand(2, 90);
-    var cdur = rand(10, 20);    // 与星星一致（减慢一倍）
-    var cdelay = rand(0, 20);
+    // 快慢混合：与星星一致（55% 快 7-14s，45% 慢 28-45s）
+    var cdur, cdelay;
+    if (Math.random() < 0.55) {
+      cdur = rand(7, 14);
+      cdelay = rand(0, 8);
+    } else {
+      cdur = rand(28, 45);
+      cdelay = rand(0, 20);
+    }
     var cscale = rand(0.6, 1.3); // 与星星一致
     var cangle = rand(-45, -25); // 与星星一致
 
