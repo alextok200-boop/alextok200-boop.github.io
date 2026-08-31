@@ -29,8 +29,8 @@
     // 随机大小：近景大远景小
     var scale = rand(0.8, 1.8);
 
-    // 随机角度
-    var angle = rand(-35, -15);
+    // 随机角度：-45°~-25°，统一偏斜向（左下落），配合 translateX 120→-180 形成明显斜线
+    var angle = rand(-45, -25);
 
     span.style.left = left + "%";
     span.style.setProperty("--lf-top", top + "%");
