@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.3.3 (流星重构: JS 动态生成 30 颗, 随机角度/速度/大小, 更亮更快)
+   v1.3.4 (去除 prefers-reduced-motion 隐藏降级: 流星始终可见, 降级为静态显示)
    ============================================ */
 
 :root {
@@ -1052,6 +1052,11 @@ body::after {
 
 @media (prefers-reduced-motion: reduce) {
   .lightfall {
-    display: none;
+    display: block;
+  }
+  .lf {
+    animation: none !important;
+    opacity: 0.8 !important;
+    transform: translateY(20vh) rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1)) !important;
   }
 }

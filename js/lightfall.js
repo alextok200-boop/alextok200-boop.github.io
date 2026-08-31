@@ -1,7 +1,7 @@
 /* Lightfall 流星背景：动态生成 30 颗流星，随机参数 */
 (function () {
   var container = document.getElementById("lightfall");
-  if (!container || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (!container) {
     return;
   }
 
