@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.3.1 (参考 konllen.iepose.cn 视觉语言, 增强紫罗兰可见度)
+   v1.3.2 (修复流星被 body 背景遮挡: 底色移至 html)
    ============================================ */
 
 :root {
@@ -27,10 +27,12 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
-  background: var(--bg);
+  /* 背景色放 html 上，body 透明——否则 body 背景会盖住 z-index:-1 的流星/光晕层 */
+  background: transparent;
   color: var(--text);
   font-family: var(--font-sans);
   line-height: 1.7;
@@ -73,7 +75,7 @@ body::after {
 /* ---------- Header / Nav ---------- */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(10, 10, 15, 0.85);
+  background: rgba(9, 7, 17, 0.85);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -1012,7 +1014,8 @@ body::after {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background: #d8b4fe;
+  background: #e6d5ff;
+  box-shadow: 0 0 6px 1px rgba(216, 180, 254, 0.9);
   opacity: 0;
   animation: lf-fall linear infinite;
 }
@@ -1022,11 +1025,12 @@ body::after {
   position: absolute;
   left: 0;
   top: 0;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(216, 180, 254, 0.8), transparent);
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(230, 213, 255, 0.95), rgba(216, 180, 254, 0.35), transparent);
   transform: rotate(-25deg);
   transform-origin: left center;
+  border-radius: 2px;
 }
 
 .lf-1 { left: 8%; animation-duration: 11s; animation-delay: 0s; }
@@ -1043,14 +1047,14 @@ body::after {
     transform: translateY(-5vh) translateX(0);
     opacity: 0;
   }
-  8% {
-    opacity: 0.9;
+  6% {
+    opacity: 1;
   }
-  60% {
-    opacity: 0.5;
+  70% {
+    opacity: 0.85;
   }
   100% {
-    transform: translateY(110vh) translateX(-40px);
+    transform: translateY(110vh) translateX(-50px);
     opacity: 0;
   }
 }
