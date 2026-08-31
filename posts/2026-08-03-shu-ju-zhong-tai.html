@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据中台：从 Excel 到自动化看板 - 戴程鹏</title>
+  <meta name="description" content="把零散 Excel 和手工报表升级成数据中台的三步走：统一口径、集中存储、看板化。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">数据中台：从 Excel 到自动化看板</h1>
+        <p class="post-meta">2026-08-03 · 数据与自动化</p>
+
+        <div class="post-body">
+          <p>绝大多数电商团队的数据现状是：每个平台一份 Excel，每周手工汇总一次，汇报前加班拼表。数据中台不是高不可攀的系统，把这三步走完，小团队也能有自己的中台。</p>
+
+          <h2>一、第一步：定口径，这是地基</h2>
+          <p>先别碰技术，先把"数怎么算"定死：</p>
+          <table>
+            <thead>
+              <tr><th>指标</th><th>口径示例</th><th>为什么重要</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>GMV</td><td>含运费？含退款前还是后？</td><td>口径不一，各店数字没法比</td></tr>
+              <tr><td>ROI</td><td>花费含平台补贴吗？</td><td>不算清楚，投放决策全错</td></tr>
+              <tr><td>转化率</td><td>按访客还是按点击？</td><td>口径不同，结论相反</td></tr>
+            </tbody>
+          </table>
+          <p>口径表写下来，团队统一执行。这一步不做好，后面全是白干。</p>
+
+          <h2>二、第二步：数据集中，别让 Excel 满天飞</h2>
+          <p>数据进一个统一的地方（数据库、多维表格都行），每个平台一个数据源，定时同步。关键原则：人不要手工搬运数据——让系统拉，人只负责填源头。</p>
+          <p>我们踩过的坑：一开始用 Excel 汇总，某次某个人改错一格，整周报表全错，查了两天才发现。集中存储 + 自动化同步之后，这种低级错误基本绝迹。</p>
+
+          <h2>三、第三步：看板化，让异常自己冒出来</h2>
+          <p>数据进了中台，下一步是让它变成"不用翻就能看"的东西：</p>
+          <ul>
+            <li><strong>每日自动汇总</strong>：各店数据自动生成 GMV/ROI/转化率看板</li>
+            <li><strong>异常自动标红</strong>：跌破阈值的自动高亮，推送群里</li>
+            <li><strong>阈值分级</strong>：提示、预警、告警三层，别让看板天天哇哇叫</li>
+          </ul>
+          <p>理想状态：看板大部分时间安静，该响的时候一定响。人只看红色，绿色不用管。</p>
+
+          <h2>四、中台的价值不在"造系统"，在"省人"</h2>
+          <p>数据中台最实在的收益：原来一个人每天花 2 小时拼表，现在系统自动出，这个人去做分析、做决策。省下来的时间，比任何花哨功能都值钱。</p>
+
+          <h2>五、一句话总结</h2>
+          <p>先定口径，再集中数据，最后看板化。三步走完，你的团队就能从"周五加班拼表"进化到"每天早上看板自动在群里等你了"。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

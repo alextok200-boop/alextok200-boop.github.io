@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>让零基础同事用上 AI 技能包 - 戴程鹏</title>
+  <meta name="description" content="AI 技能包给 HR、运营同事用，界面友好、输入最少、失败有兜底——三个设计原则。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">让零基础同事用上 AI 技能包</h1>
+        <p class="post-meta">2026-07-25 · AI 技能包</p>
+
+        <div class="post-body">
+          <p>做技能包最大的成就感，不是自己用得多顺，而是 HR 小姐姐、行政同事真的在用。把 AI 技能包交给零基础的人，有三个设计原则，缺一个就没人用。</p>
+
+          <h2>一、输入最少：一个 webhook 搞定安装</h2>
+          <p>给同事的技能包，安装步骤必须少到极致。我们定下的标准：安装只需要输入一个 webhook 地址，其他全部自动化。什么环境变量、依赖、配置，全在安装脚本里自动处理。</p>
+          <p>教训：第一版技能包要同事填 5 个参数，结果没人用。砍到 1 个参数后，同事们才真正开始用。参数每多一个，使用率掉一截。</p>
+
+          <h2>二、界面友好：填表就行，别让同事看代码</h2>
+          <p>零基础同事不会也不该看代码。交互做成他们熟悉的形态：</p>
+          <ul>
+            <li><strong>钉钉表格</strong>：填需求就在熟悉的表格里填</li>
+            <li><strong>群机器人</strong>：结果推到群里，打开就能看</li>
+            <li><strong>一句话指令</strong>：对话里说需求，系统自动干活</li>
+          </ul>
+          <p>对同事来说，这不是"用 AI 工具"，就是"填个表、看个群消息"。</p>
+
+          <h2>三、失败有兜底：出错要能自己看懂</h2>
+          <p>技能包一定会出错。出错不可怕，可怕的是同事看不懂错在哪、不知道怎么办。三个兜底设计：</p>
+          <table>
+            <thead>
+              <tr><th>兜底</th><th>做法</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>错误可读</td><td>出错信息写人话，不写堆栈："表格字段填写不完整，请补全后再提交"</td></tr>
+              <tr><td>自动重试</td><td>临时性失败（网络/API 抖动）自动重试，不打扰同事</td></tr>
+              <tr><td>人工通道</td><td>连续失败自动通知维护人，同事永远有个"找谁"的出口</td></tr>
+            </tbody>
+          </table>
+
+          <h2>四、验收标准：同事会用才算交付</h2>
+          <p>技能包做完不是"能跑"，是"同事能独立用"。我们内部验收标准很简单：找一个没用过的人，不给任何讲解，让他照着 README 用一遍。能用通，才算交付。用不通，改到通为止。</p>
+
+          <h2>五、一句话总结</h2>
+          <p>零基础不是同事的问题，是设计的问题。输入最少、界面友好、失败有兜底——做到这三条，AI 技能包才能从"你会用"变成"大家都会用"。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
