@@ -21,6 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
     footer.innerHTML = footer.innerHTML.replace("2026", year);
   }
 
+  // hero 背景视频降速：0.8x（官方展示站视频节奏偏快，慢一点更有氛围）
+  var heroVideo = document.querySelector(".hero-video");
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.8;
+    heroVideo.addEventListener("ratechange", function () {
+      // 防止某些浏览器重置播放速度
+      if (heroVideo.playbackRate !== 0.8) heroVideo.playbackRate = 0.8;
+    });
+  }
+
   // 滚动入场动画：为 .card / .blog-item / .section-title 等加 reveal
   var targets = document.querySelectorAll(".card, .blog-item, .section-title, .hero-card");
   if (targets.length && "IntersectionObserver" in window) {
