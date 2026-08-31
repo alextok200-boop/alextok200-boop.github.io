@@ -1072,6 +1072,12 @@ body::after {
   }
 }
 
+/* 金币禁用 .lf 继承的拖尾（::after 冲突） */
+.lf-coin::after {
+  content: none !important;
+  display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lightfall {
     display: block;
