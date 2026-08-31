@@ -333,6 +333,110 @@ body::after {
   background: rgba(255, 94, 201, 0.06);
 }
 
+/* ============================================
+   B2B 招募模块（核心能力下方）
+   ============================================ */
+.b2b-grid {
+  align-items: stretch;
+}
+
+.b2b-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 36px;
+}
+
+.b2b-tier {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.b2b-card.b2b-core {
+  border-color: rgba(255, 94, 201, 0.35);
+  background: linear-gradient(180deg, rgba(255, 94, 201, 0.06), var(--bg-card));
+}
+.b2b-card.b2b-core .b2b-tier {
+  background: rgba(255, 94, 201, 0.18);
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 94, 201, 0.4);
+}
+
+.b2b-card.b2b-standard {
+  border-color: rgba(0, 200, 255, 0.3);
+  background: linear-gradient(180deg, rgba(0, 200, 255, 0.05), var(--bg-card));
+}
+.b2b-card.b2b-standard .b2b-tier {
+  background: rgba(0, 200, 255, 0.14);
+  color: var(--neon-blue);
+  border: 1px solid rgba(0, 200, 255, 0.4);
+}
+
+.b2b-card.b2b-retail {
+  border-color: rgba(0, 255, 163, 0.3);
+  background: linear-gradient(180deg, rgba(0, 255, 163, 0.05), var(--bg-card));
+}
+.b2b-card.b2b-retail .b2b-tier {
+  background: rgba(0, 255, 163, 0.14);
+  color: var(--neon-green);
+  border: 1px solid rgba(0, 255, 163, 0.4);
+}
+
+.b2b-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 16px;
+}
+
+.b2b-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.b2b-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--violet-3);
+}
+
+.b2b-action {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.b2b-action span {
+  color: var(--violet-3);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.b2b-cta {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.b2b-hint {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
 .card h3 {
   font-size: 18px;
   margin-bottom: 12px;
