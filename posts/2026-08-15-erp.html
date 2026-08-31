@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERP 对接实战：聚水潭和领星到底怎么选 - 戴程鹏</title>
+  <meta name="description" content="聚水潭管国内多平台、领星管 Amazon 精细化财务，两个 ERP 的分工、对接路径与踩坑。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">ERP 对接实战：聚水潭和领星到底怎么选</h1>
+        <p class="post-meta">2026-08-15 · 数据与自动化</p>
+
+        <div class="post-body">
+          <p>团队同时做国内和跨境，ERP 绕不开。我们最终用了两套：聚水潭管国内多平台，领星管 Amazon 精细化财务。很多人问"为什么不统一成一套"，答案很简单：国内和跨境的数据结构和玩法，本来就是两套。</p>
+
+          <h2>一、分工：谁管什么</h2>
+          <table>
+            <thead>
+              <tr><th>系统</th><th>管什么</th><th>为什么选它</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>聚水潭</td><td>国内多平台订单/库存/仓库</td><td>国内电商数据接口全，抖音/天猫/京东/拼多多全覆盖</td></tr>
+              <tr><td>领星</td><td>Amazon 财务精细化（FBA/广告/退货）</td><td>Amazon 场景深度好，广告和财务能对得上账</td></tr>
+            </tbody>
+          </table>
+
+          <h2>二、对接的两种路径</h2>
+          <p>对接 ERP 不是只有"开放平台 API"一条路，先想清楚再动手：</p>
+          <ul>
+            <li><strong>路径 A：开放平台 API</strong>——实时、自动，但要申请权限、过审核、适配签名，周期长</li>
+            <li><strong>路径 B：官方导出 + 自动化读取</strong>——先手动导出 Excel 放固定目录，脚本自动解析入库。见效快，先跑起来</li>
+          </ul>
+          <p>我们的经验：B 先跑通，A 排期做。先有数据用，再追求实时。</p>
+
+          <h2>三、聚水潭对接踩的坑</h2>
+          <p>聚水潭 API 对接有几个点容易卡：</p>
+          <ul>
+            <li><strong>IP 白名单</strong>：API 调用要配白名单，本地开发环境的 IP 是动态的，要先确认</li>
+            <li><strong>密钥签名</strong>：请求要按指定规则签名，顺序错一点就 401，别手搓，用官方 SDK 或严格按文档</li>
+            <li><strong>字段口径</strong>：库存字段分"可售/在途/锁定"，口径不定清楚，看板数字对不上账</li>
+          </ul>
+
+          <h2>四、领星对接踩的坑</h2>
+          <ul>
+            <li><strong>权限范围大</strong>：领星 API 权限按模块分，先只申请"库存+订单"最小集，别一上来全要，审核快</li>
+            <li><strong>数据延迟</strong>：部分报表不是实时，标注"数据时间"别让业务误读</li>
+            <li><strong>广告归因</strong>：广告花费和订单要按 ASIN+时间窗口对账，口径先和财务对齐</li>
+          </ul>
+
+          <h2>五、对接完最值钱的一件事</h2>
+          <p>ERP 接完，最值钱的是把数据灌进自己的数据中台，跟其他数据源（店铺表、投放表）放一起，统一看板。ERP 的价值不是"数据在里面"，是"数据能出来和别的一起算"。</p>
+
+          <h2>六、一句话总结</h2>
+          <p>国内用聚水潭、跨境用领星，不是浪费，是各管一摊。先走"导出+自动化"跑起来，再上 API 做实时，最后把数据统一灌进中台——三步走完，ERP 才真正是你的数据底座。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

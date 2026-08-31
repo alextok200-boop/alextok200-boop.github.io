@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>钉钉 OA 审批自动化：管理端和员工端分开做 - 戴程鹏</title>
+  <meta name="description" content="OA 审批自动化技能的开发经验：管理端员工端双版本、一键安装、傻瓜式使用。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">钉钉 OA 审批自动化：管理端和员工端分开做</h1>
+        <p class="post-meta">2026-08-08 · AI 技能包</p>
+
+        <div class="post-body">
+          <p>OA 审批是团队里最高频、最琐碎的事：授权函、请假、报销、采购……我们把这些审批流程做成了自动化技能，一条关键经验：管理端和员工端必须分开做，别混在一个包里。</p>
+
+          <h2>一、为什么要分两端</h2>
+          <p>管理端和员工端看着是同一个流程，实际需求完全不同：</p>
+          <table>
+            <thead>
+              <tr><th>维度</th><th>管理端</th><th>员工端</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>使用者</td><td>审批人（管理层/HR）</td><td>发起人（全体员工）</td></tr>
+              <tr><td>核心动作</td><td>审、批、查、催</td><td>填、提、看进度</td></tr>
+              <tr><td>数据范围</td><td>看全部单据、统计</td><td>只看自己的</td></tr>
+              <tr><td>权限</td><td>高，可批可改</td><td>低，只读自己的</td></tr>
+            </tbody>
+          </table>
+          <p>混在一个包里的后果：权限不好控，界面两头不讨好，改一处影响另一头。</p>
+
+          <h2>二、员工端：越简单越好</h2>
+          <p>员工端的使用者包括 HR、行政，很多是零基础。设计原则：</p>
+          <ul>
+            <li><strong>一键安装</strong>：安装只需要填一个 webhook 地址，其余全自动</li>
+            <li><strong>填表即提交</strong>：钉钉表格填完即发起，不用学任何系统</li>
+            <li><strong>进度自动通知</strong>：审批到哪一步，钉钉消息自动提醒，不用自己刷</li>
+          </ul>
+
+          <h2>三、管理端：能看全、能批快</h2>
+          <p>管理端的使用者是审批人，核心诉求是效率：</p>
+          <ul>
+            <li><strong>汇总面板</strong>：所有待办一目了然，按类型/紧急度排序</li>
+            <li><strong>一键审批</strong>：通过/驳回一句话搞定，不用点进详情来回翻</li>
+            <li><strong>统计报表</strong>：月度审批量、平均时效、卡在哪——数据化改进流程</li>
+          </ul>
+
+          <h2>四、权限是底线</h2>
+          <p>两端分开最重要的一点：权限边界。员工端绝不给管理端的数据范围，管理端的数据绝不进员工端包。审批数据敏感，权限做错就是事故。</p>
+
+          <h2>五、迭代节奏：短周期快速改</h2>
+          <p>OA 流程经常变（模板调整、审批人换岗）。技能要能短周期迭代：改模板不用重装，改权限要能快速发布新版本。我们按语义化版本走，每次改动升一个号，同事安装新版就是覆盖一次。</p>
+
+          <h2>六、一句话总结</h2>
+          <p>OA 审批自动化，管理端和员工端分开做：员工端极致简单、管理端要快要全、权限严格隔离、版本快速迭代。做到这四点，审批从"催来催去"变成"自己流转"。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
