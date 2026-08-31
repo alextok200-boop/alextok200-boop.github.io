@@ -1,0 +1,13 @@
+# 忽略文件
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+
+# 素材（图片暂不入库，本地处理）
+assets/img/*.png
+assets/img/*.jpg
