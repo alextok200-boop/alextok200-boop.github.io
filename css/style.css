@@ -158,6 +158,39 @@ body::after {
 /* ---------- Hero ---------- */
 .hero {
   padding: 100px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero 背景视频 + 暗遮罩 */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.28;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(9, 7, 17, 0.4), rgba(9, 7, 17, 0.85)),
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-grid {
