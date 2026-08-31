@@ -25,14 +25,14 @@
 
     var left = rand(2, 98);
     var top = rand(2, 90);
-    // 快慢混合：55% 快档 7-14s，45% 慢档 28-45s
+    // 雪花级慢速：40% 较慢档 20-35s，60% 极慢档 50-80s
     var dur, delay;
-    if (Math.random() < 0.55) {
-      dur = rand(7, 14);
-      delay = rand(0, 8);
+    if (Math.random() < 0.4) {
+      dur = rand(20, 35);
+      delay = rand(0, 10);
     } else {
-      dur = rand(28, 45);
-      delay = rand(0, 20);
+      dur = rand(50, 80);
+      delay = rand(0, 25);
     }
     var scale = rand(0.6, 1.3);
     var angle = rand(-45, -25);
@@ -53,14 +53,14 @@
 
     var cleft = rand(5, 95);
     var ctop = rand(2, 90);
-    // 快慢混合：与星星一致（55% 快 7-14s，45% 慢 28-45s）
+    // 雪花级慢速：与星星一致（40% 较慢 20-35s，60% 极慢 50-80s）
     var cdur, cdelay;
-    if (Math.random() < 0.55) {
-      cdur = rand(7, 14);
-      cdelay = rand(0, 8);
+    if (Math.random() < 0.4) {
+      cdur = rand(20, 35);
+      cdelay = rand(0, 10);
     } else {
-      cdur = rand(28, 45);
-      cdelay = rand(0, 20);
+      cdur = rand(50, 80);
+      cdelay = rand(0, 25);
     }
     var cscale = rand(0.6, 1.3); // 与星星一致
     var cangle = rand(-45, -25); // 与星星一致
