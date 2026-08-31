@@ -17,6 +17,7 @@
         <a href="work.html">作品集</a>
         <a href="blog.html" class="active">博客</a>
         <a href="contact.html">联系</a>
+        <button class="lang-btn" data-i18n-toggle aria-label="切换语言">EN</button>
       </div>
     </nav>
   </header>
@@ -24,9 +25,9 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Blog</p>
-        <h1>博客</h1>
-        <p class="hero-sub" style="max-width:560px;margin-top:12px;">品牌电商与 AI 技能包的实战记录。<span id="postCount" class="post-count"></span></p>
+        <p class="eyebrow" data-i18n="blog.eyebrow">Blog</p>
+        <h1 data-i18n="blog.title">博客</h1>
+        <p class="hero-sub" style="max-width:560px;margin-top:12px;"><span data-i18n="blog.sub">品牌电商与 AI 技能包的实战记录。</span><span id="postCount" class="post-count"></span></p>
       </div>
     </section>
 
@@ -35,14 +36,14 @@
 
         <div class="blog-toolbar">
           <div class="search-box">
-            <input type="search" id="searchInput" placeholder="搜索文章关键词…" aria-label="搜索文章">
+            <input type="search" id="searchInput" placeholder="搜索文章关键词…" aria-label="搜索文章" data-i18n-attr="placeholder:blog.search">
           </div>
           <div class="tag-filters" id="tagFilters"></div>
         </div>
 
         <div class="blog-list" id="blogList"></div>
 
-        <p class="empty-state" id="emptyState" hidden>没有找到匹配的文章。</p>
+        <p class="empty-state" id="emptyState" hidden data-i18n="blog.empty">没有找到匹配的文章。</p>
 
       </div>
     </section>
@@ -50,10 +51,11 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+      <p data-i18n="footer.copyright">© 2026 戴程鹏 · Powered by GitHub Pages</p>
     </div>
   </footer>
 
+  <script src="js/i18n.js?v=1.5.0"></script>
   <script src="js/posts-data.js"></script>
   <script src="js/blog.js"></script>
 </body>

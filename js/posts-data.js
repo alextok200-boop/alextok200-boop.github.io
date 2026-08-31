@@ -2,6 +2,7 @@
 window.POSTS_DATA = [
   {
     file: "2026-08-31-ku-cun-guard-rail",
+    en: { title: "How to Set Inventory Alert Thresholds Without False Alarms", summary: "Three-tier thresholds based on sell-through speed, replenishment lead time and promo cycles.", tag: "E-commerce" },
     title: "库存告警阈值怎么定，才不误报又不漏报",
     date: "2026-08-31",
     tag: "电商操盘",
@@ -9,6 +10,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-28-qing-cang",
+    en: { title: "Clearing 14,000 Cues in 8 Weeks: A Liquidation Playbook", summary: "Pricing anchor, tiered launch, unified B/C pricing, SKU-level decomposition.", tag: "E-commerce" },
     title: "8 周清掉 1.4 万支库存：一次清仓的拆解",
     date: "2026-08-28",
     tag: "电商操盘",
@@ -16,6 +18,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-25-da-ren-roi",
+    en: { title: "Influencer Campaigns Are ROI Management, Not Just Filming", summary: "Five-dimension scoring, S/A/B tiers, budget by tier, attribution after each run.", tag: "Influencer" },
     title: "达人投放不是请人拍视频，是 ROI 管理",
     date: "2026-08-25",
     tag: "达人运营",
@@ -23,6 +26,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-20-skill-contract",
+    en: { title: "Signing 'Contracts' with AI Skills: From Usable to Reliable", summary: "Interface contracts, exit codes, idempotency — the details that make skills dependable.", tag: "AI Skills" },
     title: "给 AI 技能签\"合同\"：从能用到可靠",
     date: "2026-08-20",
     tag: "AI 技能包",
@@ -30,6 +34,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-18-luan-jia",
+    en: { title: "Price Chaos Is a Channel Signal, Not an Accident", summary: "Three sources of low prices: diversion, destocking, counterfeits. Monitor first, then act.", tag: "E-commerce" },
     title: "乱价不是偶然，是渠道信号",
     date: "2026-08-18",
     tag: "电商操盘",
@@ -37,6 +42,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-15-erp",
+    en: { title: "ERP Integration: Jushuitan vs Lingxing", summary: "Jushuitan for domestic multi-platform, Lingxing for Amazon finance. Export-first, API later.", tag: "Data & Automation" },
     title: "ERP 对接实战：聚水潭和领星到底怎么选",
     date: "2026-08-15",
     tag: "数据与自动化",
@@ -44,6 +50,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-12-temu",
+    en: { title: "Temu Semi-managed: How to Play Without Stocking", summary: "Price wins traffic, fulfillment keeps weight. Get pricing, selection and logistics right.", tag: "Cross-border" },
     title: "Temu 半托管运营：不备货怎么玩",
     date: "2026-08-12",
     tag: "跨境电商",
@@ -51,6 +58,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-10-duo-platform-matrix",
+    en: { title: "Managing 49 Stores Without Chaos", summary: "Unified metrics, tiered operations, automated dashboards — three levers that keep it sane.", tag: "E-commerce" },
     title: "多平台矩阵：49 个店铺怎么管而不乱",
     date: "2026-08-10",
     tag: "电商操盘",
@@ -58,6 +66,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-08-oa",
+    en: { title: "DingTalk OA Automation: Admin and Employee Versions Separately", summary: "Simple employee side, fast admin side, strict permission isolation, rapid iteration.", tag: "AI Skills" },
     title: "钉钉 OA 审批自动化：管理端和员工端分开做",
     date: "2026-08-08",
     tag: "AI 技能包",
@@ -65,6 +74,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-08-pin-pai-ju-zhen",
+    en: { title: "Nine Brands, One Category: How to Deploy a Brand Matrix", summary: "Differentiate positioning, price bands and channels; concentrate resources on the lead brand.", tag: "Brand" },
     title: "9 个品牌一条产品线：品牌矩阵怎么排兵布阵",
     date: "2026-08-08",
     tag: "品牌操盘",
@@ -72,6 +82,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-05-chu-hai",
+    en: { title: "Going Global: From Zero to Amazon Brand Rankings", summary: "Choose markets, nail listings, grow reviews compliantly, layer ads.", tag: "Cross-border" },
     title: "品牌出海：从 0 到亚马逊品牌榜",
     date: "2026-08-05",
     tag: "跨境电商",
@@ -79,6 +90,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-03-shu-ju-zhong-tai",
+    en: { title: "Data Platform: From Excel to Automated Dashboards", summary: "Define metrics, centralize data, dashboard it. Three steps away from Friday spreadsheet marathons.", tag: "Data & Automation" },
     title: "数据中台：从 Excel 到自动化看板",
     date: "2026-08-03",
     tag: "数据与自动化",
@@ -86,6 +98,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-07-30-tuan-dui",
+    en: { title: "How to Staff a 15-Person E-commerce Team", summary: "Six roles, domestic/overseas split, assistants as reserves, one table to manage everyone.", tag: "Team" },
     title: "15 人电商团队怎么配：一张岗位地图",
     date: "2026-07-30",
     tag: "团队管理",
@@ -93,6 +106,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-07-28-b2b",
+    en: { title: "B2B Recruitment: Deploying Dual Brands Across Channels", summary: "Tier channels, keep brands separate, put licensing and warranty in writing. Signing is just the start.", tag: "Brand" },
     title: "B2B 招商打法：双品牌怎么铺渠道",
     date: "2026-07-28",
     tag: "品牌操盘",
@@ -100,6 +114,7 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-07-25-ling-ji-chu",
+    en: { title: "Getting Non-Technical Colleagues to Use AI Skills", summary: "Minimal input, friendly UI, graceful failure — three principles or nobody uses it.", tag: "AI Skills" },
     title: "让零基础同事用上 AI 技能包",
     date: "2026-07-25",
     tag: "AI 技能包",

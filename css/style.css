@@ -106,6 +106,25 @@ body::after {
   gap: 28px;
 }
 
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.4;
+  margin-left: 4px;
+}
+
+.lang-btn:hover {
+  border-color: var(--violet-2);
+  color: var(--violet-3);
+}
+
 .nav-links a {
   color: var(--text-dim);
   text-decoration: none;
