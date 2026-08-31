@@ -1,18 +1,22 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.1.0
+   v1.3.0 (参考 konllen.iepose.cn 视觉语言)
    ============================================ */
 
 :root {
-  --bg: #0a0a0f;
-  --bg-card: #14141c;
-  --border: #23232f;
-  --text: #e8e8ef;
-  --text-dim: #9a9ab0;
+  --bg: #090711;
+  --bg-card: #120b1f;
+  --border: #2a2040;
+  --text: #eef0ff;
+  --text-dim: #a79fc4;
   --neon-green: #00ffa3;
   --neon-blue: #00c8ff;
   --neon-pink: #ff5ec9;
-  --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
+  --violet-1: #9333ea;
+  --violet-2: #a855f7;
+  --violet-3: #d8b4fe;
+  --cyan-glow: #8df7ff;
+  --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
 }
 
 * {
@@ -33,16 +37,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 背景霓虹光晕（固定层，不影响内容） */
+/* 背景紫罗兰光晕（参考站电影感） */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(600px 400px at 15% 0%, rgba(0, 200, 255, 0.09), transparent 60%),
-    radial-gradient(700px 500px at 85% 10%, rgba(0, 255, 163, 0.07), transparent 60%),
-    radial-gradient(600px 500px at 50% 100%, rgba(255, 94, 201, 0.06), transparent 60%);
+    radial-gradient(800px 500px at 20% -5%, rgba(147, 51, 234, 0.16), transparent 60%),
+    radial-gradient(700px 450px at 80% 5%, rgba(0, 200, 255, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(168, 85, 247, 0.10), transparent 60%),
+    linear-gradient(180deg, #090711 0%, #120b1f 40%, #0d0818 75%, #090711 100%);
   pointer-events: none;
 }
 
@@ -53,8 +58,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(216, 180, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 180, 254, 0.03) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
@@ -142,7 +147,7 @@ body::after {
 }
 
 .eyebrow {
-  color: var(--neon-blue);
+  color: var(--violet-3);
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -157,9 +162,9 @@ body::after {
   letter-spacing: 0.5px;
 }
 
-/* 渐变霓虹高亮文字 */
+/* 渐变霓虹高亮文字（参考站紫罗兰系） */
 .grad-text {
-  background: linear-gradient(90deg, var(--neon-green), var(--neon-blue) 60%, var(--neon-pink));
+  background: linear-gradient(90deg, var(--violet-2), var(--violet-3) 45%, var(--cyan-glow));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -223,7 +228,7 @@ body::after {
   position: absolute;
   inset: -1px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), transparent 40%, rgba(0, 200, 255, 0.15));
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), transparent 40%, rgba(141, 247, 255, 0.15));
   z-index: -1;
 }
 
@@ -264,7 +269,7 @@ body::after {
   font-weight: 700;
   margin-bottom: 32px;
   padding-left: 16px;
-  border-left: 4px solid var(--neon-green);
+  border-left: 4px solid var(--violet-2);
 }
 
 .card-grid {
@@ -987,5 +992,71 @@ body::after {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ============================================
+   Lightfall 流星背景（参考 konllen.iepose.cn）
+   ============================================ */
+.lightfall {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.lf {
+  position: absolute;
+  top: -10%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #d8b4fe;
+  opacity: 0;
+  animation: lf-fall linear infinite;
+}
+
+.lf::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(216, 180, 254, 0.8), transparent);
+  transform: rotate(-25deg);
+  transform-origin: left center;
+}
+
+.lf-1 { left: 8%; animation-duration: 11s; animation-delay: 0s; }
+.lf-2 { left: 22%; animation-duration: 14s; animation-delay: 3s; }
+.lf-3 { left: 35%; animation-duration: 9s; animation-delay: 1.5s; }
+.lf-4 { left: 48%; animation-duration: 16s; animation-delay: 5s; }
+.lf-5 { left: 60%; animation-duration: 12s; animation-delay: 2s; }
+.lf-6 { left: 72%; animation-duration: 10s; animation-delay: 7s; }
+.lf-7 { left: 85%; animation-duration: 15s; animation-delay: 4s; }
+.lf-8 { left: 93%; animation-duration: 13s; animation-delay: 6s; }
+
+@keyframes lf-fall {
+  0% {
+    transform: translateY(-5vh) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-40px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightfall {
+    display: none;
   }
 }
