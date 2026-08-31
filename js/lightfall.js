@@ -16,22 +16,24 @@
     var span = document.createElement("span");
     span.className = "lf";
 
-    // 随机位置：横向铺满
+    // 随机位置：横向铺满 + 纵向散布（静态降级时分布全屏）
     var left = rand(2, 98);
+    var top = rand(2, 90);
 
-    // 随机速度：6~12 秒一次坠落（肉眼易捕捉）
-    var dur = rand(6, 12);
+    // 随机速度：5~10 秒一次坠落
+    var dur = rand(5, 10);
 
     // 随机延迟：错开出现
-    var delay = rand(0, 12);
+    var delay = rand(0, 10);
 
     // 随机大小：近景大远景小
-    var scale = rand(0.7, 1.6);
+    var scale = rand(0.8, 1.8);
 
     // 随机角度
     var angle = rand(-35, -15);
 
     span.style.left = left + "%";
+    span.style.setProperty("--lf-top", top + "%");
     span.style.animation = "lf-fall " + dur + "s linear " + delay + "s infinite";
     span.style.setProperty("--lf-angle", angle + "deg");
     span.style.setProperty("--lf-scale", scale.toFixed(2));

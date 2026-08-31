@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.3.4 (去除 prefers-reduced-motion 隐藏降级: 流星始终可见, 降级为静态显示)
+   v1.3.5 (静态模式流星随机散布全屏+本体加大加亮, 解决看不见问题)
    ============================================ */
 
 :root {
@@ -1012,11 +1012,11 @@ body::after {
 .lf {
   position: absolute;
   top: -10%;
-  width: 3px;
-  height: 3px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: #e6d5ff;
-  box-shadow: 0 0 8px 2px rgba(216, 180, 254, 0.95);
+  background: #f0e6ff;
+  box-shadow: 0 0 10px 3px rgba(216, 180, 254, 1);
   opacity: 0;
 }
 
@@ -1028,7 +1028,7 @@ body::after {
   width: 200px;
   height: 2px;
   margin-top: -1px;
-  background: linear-gradient(90deg, rgba(230, 213, 255, 1), rgba(216, 180, 254, 0.4), transparent);
+  background: linear-gradient(90deg, rgba(240, 230, 255, 1), rgba(216, 180, 254, 0.5), transparent);
   transform-origin: left center;
   border-radius: 2px;
 }
@@ -1056,7 +1056,9 @@ body::after {
   }
   .lf {
     animation: none !important;
-    opacity: 0.8 !important;
-    transform: translateY(20vh) rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1)) !important;
+    opacity: 0.95 !important;
+    /* 静态模式：用 JS 注入的 --lf-top 随机散布全屏 */
+    top: var(--lf-top, 20%) !important;
+    transform: rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1)) !important;
   }
 }
