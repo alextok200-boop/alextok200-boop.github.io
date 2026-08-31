@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>给 AI 技能签"合同" - 戴程鹏</title>
+  <meta name="description" content="AI 技能包的接口合同、退出码、幂等策略，从能用到可靠。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">给 AI 技能签"合同"：从能用到可靠</h1>
+        <p class="post-meta">2026-08-20 · AI 技能包</p>
+
+        <div class="post-body">
+          <p>技能包做了十几个之后，最大的教训是：能用和可靠是两回事。给同事一个"偶尔抽风"的工具，比不给更糟——他会慢慢不再信任它。</p>
+
+          <h2>一、什么叫给技能签合同</h2>
+          <p>就像外包要签合同约定交付物，AI 技能也要白纸黑字定义清楚：怎么被调用、吃什么输入、吐什么输出、什么算成功、什么算失败。</p>
+
+          <h2>二、合同里必须有四样</h2>
+
+          <h3>1. 调用方式</h3>
+          <p>是命令行、Python 导入还是 HTTP？写死一个，别让调用方猜。每次技能被调用都是同一入口，出错才好排查。</p>
+
+          <h3>2. 输入输出路径</h3>
+          <p>输入文件在哪、输出文件写哪、格式是什么。输出目录固定，下游才能稳定消费。最怕"这次写 a 目录，下次写 b 目录"。</p>
+
+          <h3>3. 退出码</h3>
+          <p>0 是成功，1 是输入不对，2 是外部依赖挂了，3 是内部错误。有了退出码，自动化才能在失败时知道该重试、该告警还是该报错。</p>
+
+          <h3>4. 幂等策略</h3>
+          <p>同一个任务跑两遍，结果是不是一样？覆盖写还是追加写？跑重了会不会把表搞乱？不定清楚，定时任务一重跑就出事故。</p>
+
+          <h2>三、一个真实的教训</h2>
+          <p>我们有个达人分析技能，第一版没定幂等，每周跑一次。后来加了手动触发，有人一天点了三次，达人表里堆了三层重复数据，复盘全部错乱。定下"按批次幂等覆盖"之后，跑十次和跑一次结果一致，再没出过这事。</p>
+
+          <h2>四、落地做法</h2>
+          <ol>
+            <li>每个技能配一份接口合同（markdown 一页纸就够）</li>
+            <li>合同里写明上面的四样 + 依赖清单</li>
+            <li>自动化调用前先过一遍"技能健康检查"，合同不通过不调用</li>
+          </ol>
+
+          <p>合同看起来是给机器看的，其实是给人看的——让维护的人知道这技能到底承诺了什么。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

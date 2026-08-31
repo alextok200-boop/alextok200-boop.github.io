@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.0.1
+   v1.1.0
    ============================================ */
 
 :root {
@@ -325,6 +325,158 @@ body {
   object-position: top;
   border-bottom: 1px solid var(--border);
   display: block;
+}
+
+/* ---------- Blog ---------- */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 760px;
+}
+
+.blog-item {
+  padding: 24px 28px;
+}
+
+.blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.blog-tag {
+  font-size: 12px;
+  color: var(--neon-pink);
+  border: 1px solid rgba(255, 94, 201, 0.4);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.blog-date {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.blog-item h3 {
+  margin-bottom: 8px;
+}
+
+.blog-item h3 a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.blog-item h3 a:hover {
+  color: var(--neon-green);
+}
+
+.blog-item p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ---------- Post (article page) ---------- */
+.post {
+  padding: 48px 0 64px;
+}
+
+.post-container {
+  max-width: 760px;
+}
+
+.back-link {
+  color: var(--neon-blue);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.post-title {
+  font-size: 32px;
+  line-height: 1.35;
+  margin: 12px 0 8px;
+}
+
+.post-meta {
+  color: var(--text-dim);
+  font-size: 13px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+.post-body {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+.post-body h2 {
+  font-size: 22px;
+  margin: 32px 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--neon-blue);
+}
+
+.post-body h3 {
+  font-size: 17px;
+  margin: 24px 0 8px;
+  color: var(--neon-green);
+}
+
+.post-body p {
+  margin-bottom: 16px;
+  color: var(--text-dim);
+}
+
+.post-body strong {
+  color: var(--text);
+}
+
+.post-body ol,
+.post-body ul {
+  padding-left: 24px;
+  margin-bottom: 16px;
+  color: var(--text-dim);
+}
+
+.post-body li {
+  margin-bottom: 8px;
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.post-body th {
+  background: var(--bg-card);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.post-body td {
+  color: var(--text-dim);
+}
+
+.post-body a {
+  color: var(--neon-blue);
 }
 
 .work-card h3,

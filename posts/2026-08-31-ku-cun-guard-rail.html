@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>库存告警阈值怎么定 - 戴程鹏</title>
+  <meta name="description" content="库存看板三层阈值的设定方法：动销速度、在途周期、促销节点。">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../../index.html">首页</a>
+        <a href="../../about.html">关于</a>
+        <a href="../../work.html">作品集</a>
+        <a href="../../blog.html" class="active">博客</a>
+        <a href="../../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post">
+      <div class="container post-container">
+        <p class="eyebrow"><a href="../../blog.html" class="back-link">← 返回博客</a></p>
+        <h1 class="post-title">库存告警阈值怎么定，才不误报又不漏报</h1>
+        <p class="post-meta">2026-08-31 · 方法论</p>
+
+        <div class="post-body">
+          <p>库存看板跑起来不难，难的是阈值设得准。设太松，货卖光了没人知道；设太紧，每天一堆红点，看板就成了摆设。</p>
+
+          <h2>一、先想清楚：告警是给谁看的</h2>
+          <p>同一张库存看板，老板看的是"有没有大风险"，仓库看的是"今天要补什么货"，运营看的是"哪些品别推了、推了没货发"。阈值按角色分，不要一个值通用。</p>
+
+          <h2>二、三层阈值法</h2>
+          <table>
+            <thead>
+              <tr><th>层级</th><th>依据</th><th>动作</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>提示层（黄）</td><td>库存可卖天数 ≤ 补货周期 + 7 天</td><td>提醒排补货</td></tr>
+              <tr><td>预警层（橙）</td><td>库存可卖天数 ≤ 补货周期</td><td>确认在途，催采购</td></tr>
+              <tr><td>断货层（红）</td><td>库存可卖天数 ≤ 安全库存天数</td><td>立刻行动，停投放/调价</td></tr>
+            </tbody>
+          </table>
+
+          <p>核心变量是两个：<strong>补货周期</strong>（下单到入库要多少天）和<strong>安全库存天数</strong>（能接受的断货风险窗口）。</p>
+
+          <h2>三、补货周期怎么算</h2>
+          <p>别用采购给你的理论值。看历史：从"发起采购"到"入库可用"的真实天数，取过去 6 次的中位数，再上浮 20% 做缓冲。</p>
+
+          <h2>四、安全库存天数按 SKU 分级</h2>
+          <table>
+            <thead>
+              <tr><th>SKU 角色</th><th>安全库存天数</th><th>理由</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>爆款 / 流量款</td><td>15-30 天</td><td>断货损失最大，宁可多压</td></tr>
+              <tr><td>常规款</td><td>7-15 天</td><td>平衡资金占用</td></tr>
+              <tr><td>尾货 / 清仓款</td><td>0-3 天</td><td>本身就是清掉，不用保</td></tr>
+            </tbody>
+          </table>
+
+          <h2>五、别忘了促销节点</h2>
+          <p>大促前两周，安全库存天数要临时上调（比如 ×1.5）。纯按历史数据跑，大促必漏报——因为历史里没有这次活动的爆发。</p>
+
+          <h2>六、落地建议</h2>
+          <ol>
+            <li>第一周先跑"只提示不打扰"：阈值设松，只看误报率</li>
+            <li>第二周收窄：根据误报情况逐档收紧</li>
+            <li>固定每月校准一次阈值，尤其是换季和上新前后</li>
+          </ol>
+
+          <p>阈值是活的，不是设一次就完事。关键是让看板"大部分时间安静、该响的时候一定响"。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>
