@@ -13,6 +13,7 @@
     "nav.blog": { zh: "博客", en: "Blog" },
     "nav.contact": { zh: "联系", en: "Contact" },
     "lang.btn": { zh: "EN", en: "中文" },
+    "logo": { zh: "DAI·CP", en: "DAI·CP" },
 
     // ---- 页脚 ----
     "footer.copyright": { zh: "© 2026 戴程鹏 · Powered by GitHub Pages", en: "© 2026 Dai Chengpeng · Powered by GitHub Pages" },
@@ -20,6 +21,7 @@
     // ---- 首页 hero ----
     "hero.eyebrow": { zh: "电商操盘手 · 技能包工程负责人", en: "E-commerce Operator · AI Skill Pack Engineer" },
     "hero.title1": { zh: "让品牌电商", en: "Making brand e-commerce" },
+    "hero.run": { zh: "跑得", en: "go" },
     "hero.title2": { zh: "更快、更稳、更省人", en: "Faster, Steadier, Leaner" },
     "hero.sub": { zh: "操盘万世康伦（KONLLEN）集团电商，覆盖国内 9+ 平台与海外多平台，用 AI 技能包把重复工作自动化，让团队把时间花在增长上。", en: "Operating KONLLEN Group e-commerce across 9+ domestic platforms and multiple overseas platforms. Automating repetitive work with AI skill packs so the team can focus on growth." },
     "hero.btn1": { zh: "看作品", en: "View Work" },
