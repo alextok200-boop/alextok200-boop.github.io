@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.0.0
+   v1.0.1
    ============================================ */
 
 :root {
@@ -235,6 +235,32 @@ body {
 }
 
 /* ---------- About ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.about-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-avatar img {
+  max-width: 75%;
+  max-height: 75%;
+  filter: invert(1) hue-rotate(180deg);
+}
+
 .about-intro p {
   color: var(--text-dim);
   font-size: 16px;
@@ -285,17 +311,58 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.work-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+  border-bottom: 1px solid var(--border);
+  display: block;
+}
+
+.work-card h3,
+.work-card p {
+  padding: 0 20px;
+}
+
+.work-card h3 {
+  padding-top: 18px;
+}
+
+.work-card p {
+  padding-bottom: 20px;
+}
+
 .work-placeholder {
   background: linear-gradient(135deg, #14141c, #1c1c2a);
   border: 1px dashed var(--border);
-  border-radius: 8px;
-  height: 160px;
+  height: 200px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+
+.work-placeholder span {
+  font-size: 32px;
+  opacity: 0.6;
+}
+
+.work-placeholder p {
   font-size: 13px;
-  margin-bottom: 16px;
+  margin: 0;
+  padding: 0;
 }
 
 /* ---------- Contact ---------- */
@@ -406,5 +473,14 @@ body {
 
   .stat-num {
     font-size: 26px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-avatar {
+    margin: 0 auto;
   }
 }

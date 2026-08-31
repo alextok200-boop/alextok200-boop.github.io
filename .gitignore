@@ -8,6 +8,9 @@ Thumbs.db
 .vscode/
 .idea/
 
-# 素材（图片暂不入库，本地处理）
-assets/img/*.png
-assets/img/*.jpg
+# 临时/源素材（只入库压缩后的图，未压缩的留本地）
+assets/img/_source/
+*.psd
+*.ai
+*.sketch
+*.raw
