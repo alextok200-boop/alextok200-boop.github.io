@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.3.2 (修复流星被 body 背景遮挡: 底色移至 html)
+   v1.3.3 (流星重构: JS 动态生成 30 颗, 随机角度/速度/大小, 更亮更快)
    ============================================ */
 
 :root {
@@ -999,6 +999,7 @@ body::after {
 
 /* ============================================
    Lightfall 流星背景（参考 konllen.iepose.cn）
+   流星由 js/lightfall.js 动态生成（30 颗，随机参数）
    ============================================ */
 .lightfall {
   position: fixed;
@@ -1011,50 +1012,40 @@ body::after {
 .lf {
   position: absolute;
   top: -10%;
-  width: 2px;
-  height: 2px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: #e6d5ff;
-  box-shadow: 0 0 6px 1px rgba(216, 180, 254, 0.9);
+  box-shadow: 0 0 8px 2px rgba(216, 180, 254, 0.95);
   opacity: 0;
-  animation: lf-fall linear infinite;
 }
 
 .lf::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  width: 160px;
+  top: 50%;
+  width: 200px;
   height: 2px;
-  background: linear-gradient(90deg, rgba(230, 213, 255, 0.95), rgba(216, 180, 254, 0.35), transparent);
-  transform: rotate(-25deg);
+  margin-top: -1px;
+  background: linear-gradient(90deg, rgba(230, 213, 255, 1), rgba(216, 180, 254, 0.4), transparent);
   transform-origin: left center;
   border-radius: 2px;
 }
 
-.lf-1 { left: 8%; animation-duration: 11s; animation-delay: 0s; }
-.lf-2 { left: 22%; animation-duration: 14s; animation-delay: 3s; }
-.lf-3 { left: 35%; animation-duration: 9s; animation-delay: 1.5s; }
-.lf-4 { left: 48%; animation-duration: 16s; animation-delay: 5s; }
-.lf-5 { left: 60%; animation-duration: 12s; animation-delay: 2s; }
-.lf-6 { left: 72%; animation-duration: 10s; animation-delay: 7s; }
-.lf-7 { left: 85%; animation-duration: 15s; animation-delay: 4s; }
-.lf-8 { left: 93%; animation-duration: 13s; animation-delay: 6s; }
-
 @keyframes lf-fall {
   0% {
-    transform: translateY(-5vh) translateX(0);
+    transform: translateY(-8vh) translateX(0) rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1));
     opacity: 0;
   }
-  6% {
+  5% {
     opacity: 1;
   }
-  70% {
-    opacity: 0.85;
+  65% {
+    opacity: 0.9;
   }
   100% {
-    transform: translateY(110vh) translateX(-50px);
+    transform: translateY(112vh) translateX(-60px) rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1));
     opacity: 0;
   }
 }
