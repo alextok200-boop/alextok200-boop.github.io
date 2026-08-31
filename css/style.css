@@ -33,6 +33,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 背景霓虹光晕（固定层，不影响内容） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(600px 400px at 15% 0%, rgba(0, 200, 255, 0.09), transparent 60%),
+    radial-gradient(700px 500px at 85% 10%, rgba(0, 255, 163, 0.07), transparent 60%),
+    radial-gradient(600px 500px at 50% 100%, rgba(255, 94, 201, 0.06), transparent 60%);
+  pointer-events: none;
+}
+
+/* 细网格纹理 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
 .container {
   max-width: 1080px;
   margin: 0 auto;
@@ -78,6 +104,24 @@ body {
   text-decoration: none;
   font-size: 15px;
   transition: color 0.2s;
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--neon-green);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
 .nav-links a:hover,
@@ -110,6 +154,16 @@ body {
   line-height: 1.25;
   font-weight: 700;
   margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* 渐变霓虹高亮文字 */
+.grad-text {
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-blue) 60%, var(--neon-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .hero-sub {
@@ -139,10 +193,11 @@ body {
 .btn-primary {
   background: var(--neon-green);
   color: #07130d;
+  box-shadow: 0 0 24px rgba(0, 255, 163, 0.25);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 163, 0.4);
+  box-shadow: 0 0 32px rgba(0, 255, 163, 0.5);
   transform: translateY(-1px);
 }
 
@@ -154,6 +209,22 @@ body {
 .btn-ghost:hover {
   border-color: var(--neon-blue);
   color: var(--neon-blue);
+  box-shadow: 0 0 24px rgba(0, 200, 255, 0.2);
+}
+
+/* 发光卡片（hero 统计卡） */
+.glow-card {
+  position: relative;
+  border-color: rgba(0, 255, 163, 0.25);
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), transparent 40%, rgba(0, 200, 255, 0.15));
+  z-index: -1;
 }
 
 /* ---------- Hero stats card ---------- */
@@ -207,12 +278,52 @@ body {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 28px;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
 .card:hover {
-  border-color: var(--neon-green);
+  border-color: rgba(0, 255, 163, 0.5);
   transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 163, 0.08);
+}
+
+/* 能力卡片图标 */
+.feature-card {
+  position: relative;
+  padding-top: 32px;
+}
+
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border: 1px solid;
+}
+
+.feature-icon svg {
+  display: block;
+}
+
+.icon-green {
+  color: var(--neon-green);
+  border-color: rgba(0, 255, 163, 0.35);
+  background: rgba(0, 255, 163, 0.06);
+}
+
+.icon-blue {
+  color: var(--neon-blue);
+  border-color: rgba(0, 200, 255, 0.35);
+  background: rgba(0, 200, 255, 0.06);
+}
+
+.icon-pink {
+  color: var(--neon-pink);
+  border-color: rgba(255, 94, 201, 0.35);
+  background: rgba(255, 94, 201, 0.06);
 }
 
 .card h3 {
@@ -854,5 +965,27 @@ body {
 @media (max-width: 640px) {
   .post-nav {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   Scroll reveal animation v1.2.1
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
