@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // hero 背景视频降速：0.8x（官方展示站视频节奏偏快，慢一点更有氛围）
   var heroVideo = document.querySelector(".hero-video");
   if (heroVideo) {
-    heroVideo.playbackRate = 0.8;
+    heroVideo.playbackRate = 0.6;
     heroVideo.addEventListener("ratechange", function () {
       // 防止某些浏览器重置播放速度
-      if (heroVideo.playbackRate !== 0.8) heroVideo.playbackRate = 0.8;
+      if (heroVideo.playbackRate !== 0.6) heroVideo.playbackRate = 0.6;
     });
   }
 
