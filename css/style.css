@@ -1012,11 +1012,15 @@ body::after {
 .lf {
   position: absolute;
   top: -10%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #f0e6ff;
-  box-shadow: 0 0 10px 3px rgba(216, 180, 254, 1);
+  width: 16px;
+  height: 16px;
+  /* 五角星：10x10 网格的精确坐标（外半径 5，内半径 2） */
+  background: #f5edff;
+  /* webkit 兼容 */
+  -webkit-clip-path: polygon(50% 0%, 62% 34%, 98% 35%, 69% 56%, 79% 91%, 50% 70%, 21% 91%, 31% 56%, 2% 35%, 38% 34%);
+  clip-path: polygon(50% 0%, 62% 34%, 98% 35%, 69% 56%, 79% 91%, 50% 70%, 21% 91%, 31% 56%, 2% 35%, 38% 34%);
+  /* 星形周围的紫色光晕（box-shadow 仍按元素 box 渲染，形成星型发光感） */
+  box-shadow: 0 0 12px 4px rgba(216, 180, 254, 0.95), 0 0 24px 8px rgba(168, 85, 247, 0.4);
   opacity: 0;
 }
 
