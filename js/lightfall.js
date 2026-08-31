@@ -39,17 +39,17 @@
     frag.appendChild(span);
   }
 
-  // 生成金币（穿插，比流星大、更慢、金色拖尾）
+  // 生成金币（与星星同尺寸同随机范围，穿插分布）
   for (var j = 0; j < COIN_COUNT; j++) {
     var coin = document.createElement("span");
     coin.className = "lf lf-coin";
 
     var cleft = rand(5, 95);
     var ctop = rand(2, 90);
-    var cdur = rand(8, 14);   // 金币更慢（更"贵"感）
-    var cdelay = rand(0, 14);
-    var cscale = rand(0.8, 1.3);
-    var cangle = rand(-40, -30);
+    var cdur = rand(5, 10);    // 与星星一致
+    var cdelay = rand(0, 10);
+    var cscale = rand(0.6, 1.3); // 与星星一致
+    var cangle = rand(-45, -25); // 与星星一致
 
     coin.style.left = cleft + "%";
     coin.style.setProperty("--lf-top", ctop + "%");
