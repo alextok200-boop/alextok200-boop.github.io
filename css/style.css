@@ -1,6 +1,6 @@
 /* ============================================
    Konllen Personal Site - Dark Neon Theme
-   v1.3.0 (参考 konllen.iepose.cn 视觉语言)
+   v1.3.1 (参考 konllen.iepose.cn 视觉语言, 增强紫罗兰可见度)
    ============================================ */
 
 :root {
@@ -37,17 +37,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 背景紫罗兰光晕（参考站电影感） */
+/* 背景紫罗兰光晕（参考站电影感）- v1.3.1 加强可见度 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(800px 500px at 20% -5%, rgba(147, 51, 234, 0.16), transparent 60%),
-    radial-gradient(700px 450px at 80% 5%, rgba(0, 200, 255, 0.10), transparent 60%),
-    radial-gradient(900px 600px at 50% 110%, rgba(168, 85, 247, 0.10), transparent 60%),
-    linear-gradient(180deg, #090711 0%, #120b1f 40%, #0d0818 75%, #090711 100%);
+    radial-gradient(800px 500px at 20% -5%, rgba(147, 51, 234, 0.28), transparent 60%),
+    radial-gradient(700px 450px at 80% 5%, rgba(0, 200, 255, 0.16), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(168, 85, 247, 0.18), transparent 60%),
+    linear-gradient(180deg, #090711 0%, #1a1130 40%, #120b24 75%, #090711 100%);
   pointer-events: none;
 }
 
@@ -58,8 +58,8 @@ body::after {
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(216, 180, 254, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(216, 180, 254, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(216, 180, 254, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 180, 254, 0.05) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
 }
