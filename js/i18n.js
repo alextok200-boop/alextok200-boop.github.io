@@ -72,7 +72,7 @@
     // ---- 关于页 ----
     "about.eyebrow": { zh: "About", en: "About" },
     "about.title": { zh: "关于我", en: "About Me" },
-    "about.p1": { zh: "我是戴程鹏，万世康伦（KONLLEN）集团高级运营负责人，常驻深圳。管理 15 人电商团队，覆盖 49 个店铺、9+ 国内平台与多个海外平台，国内海外业务向 50/50 结构调整。", en: "I'm Dai Chengpeng, senior operations lead at KONLLEN Group, based in Shenzhen. I manage a 15-person e-commerce team across 49 stores, 9+ domestic platforms and multiple overseas platforms, restructuring toward a 50/50 domestic-overseas mix." },
+    "about.p1": { zh: "我是戴程鹏，万世康伦（KONLLEN）集团高级运营负责人，常住江苏南京。集团电商营收中心团队 15 人以上，覆盖 49 个店铺、9+ 国内平台与多个海外平台，国内海外业务向 50/50 结构调整。", en: "I'm Dai Chengpeng, senior operations lead at KONLLEN Group, based in Nanjing, Jiangsu. Our e-commerce revenue hub team has 15+ members across 49 stores, 9+ domestic platforms and multiple overseas platforms, restructuring toward a 50/50 domestic-overseas mix." },
     "about.p2": { zh: "除了传统电商操盘，我的另一个身份是技能包全栈工程负责人——把投流、生图、达人分析、数据看板等运营知识封装成 AI 技能包，让零基础的 HR、运营同事也能一键使用。", en: "Beyond classic e-commerce operations, I'm also a full-stack engineer of AI skill packs — packaging ad planning, image generation, influencer analytics and dashboards into skills that even non-technical colleagues can use with one click." },
     "about.timeline": { zh: "经历时间线", en: "Timeline" },
     "about.tl1.date": { zh: "2026", en: "2026" },

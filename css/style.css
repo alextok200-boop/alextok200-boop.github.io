@@ -532,7 +532,7 @@ body::after {
 .about-avatar img {
   max-width: 75%;
   max-height: 75%;
-  filter: invert(1) hue-rotate(180deg);
+  filter: invert(1);
 }
 
 .about-intro p {
