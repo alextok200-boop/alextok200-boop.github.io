@@ -1309,23 +1309,20 @@ body::after {
   pointer-events: none;
 }
 
-/* v1.6.11：.lf-wrap 静态父层承载定位 + rotate/scale（合成器属性），
-   .lf 动画只动 translateY/X + opacity，避免动画 transform 覆盖静态旋转缩放。
-   v1.6.14：wrap 显式 16×16（金币 10×10），使 rotate/scale 锚点回到元素中心，
-   与 v1.6.10 原始版（transform-origin 50% 50%）视觉一致。 */
+/* v1.6.11：双层结构（.lf-wrap 父 + .lf 子），动画只动 translateY/X + opacity，
+   消除每帧样式重算（Style 29ms → ~2ms）。
+   v1.6.14：wrap 显式 16×16（金币 10×10），使 rotate/scale 锚点回到元素中心。
+   v1.6.15 轨迹纠偏：rotate/scale 从 wrap 移回 .lf 内层（星形自身朝向，静态，
+   不参与动画帧重算）；wrap 只做定位 + 全局位移动画。位移在 wrap（父层）先于
+   inner 的 rotate/scale 应用 → 最终变换 T·R·S·p，与 v1.6.10 原始版
+   （translateY translateX rotate scale 同层）数学一致，方向不再被随机角度扭曲、
+   位移量不再被 scale 放大。wrap 不再需要显式尺寸（锚点由 .lf 自身 16×16 承担）。 */
 .lf-wrap {
   position: absolute;
   top: -10%;
   left: 0;
-  width: 16px;
-  height: 16px;
   will-change: transform;
   pointer-events: none;
-}
-
-.lf-coin-wrap {
-  width: 10px;
-  height: 10px;
 }
 
 .lf {
@@ -1377,7 +1374,8 @@ body::after {
 
 @keyframes lf-fall {
   0% {
-    /* v1.6.11：rotate/scale 已内联为元素静态 transform，此处只动 translate（合成器属性） */
+    /* v1.6.11：rotate/scale 已移出动画帧（.lf 内层静态承载），
+       v1.6.15：wrap 外层只动 translate（全局方向，不进入旋转坐标系） */
     transform: translateY(-8vh) translateX(120px);
     opacity: 0;
   }
@@ -1403,12 +1401,13 @@ body::after {
   .lightfall {
     display: block;
   }
+  /* v1.6.15：动画在 .lf-wrap 外层，reduced-motion 时关掉 wrap 动画、
+     用 JS 注入的 --lf-top 静态散布；.lf 内层静态 rotate/scale 已内联，无需处理 */
   .lf-wrap {
-    /* 静态模式：用 JS 注入的 --lf-top 随机散布全屏 */
     top: var(--lf-top, 20%) !important;
+    animation: none !important;
   }
   .lf {
-    animation: none !important;
     opacity: 0.95 !important;
   }
 }

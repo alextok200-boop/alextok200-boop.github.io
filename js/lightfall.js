@@ -1,11 +1,17 @@
 /* Lightfall 流星背景：动态生成五角星 + 金币
-   v1.6.11 性能改造（保留）：
-   ① rotate/scale 从动画 keyframes 移出，放到 .lf-wrap 静态父层（合成器属性），
-      .lf 动画只动 translateY/X + opacity —— 避免动画 transform 整体覆盖静态 transform
-      （否则流星会丢失旋转/缩放），同时消除每帧样式重算（Style 29ms → ~2ms）。
+   v1.6.11 性能改造（保留双层结构）：
+   ① rotate/scale 从动画 keyframes 移出，放到静态层（合成器属性），
+      动画只动 translateY/X + opacity —— 消除每帧样式重算（Style 29ms → ~2ms）。
    v1.6.14 视觉纠偏：
    ② 数量恢复原始设定 60 星 + 12 币（v1.6.11/12 为压内存曾砍至 22/4，导致星野密度
-      降至 1/3、背景"像静止"）；锚点由 .lf-wrap 尺寸修复为星中心（见 style.css）。 */
+      降至 1/3、背景"像静止"）。
+   v1.6.15 轨迹纠偏（本次）：
+   ③ 层级对调：rotate/scale 放到 .lf 内层（星形自身朝向），位移动画放到 .lf-wrap 外层
+      （全局方向）。v1.6.14 把 rotate/scale 放在 wrap 父层、位移放 inner 子层，导致
+      位移跑进旋转坐标系：运动方向被随机角度扭曲、位移量被 scale 放大——与 v1.6.10
+      原始设定（单元素动画 translate 全局方向 + rotate/scale 只影响自身）不符。
+      对调后：wrap 的 translate 是全局方向（不受 rotate/scale 影响），inner 的
+      rotate/scale 只作用于星形自身，视觉与 v1.6.10 完全一致，性能收益保留。 */
 (function () {
   var container = document.getElementById("lightfall");
   if (!container) {
@@ -51,11 +57,11 @@
     var dur = isFast ? rand(7, 12) : rand(50, 80);      // 快档划过 / 雪花级慢速
     var delay = isFast ? rand(0, 5) : rand(0, 25);
 
-    // 静态属性放 wrap（定位 + 旋转 + 缩放），动画只留在 inner
+    // v1.6.15：wrap 外层 = 定位 + 位移动画（全局方向）；inner 内层 = 静态 rotate/scale（自身朝向）
     pair.wrap.style.left = left + "%";
     pair.wrap.style.setProperty("--lf-top", top + "%");
-    pair.wrap.style.transform = "rotate(" + angle + "deg) scale(" + scale.toFixed(2) + ")";
-    pair.inner.style.animation = "lf-fall " + dur + "s linear " + delay + "s infinite";
+    pair.wrap.style.animation = "lf-fall " + dur + "s linear " + delay + "s infinite";
+    pair.inner.style.transform = "rotate(" + angle + "deg) scale(" + scale.toFixed(2) + ")";
 
     frag.appendChild(pair.wrap);
   }
@@ -76,10 +82,11 @@
     var cdur = cIsFast ? rand(7, 12) : rand(50, 80);
     var cdelay = cIsFast ? rand(0, 5) : rand(0, 25);
 
+    // v1.6.15：同星星，wrap 外层位移 + inner 内层旋转缩放
     coinPair.wrap.style.left = cleft + "%";
     coinPair.wrap.style.setProperty("--lf-top", ctop + "%");
-    coinPair.wrap.style.transform = "rotate(" + cangle + "deg) scale(" + cscale.toFixed(2) + ")";
-    coinPair.inner.style.animation = "lf-fall " + cdur + "s linear " + cdelay + "s infinite";
+    coinPair.wrap.style.animation = "lf-fall " + cdur + "s linear " + cdelay + "s infinite";
+    coinPair.inner.style.transform = "rotate(" + cangle + "deg) scale(" + cscale.toFixed(2) + ")";
 
     frag.appendChild(coinPair.wrap);
   }
