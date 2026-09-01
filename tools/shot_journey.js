@@ -18,7 +18,7 @@ const OUT = __dirname;
 
   // 1) 桌面版 + 中文
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto(BASE + '/index.html?v=1.6.13', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/index.html?v=1.6.14', { waitUntil: 'networkidle0' });
   await page.evaluate(() => new Promise(r => setTimeout(r, 1500)));
   const jEl = await page.$('#journey');
   await jEl.scrollIntoView();
@@ -51,7 +51,7 @@ const OUT = __dirname;
 
   // 2) 移动版
   await page.setViewport({ width: 390, height: 844 });
-  await page.goto(BASE + '/index.html?v=1.6.13', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/index.html?v=1.6.14', { waitUntil: 'networkidle0' });
   await page.evaluate(() => new Promise(r => setTimeout(r, 1200)));
   const jM = await page.$('#journey');
   await jM.scrollIntoView();
@@ -60,7 +60,7 @@ const OUT = __dirname;
 
   // 3) 英文版
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto(BASE + '/index.html?v=1.6.13', { waitUntil: 'networkidle0' });
+  await page.goto(BASE + '/index.html?v=1.6.14', { waitUntil: 'networkidle0' });
   await page.evaluate(() => new Promise(r => setTimeout(r, 1000)));
   await page.click('[data-i18n-toggle]');
   await page.evaluate(() => new Promise(r => setTimeout(r, 600)));

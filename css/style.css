@@ -1299,7 +1299,7 @@ body::after {
 
 /* ============================================
    Lightfall 流星背景（参考 konllen.iepose.cn）
-   流星由 js/lightfall.js 动态生成（v1.6.12：22 星 + 4 币，随机参数）
+   流星由 js/lightfall.js 动态生成（v1.6.14：60 星 + 12 币，恢复原始设定）
    ============================================ */
 .lightfall {
   position: fixed;
@@ -1310,13 +1310,22 @@ body::after {
 }
 
 /* v1.6.11：.lf-wrap 静态父层承载定位 + rotate/scale（合成器属性），
-   .lf 动画只动 translateY/X + opacity，避免动画 transform 覆盖静态旋转缩放 */
+   .lf 动画只动 translateY/X + opacity，避免动画 transform 覆盖静态旋转缩放。
+   v1.6.14：wrap 显式 16×16（金币 10×10），使 rotate/scale 锚点回到元素中心，
+   与 v1.6.10 原始版（transform-origin 50% 50%）视觉一致。 */
 .lf-wrap {
   position: absolute;
   top: -10%;
   left: 0;
+  width: 16px;
+  height: 16px;
   will-change: transform;
   pointer-events: none;
+}
+
+.lf-coin-wrap {
+  width: 10px;
+  height: 10px;
 }
 
 .lf {

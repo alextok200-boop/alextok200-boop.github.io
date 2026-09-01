@@ -1,17 +1,19 @@
 /* Lightfall 流星背景：动态生成五角星 + 金币
-   v1.6.11 性能改造：
-   ① 数量 60/12 → 32/6；
-   ② rotate/scale 从动画 keyframes 移出，放到 .lf-wrap 静态父层（合成器属性），
+   v1.6.11 性能改造（保留）：
+   ① rotate/scale 从动画 keyframes 移出，放到 .lf-wrap 静态父层（合成器属性），
       .lf 动画只动 translateY/X + opacity —— 避免动画 transform 整体覆盖静态 transform
-      （否则流星会丢失旋转/缩放），同时消除每帧样式重算（Style 29ms → ~2ms）。 */
+      （否则流星会丢失旋转/缩放），同时消除每帧样式重算（Style 29ms → ~2ms）。
+   v1.6.14 视觉纠偏：
+   ② 数量恢复原始设定 60 星 + 12 币（v1.6.11/12 为压内存曾砍至 22/4，导致星野密度
+      降至 1/3、背景"像静止"）；锚点由 .lf-wrap 尺寸修复为星中心（见 style.css）。 */
 (function () {
   var container = document.getElementById("lightfall");
   if (!container) {
     return;
   }
 
-  var STAR_COUNT = 22;  // 五角星数量（v1.6.12：32 → 22，减合成层纹理内存）
-  var COIN_COUNT = 4;   // 金币数量（v1.6.12：6 → 4）
+  var STAR_COUNT = 60;  // 五角星数量（v1.6.14：恢复原始设定 60）
+  var COIN_COUNT = 12;  // 金币数量（v1.6.14：恢复原始设定 12）
 
   var FAST_STAR_LIMIT = 3;  // 快速下坠的星星最多 3 个
   var FAST_COIN_LIMIT = 1;  // 快速下坠的金币一批次只能 1 个
