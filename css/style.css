@@ -1916,8 +1916,8 @@ body::after {
 /* ---------- Careers hero 视觉（v1.6.4：黑底 + 紫红光晕 + Canvas 粒子光线）---------- */
 .careers-hero {
   position: relative;
-  /* v1.6.7：由固定 62vh 改为流式自适应——矮屏不挤、高屏不过高 */
-  min-height: clamp(300px, 44vh, 540px);
+  /* v1.6.7：由固定 62vh 改为流式自适应；v1.6.8：收紧到 36vh */
+  min-height: clamp(300px, 36vh, 540px);
   display: flex;
   align-items: center;
   background: transparent;
