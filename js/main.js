@@ -1,19 +1,6 @@
-/* Konllen Personal Site - main.js v1.2.1 */
+/* Konllen Personal Site - main.js v1.3.0 */
 
 document.addEventListener("DOMContentLoaded", function () {
-  // 联系表单：静态站无后端，点击后给出提示
-  var form = document.getElementById("contactForm");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var note = document.getElementById("formNote");
-      var name = document.getElementById("name").value || "朋友";
-      if (note) {
-        note.textContent = "谢谢 " + name + "！表单已提交（静态站演示），正式版请通过邮箱联系。";
-      }
-    });
-  }
-
   // 当前年份自动更新
   var footer = document.querySelector(".site-footer p");
   if (footer) {
@@ -21,7 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
     footer.innerHTML = footer.innerHTML.replace("2026", year);
   }
 
-  // hero 背景视频降速：0.8x（官方展示站视频节奏偏快，慢一点更有氛围）
+  // 微信二维码：在 site-config.js 填了路径才显示，未填保留占位
+  var CFG = window.SITE_CONFIG || {};
+  var qr = CFG.contact && CFG.contact.wechatQr;
+  var frame = document.getElementById("wechatQrFrame");
+  if (frame && qr) {
+    frame.innerHTML = "";
+    var img = document.createElement("img");
+    img.src = qr;
+    img.alt = "WeChat QR code";
+    img.loading = "lazy";
+    frame.appendChild(img);
+  }
+
+  // hero 背景视频降速：0.6x（官方展示站视频节奏偏快，慢一点更有氛围）
   var heroVideo = document.querySelector(".hero-video");
   if (heroVideo) {
     heroVideo.playbackRate = 0.6;

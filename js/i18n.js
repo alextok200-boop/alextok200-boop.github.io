@@ -135,11 +135,171 @@
     "post.toc": { zh: "目录", en: "Contents" },
     "post.prev": { zh: "← 上一篇", en: "← Previous" },
     "post.next": { zh: "下一篇 →", en: "Next →" },
-    "post.related": { zh: "相关阅读", en: "Related" }
+    "post.related": { zh: "相关阅读", en: "Related" },
+
+    // ---- 页脚 ----
+    "footer.rss": { zh: "RSS 订阅", en: "RSS" },
+    "offline.tip": { zh: "当前离线，正在显示缓存内容", en: "You're offline — showing cached content" },
+    "comments.title": { zh: "评论", en: "Comments" },
+
+    // ---- 新导航 ----
+    "nav.brands": { zh: "品牌矩阵", en: "Brands" },
+    "nav.results": { zh: "成绩单", en: "Results" },
+    "nav.careers": { zh: "加入我们", en: "Careers" },
+
+    // ---- 联系页 ----
+    "contact.sub": { zh: "B2B 代理合作、品牌电商咨询、AI 技能包合作，或只是聊聊行业——都可以从这里开始。", en: "B2B dealership, brand e-commerce consulting, AI skill pack projects — or just a chat about the industry. Start here." },
+    "contact.response": { zh: "响应", en: "Response" },
+    "contact.response.val": { zh: "1-2 个工作日内回复 · 正式合作走 OA 审批留痕", en: "Reply within 1-2 business days · formal deals logged via OA approval" },
+    "contact.vcard": { zh: "保存电子名片", en: "Save Contact Card" },
+    "contact.qr.todo": { zh: "微信二维码待补充", en: "WeChat QR pending" },
+    "contact.qr.caption": { zh: "扫码加微信，备注来意", en: "Scan to add me on WeChat" },
+    "contact.form.title": { zh: "合作咨询", en: "Partnership Inquiry" },
+    "contact.form.company": { zh: "公司 / 渠道", en: "Company / Channel" },
+    "contact.form.company.ph": { zh: "公司与主营渠道（选填）", en: "Company & main channel (optional)" },
+    "contact.form.intent": { zh: "合作意向", en: "Inquiry Type" },
+    "contact.form.privacy": { zh: "信息仅用于本次沟通，不对外共享、不做营销推送。", en: "Used only for this conversation. Never shared, never used for marketing." },
+    "opt.b2b": { zh: "B2B 代理合作", en: "B2B Dealership" },
+    "opt.brand": { zh: "品牌 / 产品合作", en: "Brand / Product" },
+    "opt.skill": { zh: "AI 技能包合作", en: "AI Skill Pack" },
+    "opt.consult": { zh: "咨询 / 培训", en: "Consulting / Training" },
+    "opt.job": { zh: "应聘", en: "Job Application" },
+    "opt.other": { zh: "其他", en: "Other" },
+
+    // ---- 表单状态提示 ----
+    "inquiry.err.name": { zh: "请填写称呼", en: "Please enter your name" },
+    "inquiry.err.email": { zh: "请填写有效邮箱，方便回复你", en: "Please enter a valid email so I can reply" },
+    "inquiry.err.msg": { zh: "内容请至少 10 个字，方便我判断需求", en: "Please write at least 10 characters" },
+    "inquiry.sending": { zh: "提交中…", en: "Sending…" },
+    "inquiry.success": { zh: "已收到，我会在 1-2 个工作日内回复你。", en: "Got it — I'll reply within 1-2 business days." },
+    "inquiry.fail": { zh: "提交失败，请直接发邮件到 {mail}", en: "Submission failed. Please email {mail} directly." },
+    "inquiry.mailto": { zh: "正在打开你的邮件客户端…", en: "Opening your mail client…" },
+    "inquiry.cooldown": { zh: "刚刚已提交，请稍候再试", en: "Just submitted — please wait a moment" },
+    "inquiry.nochannel": { zh: "暂未配置提交通道，请直接发邮件联系。", en: "No submission channel configured yet. Please email directly." },
+
+    // ---- 品牌矩阵页 ----
+    "brands.eyebrow": { zh: "Brands", en: "Brands" },
+    "brands.title": { zh: "品牌矩阵", en: "Brand Matrix" },
+    "brands.sub": { zh: "万世康伦集团旗下 9 个台球 / 桌球用品品牌，覆盖不同价格带与人群，国内走货架与兴趣电商，海外走 Amazon 等平台与独立站。", en: "Nine billiards brands under KONLLEN Group, spanning price tiers and audiences — shelf and interest-based e-commerce at home, Amazon and DTC overseas." },
+    "brands.todo": { zh: "待确认：品牌中文名与英文名的对应关系以集团最新口径为准，如需调整请告诉我具体品牌与描述。", en: "To confirm: Chinese/English brand naming follows the group's latest standard. Tell me which brand to fix and I'll update it." },
+    "brands.cta": { zh: "咨询品牌合作 / 代理", en: "Enquire About Partnership" },
+    "brands.hint": { zh: "可按单品牌或组合授权 · 正式条款以 OA 审批为准", en: "Single-brand or bundled licensing · official terms per OA approval" },
+    "brand.konllen.tag": { zh: "集团主品牌 · 亚马逊日本 #5 / 德国 #8", en: "Flagship brand · Amazon JP #5 / DE #8" },
+    "brand.konllen.desc": { zh: "集团核心台球用品品牌，产品覆盖整杆、前肢与配件；旗下 KONLLEN GO 面向青年玩家，走更轻的量级与更年轻的表达。", en: "The group's core billiards brand covering full cues, shafts and accessories. KONLLEN GO targets younger players with lighter builds and louder design." },
+    "brand.konllen.m1": { zh: "主线：整杆 / 前肢 / 配件", en: "Core line: cues / shafts / accessories" },
+    "brand.konllen.m2": { zh: "子线：KONLLEN GO（青年玩家）", en: "Sub-line: KONLLEN GO (young players)" },
+    "brand.konllen.m3": { zh: "海外：Amazon 多站点品牌榜", en: "Overseas: Amazon brand rankings, multiple marketplaces" },
+    "brand.crical.tag": { zh: "科瑞克 · 京东旗舰店 · 亚马逊美国 #11 / 加拿大 #11", en: "Keruike · JD flagship store · Amazon US #11 / CA #11" },
+    "brand.crical.desc": { zh: "面向国内货架电商与海外市场同步推进的双线品牌，京东设有 CRICAL 旗舰店，在 Amazon 美、加站点进入品牌榜。", en: "A dual-track brand running domestic shelf e-commerce and overseas markets in parallel, with a CRICAL flagship store on JD and Amazon US/CA brand rankings." },
+    "brand.crical.m1": { zh: "国内：京东 CRICAL 旗舰店", en: "Domestic: CRICAL flagship store on JD" },
+    "brand.crical.m2": { zh: "海外：Amazon 美 / 加站点", en: "Overseas: Amazon US / CA" },
+    "brand.crical.m3": { zh: "官网：独立站点在建设中", en: "Website: standalone site in progress" },
+    "brand.common.tag": { zh: "台球 / 桌球用品品牌", en: "Billiards brand" },
+    "brand.common.desc": { zh: "集团品牌矩阵成员，台球 / 桌球用品线。", en: "Part of the group brand matrix — billiards product line." },
+    "brand.group.tag": { zh: "集团品牌", en: "Group brand" },
+    "brand.group.desc": { zh: "集团主体品牌，承载集团层面的合作与渠道对接。", en: "The group's corporate brand, handling group-level partnerships and channel onboarding." },
+    "brand.keruike.tag": { zh: "CRICAL 中文品牌名", en: "Chinese name of CRICAL" },
+    "brand.keruike.desc": { zh: "CRICAL 的中文品牌名，国内渠道以此名称出现。", en: "The Chinese brand name for CRICAL, used across domestic channels." },
+
+    // ---- 成绩单页 ----
+    "ach.eyebrow": { zh: "Results", en: "Results" },
+    "ach.title": { zh: "成绩单", en: "Results" },
+    "ach.sub": { zh: "只列能对账的数字：规模、排名、覆盖与沉淀。口径与集团内部统计一致。", en: "Only numbers that reconcile: scale, rankings, coverage, assets. Same basis as internal group reporting." },
+    "ach.numbers": { zh: "核心数字", en: "Key Numbers" },
+    "ach.gmv": { zh: "年 GMV（已实现）", en: "Annual GMV (achieved)" },
+    "ach.gmv.note": { zh: "国内 + 海外合计，年度口径", en: "Domestic + overseas, annual basis" },
+    "ach.stores": { zh: "店铺矩阵", en: "Store Matrix" },
+    "ach.stores.note": { zh: "9+ 国内平台 + 多个海外平台", en: "9+ domestic platforms + multiple overseas" },
+    "ach.brands": { zh: "品牌矩阵", en: "Brand Matrix" },
+    "ach.brands.note": { zh: "台球 / 桌球用品，覆盖多价格带", en: "Billiards, spanning multiple price tiers" },
+    "ach.amazon": { zh: "亚马逊站点品牌榜", en: "Amazon Brand Rankings" },
+    "ach.amazon.note": { zh: "KONLLEN 日 #5 / 德 #8 · CRICAL 美 #11 / 加 #11", en: "KONLLEN JP #5 / DE #8 · CRICAL US #11 / CA #11" },
+    "ach.skills": { zh: "AI 技能包", en: "AI Skill Packs" },
+    "ach.skills.note": { zh: "投流 / 生图 / 看板 / 审批 / 脚本", en: "Ads / imaging / dashboards / approvals / scripts" },
+    "ach.team": { zh: "团队规模", en: "Team Size" },
+    "ach.team.note": { zh: "6 岗体系：平台 / 内容 / 客服 / 仓储 / 数据 / 行政", en: "Six functions: platform / content / service / warehouse / data / admin" },
+    "ach.platforms": { zh: "平台覆盖", en: "Platform Coverage" },
+    "ach.domestic": { zh: "国内", en: "Domestic" },
+    "ach.overseas": { zh: "海外", en: "Overseas" },
+    "ach.private": { zh: "私域", en: "Private domain" },
+    "ach.dtc": { zh: "独立站", en: "DTC site" },
+    "ach.timeline": { zh: "关键节点", en: "Milestones" },
+    "ach.t1.date": { zh: "2026", en: "2026" },
+    "ach.t1.title": { zh: "双品牌进入亚马逊 5 站品牌榜", en: "Both brands ranked on Amazon across 5 marketplaces" },
+    "ach.t1.desc": { zh: "KONLLEN 日本站 #5、德国站 #8；CRICAL 美国站 #11、加拿大站 #11。B2B 招商同步常态化推进。", en: "KONLLEN #5 in JP and #8 in DE; CRICAL #11 in US and #11 in CA. B2B recruitment running in parallel." },
+    "ach.t2.date": { zh: "2026", en: "2026" },
+    "ach.t2.title": { zh: "年 GMV 突破千万美元", en: "Annual GMV passed USD 10 million" },
+    "ach.t2.desc": { zh: "国内与海外业务向 50/50 结构调整，49 个店铺分布在 9+ 国内平台与多个海外平台。", en: "Restructuring toward a 50/50 domestic-overseas mix, with 49 stores across 9+ domestic and multiple overseas platforms." },
+    "ach.t3.date": { zh: "2026", en: "2026" },
+    "ach.t3.title": { zh: "AI 技能包体系成型", en: "AI skill pack system took shape" },
+    "ach.t3.desc": { zh: "把投流审核、视觉生产、数据看板、OA 审批等沉淀为 20+ 可复用技能包，零基础同事一键使用。", en: "Ad review, visual production, dashboards and OA approvals packaged into 20+ reusable skills anyone can run with one click." },
+    "ach.shots.todo": { zh: "品牌榜 / 后台数据截图待补充", en: "Ranking / backend screenshots pending" },
+    "ach.shots.caption": { zh: "补图后此处展示亚马逊品牌榜与后台数据截图（assets/img/ 目录）", en: "Amazon rankings and backend screenshots will show here once added to assets/img/" },
+    "ach.cta": { zh: "聊聊合作", en: "Talk Partnership" },
+    "ach.hint": { zh: "数据口径以集团内部统计为准 · 对外披露以审批版本为准", en: "Figures follow internal group reporting · external disclosure follows the approved version" },
+
+    // ---- 招聘页 ----
+    "careers.eyebrow": { zh: "Careers", en: "Careers" },
+    "careers.title": { zh: "加入我们", en: "Join Us" },
+    "careers.sub": { zh: "15 人电商团队、49 个店铺、9 个品牌、国内海外双线。这里不缺舞台，缺的是能把事做成的人。", en: "A 15-person team, 49 stores, 9 brands, domestic and overseas tracks. There's no shortage of stage here — only of people who get things done." },
+    "careers.why": { zh: "为什么是我们", en: "Why Us" },
+    "careers.why1.t": { zh: "真·多平台战场", en: "A real multi-platform battlefield" },
+    "careers.why1.d": { zh: "国内 9+ 平台、海外 Amazon / Temu / TikTok Shop / 独立站，一个团队跑通两条增长曲线。", en: "9+ domestic platforms plus Amazon, Temu, TikTok Shop and DTC — one team running two growth curves." },
+    "careers.why2.t": { zh: "AI 先行的团队", en: "An AI-first team" },
+    "careers.why2.d": { zh: "20+ 技能包把重复劳动自动化，你带来的方法论也会被沉淀成技能包，团队一起复用。", en: "20+ skill packs automate the grunt work, and your playbook gets packaged too, so the whole team reuses it." },
+    "careers.why3.t": { zh: "数据说了算", en: "Data has the final word" },
+    "careers.why3.d": { zh: "看板、库存监控、价格预警都是现成的，决策不看资历看数字，试错成本团队扛。", en: "Dashboards, inventory monitoring and price alerts are already in place. Decisions follow numbers, not seniority." },
+    "careers.open": { zh: "在招岗位", en: "Open Roles" },
+    "job.status.open": { zh: "在招", en: "Open" },
+    "job.status.pool": { zh: "储备", en: "Talent pool" },
+    "job.duty": { zh: "岗位职责", en: "What you'll do" },
+    "job.req": { zh: "任职要求", en: "What we look for" },
+    "job.apply": { zh: "投递这个岗位", en: "Apply for this role" },
+    "job.apply.pool": { zh: "投简历进人才池", en: "Send your CV" },
+    "job1.title": { zh: "TK 跨境直播运营", en: "TikTok Cross-border Live Operations" },
+    "job1.loc": { zh: "深圳 / 南京", en: "Shenzhen / Nanjing" },
+    "job1.type": { zh: "全职", en: "Full-time" },
+    "job1.dept": { zh: "海外电商", en: "Overseas E-commerce" },
+    "job1.d1": { zh: "负责 TikTok Shop 直播间搭建与日常运营，含排品、脚本、场控与复盘", en: "Build and run TikTok Shop live rooms: product line-up, scripts, floor control and post-stream review" },
+    "job1.d2": { zh: "对接达人资源与投流，做 ROI 与 GMV 双目标的过程管理", en: "Manage creator partnerships and paid traffic against ROI and GMV targets" },
+    "job1.d3": { zh: "联动仓储与客服，保证直播订单履约与售后体验", en: "Coordinate with warehouse and service teams so live orders actually ship and get supported" },
+    "job1.d4": { zh: "沉淀可复用打法（话术、排品模板、复盘表），交给团队复用", en: "Turn what works into reusable assets: scripts, line-up templates, review sheets" },
+    "job1.r1": { zh: "有 TikTok Shop / 抖音直播运营实操经验，能独立开播与复盘", en: "Hands-on TikTok Shop or Douyin live experience, able to run and review sessions independently" },
+    "job1.r2": { zh: "英语能支撑基础商务沟通，熟悉海外用户表达习惯", en: "Working English for business communication and a feel for overseas audiences" },
+    "job1.r3": { zh: "对数据敏感，能看懂 ROI、转化漏斗并据此调整动作", en: "Comfortable with ROI and conversion funnels, and willing to act on what they show" },
+    "job1.r4": { zh: "抗压、能接受直播排班（晚间场次）", en: "Resilient, fine with evening live-stream shifts" },
+    "job1.plus": { zh: "加分项：台球 / 运动品类经验、有达人资源、会基础剪辑。", en: "Bonus: billiards or sports category experience, creator network, basic video editing." },
+    "job2.title": { zh: "跨境电商运营（Amazon / Temu）", en: "Cross-border E-commerce Operator (Amazon / Temu)" },
+    "job2.loc": { zh: "深圳 / 南京", en: "Shenzhen / Nanjing" },
+    "job2.type": { zh: "全职", en: "Full-time" },
+    "job2.dept": { zh: "海外电商", en: "Overseas E-commerce" },
+    "job2.desc": { zh: "负责 Amazon / Temu 店铺的日常运营：listing、广告、库存周转与活动节奏。该岗位为储备状态，业务放量时开放，可先投递简历进入人才池。", en: "Day-to-day Amazon / Temu operations: listings, ads, inventory turns and campaign cadence. This role is in the talent pool — send your CV and we'll reach out when volume opens it." },
+    "job3.title": { zh: "运营自动化 / AI 技能包工程", en: "Ops Automation / AI Skill Pack Engineering" },
+    "job3.loc": { zh: "深圳 / 远程协作", en: "Shenzhen / Remote" },
+    "job3.type": { zh: "全职 / 兼职", en: "Full-time / Part-time" },
+    "job3.dept": { zh: "技能包工程", en: "Skill Pack Engineering" },
+    "job3.desc": { zh: "把投流审核、视觉生产、数据看板、OA 审批这类重复工作封装成 AI 技能包，交付给零基础同事使用。需要一定的脚本能力与强烈的工作流洁癖。", en: "Package repetitive work — ad review, visual production, dashboards, OA approvals — into AI skill packs that non-technical colleagues can use. Needs scripting ability and a strong allergy to messy workflows." },
+    "careers.todo": { zh: "待确认：薪资范围、汇报关系、面试流程等细节以 HR 终稿为准，告诉我即可更新到本页。", en: "To confirm: salary band, reporting line and interview process follow HR's final version. Tell me and I'll update this page." },
+    "careers.how": { zh: "怎么投", en: "How to Apply" },
+    "careers.how.desc": { zh: "把简历发到邮箱，邮件标题写「应聘 - 岗位名」，正文简单说三件事：做过什么、做成过什么、为什么想来。也可以直接在联系页填表单，选「应聘」。", en: "Email your CV with the subject \"Application - Role name\". In the body, three things: what you did, what you achieved, why here. Or use the contact form and pick \"Job Application\"." },
+    "careers.how.cta": { zh: "发简历", en: "Send CV" },
+    "careers.how.form": { zh: "用表单投递", en: "Use the form" }
   };
 
   var LANG_KEY = "site_lang";
-  var current = localStorage.getItem(LANG_KEY) || "zh";
+  var stored = localStorage.getItem(LANG_KEY);
+  // 首次访问按浏览器语言判定：非中文环境默认英文（B2B 访客多为海外），
+  // 一旦用户手动切换过，就以手动选择为准。
+  var detected = "zh";
+  if (!stored) {
+    var navLang = (
+      navigator.language ||
+      (navigator.languages && navigator.languages[0]) ||
+      ""
+    ).toLowerCase();
+    detected = navLang.indexOf("zh") === 0 ? "zh" : "en";
+  }
+  var current = stored || detected;
 
   function t(key) {
     var e = DICT[key];

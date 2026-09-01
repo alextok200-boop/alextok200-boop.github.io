@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>戴程鹏 · 博客</title>
+    <link>https://alextok200-boop.github.io/blog.html</link>
+    <description>电商操盘、跨境增长与 AI 技能包的实战笔记，来自一个 49 店铺、9 品牌的操盘现场。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 01 Sep 2026 00:56:28 GMT</lastBuildDate>
+    <atom:link href="https://alextok200-boop.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>库存告警阈值怎么定，才不误报又不漏报</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-31-ku-cun-guard-rail.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-31-ku-cun-guard-rail.html</guid>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <category>电商操盘</category>
+      <description>库存看板跑起来不难，难的是阈值设得准。怎么根据动销速度、在途周期和促销节点定三层阈值。</description>
+    </item>
+    <item>
+      <title>8 周清掉 1.4 万支库存：一次清仓的拆解</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <category>电商操盘</category>
+      <description>整杆 7 SKU 约 13200 支 + 前肢 363 支，8 周清完。定价锚、阶梯首发、BC 同价、按 SKU 拆解。</description>
+    </item>
+    <item>
+      <title>达人投放不是请人拍视频，是 ROI 管理</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-25-da-ren-roi.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-25-da-ren-roi.html</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+      <category>达人运营</category>
+      <description>打分选人、事前定标、事后归因。五个维度给达人评分分层，预算跟着层级走，复盘落到下一个动作。</description>
+    </item>
+    <item>
+      <title>给 AI 技能签&quot;合同&quot;：从能用到可靠</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-20-skill-contract.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-20-skill-contract.html</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 GMT</pubDate>
+      <category>AI 技能包</category>
+      <description>技能包做了十几个之后，最大的教训是：能用和可靠是两回事。接口合同、退出码、幂等策略。</description>
+    </item>
+    <item>
+      <title>乱价不是偶然，是渠道信号</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-18-luan-jia.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-18-luan-jia.html</guid>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <category>电商操盘</category>
+      <description>低价店只有三个来源：窜货、清库存、假货。先判断属于哪类，再决定动作。</description>
+    </item>
+    <item>
+      <title>ERP 对接实战：聚水潭和领星到底怎么选</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-15-erp.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-15-erp.html</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <category>数据与自动化</category>
+      <description>国内用聚水潭、跨境用领星，各管一摊。先&quot;导出+自动化&quot;跑起来，再上 API 做实时，最后灌进数据中台。</description>
+    </item>
+    <item>
+      <title>Temu 半托管运营：不备货怎么玩</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-12-temu.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-12-temu.html</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <category>跨境电商</category>
+      <description>半托管的本质是用价格换流量、用履约保权重。出价算准、选品挑对、履约别拖。</description>
+    </item>
+    <item>
+      <title>多平台矩阵：49 个店铺怎么管而不乱</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-10-duo-platform-matrix.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-10-duo-platform-matrix.html</guid>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <category>电商操盘</category>
+      <description>店铺越多，越不能靠人肉盯。统一数据口径、分级运营、自动化看板——三个抓手。</description>
+    </item>
+    <item>
+      <title>9 个品牌一条产品线：品牌矩阵怎么排兵布阵</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-08-pin-pai-ju-zhen.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-08-pin-pai-ju-zhen.html</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <category>品牌操盘</category>
+      <description>九个品牌不能都是全能选手。定位错开、价格错开、渠道错开，资源向主品牌集中。</description>
+    </item>
+    <item>
+      <title>钉钉 OA 审批自动化：管理端和员工端分开做</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-08-oa.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-08-oa.html</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <category>AI 技能包</category>
+      <description>员工端极致简单、管理端要快要全、权限严格隔离、版本快速迭代。</description>
+    </item>
+    <item>
+      <title>品牌出海：从 0 到亚马逊品牌榜</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-05-chu-hai.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-05-chu-hai.html</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+      <category>跨境电商</category>
+      <description>KONLLEN 与 CRICAL 双品牌进亚马逊 5 站品牌榜的实操复盘：选站点、打 Listing、合规养评、分层投放。</description>
+    </item>
+    <item>
+      <title>数据中台：从 Excel 到自动化看板</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-03-shu-ju-zhong-tai.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-03-shu-ju-zhong-tai.html</guid>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
+      <category>数据与自动化</category>
+      <description>先定口径，再集中数据，最后看板化。三步走完，从&quot;周五加班拼表&quot;进化到&quot;看板自动在群里等你&quot;。</description>
+    </item>
+    <item>
+      <title>15 人电商团队怎么配：一张岗位地图</title>
+      <link>https://alextok200-boop.github.io/posts/2026-07-30-tuan-dui.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-07-30-tuan-dui.html</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <category>团队管理</category>
+      <description>六岗归位、国内外分流、助理做储备、一张表管人——团队不是凑人头，是排兵布阵。</description>
+    </item>
+    <item>
+      <title>B2B 招商打法：双品牌怎么铺渠道</title>
+      <link>https://alextok200-boop.github.io/posts/2026-07-28-b2b.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-07-28-b2b.html</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+      <category>品牌操盘</category>
+      <description>渠道分层给政策、双品牌错开不打架、授权联保写清楚。签约只是起点，养商才是增长。</description>
+    </item>
+    <item>
+      <title>让零基础同事用上 AI 技能包</title>
+      <link>https://alextok200-boop.github.io/posts/2026-07-25-ling-ji-chu.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-07-25-ling-ji-chu.html</guid>
+      <pubDate>Sat, 25 Jul 2026 00:00:00 GMT</pubDate>
+      <category>AI 技能包</category>
+      <description>输入最少、界面友好、失败有兜底——三个设计原则，缺一个就没人用。</description>
+    </item>
+  </channel>
+</rss>
