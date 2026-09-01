@@ -1916,13 +1916,14 @@ body::after {
 /* ---------- Careers hero 视觉（v1.6.4：黑底 + 紫红光晕 + Canvas 粒子光线）---------- */
 .careers-hero {
   position: relative;
-  min-height: 62vh;
+  /* v1.6.7：由固定 62vh 改为流式自适应——矮屏不挤、高屏不过高 */
+  min-height: clamp(300px, 44vh, 540px);
   display: flex;
   align-items: center;
   background: transparent;
   overflow: hidden;
   isolation: isolate;
-  padding: 96px 0 88px;
+  padding: clamp(56px, 8vh, 96px) 0 clamp(52px, 7vh, 88px);
 }
 
 .careers-hero-content {
@@ -1937,10 +1938,15 @@ body::after {
 }
 
 .careers-hero-content h1 {
+  /* 流式字号：宽屏维持 38px，窄屏收敛到 30px */
+  font-size: clamp(30px, 2.2vw, 38px);
   text-shadow: 0 0 40px rgba(168, 85, 247, 0.45);
 }
 
 .careers-hero-content .hero-sub {
+  font-size: clamp(15px, 1.05vw, 17px);
+  /* 去掉尾部下边距，让内容块在压缩后的 hero 里真正垂直居中 */
+  margin-bottom: 0;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
 }
 
@@ -1975,8 +1981,17 @@ body::after {
 }
 
 @media (max-width: 640px) {
-  .careers-hero { min-height: 46vh; padding: 64px 0 72px; }
-    }
+  .careers-hero { min-height: clamp(260px, 40vh, 420px); padding: 56px 0 64px; }
+}
+
+/* 矮屏（横屏手机 / 半高小窗）：不撑最小高度，由内容 + 内边距自然决定，避免内容被挤扁 */
+@media (max-height: 560px) {
+  .careers-hero {
+    min-height: 0;
+    padding: 44px 0 48px;
+  }
+  .careers-hero-scroll { display: none; }
+}
 
 /* ---------- 整页视觉背景（v1.6.5：瀑布粒子铺满整页，非仅 hero）---------- */
 .page-particles {
