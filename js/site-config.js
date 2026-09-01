@@ -23,7 +23,7 @@ window.SITE_CONFIG = {
     email: "alextok200@gmail.com",
     github: "https://github.com/alextok200",
     // 填二维码图片路径后 contact 页显示（例："assets/img/wechat-qr.png"），留空显示占位
-    wechatQr: ""
+    wechatQr: "assets/img/wechat-qr.png"
   },
 
   /* ------------------------------------------------------------
@@ -38,7 +38,7 @@ window.SITE_CONFIG = {
     webhook: "",
     // 与 Cloudflare Worker 环境变量 INQUIRY_TOKEN 保持一致（见 tools/dingtalk-form-relay.js）
     token: "",
-    formSubmitEmail: "",
+    formSubmitEmail: "alextok200@gmail.com",
     fallbackMailto: true
   },
 
