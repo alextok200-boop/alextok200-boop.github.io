@@ -1919,30 +1919,10 @@ body::after {
   min-height: 62vh;
   display: flex;
   align-items: center;
-  background: #050208;
+  background: transparent;
   overflow: hidden;
   isolation: isolate;
   padding: 96px 0 88px;
-}
-
-.careers-hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.careers-hero-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(168, 85, 247, 0.40) 0%, transparent 62%),
-    radial-gradient(ellipse 45% 40% at 50% 45%, rgba(236, 72, 153, 0.16) 0%, transparent 70%),
-    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(88, 28, 135, 0.20) 0%, transparent 75%);
 }
 
 .careers-hero-content {
@@ -1991,16 +1971,45 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .careers-hero-canvas { display: none; }
-  .careers-hero-scroll { animation: none; opacity: 0.5; }
+    .careers-hero-scroll { animation: none; opacity: 0.5; }
 }
 
 @media (max-width: 640px) {
   .careers-hero { min-height: 46vh; padding: 64px 0 72px; }
-  .careers-hero-canvas { display: none; }
-  .careers-hero-glow {
+    }
+
+/* ---------- 整页视觉背景（v1.6.5：瀑布粒子铺满整页，非仅 hero）---------- */
+.page-particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+.page-particles-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 50% at 50% 0%, rgba(168, 85, 247, 0.34) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 40% at 15% 35%, rgba(236, 72, 153, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 65%, rgba(139, 92, 246, 0.12) 0%, transparent 72%),
+    radial-gradient(ellipse 90% 55% at 50% 100%, rgba(88, 28, 135, 0.20) 0%, transparent 78%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-particles { display: none; }
+}
+
+@media (max-width: 640px) {
+  .page-particles { display: none; }
+  .page-particles-glow {
     background:
-      radial-gradient(ellipse 90% 50% at 50% 0%, rgba(168, 85, 247, 0.50) 0%, transparent 65%),
-      radial-gradient(ellipse 70% 45% at 50% 55%, rgba(236, 72, 153, 0.20) 0%, transparent 72%);
+      radial-gradient(ellipse 95% 45% at 50% 0%, rgba(168, 85, 247, 0.42) 0%, transparent 62%),
+      radial-gradient(ellipse 80% 40% at 50% 55%, rgba(236, 72, 153, 0.18) 0%, transparent 72%);
   }
 }
