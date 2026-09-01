@@ -120,7 +120,6 @@
     "contact.info.desc": { zh: "品牌电商咨询、AI 技能包合作、行业交流，欢迎联系。", en: "Brand e-commerce consulting, AI skill pack cooperation, industry exchange — reach out." },
     "contact.email": { zh: "邮箱", en: "Email" },
     "contact.github": { zh: "GitHub", en: "GitHub" },
-    "contact.form.title": { zh: "留言", en: "Message" },
     "contact.form.name": { zh: "称呼", en: "Name" },
     "contact.form.name.ph": { zh: "怎么称呼你", en: "Your name" },
     "contact.form.email": { zh: "邮箱", en: "Email" },
@@ -128,7 +127,6 @@
     "contact.form.msg": { zh: "内容", en: "Message" },
     "contact.form.msg.ph": { zh: "想聊什么", en: "What's on your mind" },
     "contact.form.send": { zh: "发送", en: "Send" },
-    "contact.form.note": { zh: "谢谢 {n}！表单已提交（静态站演示），正式版请通过邮箱联系。", en: "Thanks {n}! Form submitted (demo). For real inquiries please email." },
 
     // ---- 文章页公共 ----
     "post.back": { zh: "← 返回博客", en: "← Back to blog" },
@@ -250,36 +248,186 @@
     "careers.why3.t": { zh: "数据说了算", en: "Data has the final word" },
     "careers.why3.d": { zh: "看板、库存监控、价格预警都是现成的，决策不看资历看数字，试错成本团队扛。", en: "Dashboards, inventory monitoring and price alerts are already in place. Decisions follow numbers, not seniority." },
     "careers.open": { zh: "在招岗位", en: "Open Roles" },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "job.report": { zh: "汇报对象", en: "Reports to" },
+    "job.code": { zh: "岗位编码", en: "Job code" },
+    "job.kpi": { zh: "考核口径（KPI）", en: "How you'll be measured (KPI)" },
+    "job.sys": { zh: "常用系统", en: "Systems you'll use" },
+    "job.red": { zh: "红线（一票否决）", en: "Red lines (auto-reject)" },
+    "job1.title": { zh: "TK 跨境直播运营", en: "TikTok Cross-border Live Operations" },
+    "job1.loc": { zh: "南京（江苏）· 深圳可选", en: "Nanjing (Jiangsu) · Shenzhen optional" },
+    "job1.type": { zh: "全职", en: "Full-time" },
+    "job1.dept": { zh: "跨境电商", en: "Cross-border E-commerce" },
+    "job1.report.val": { zh: "跨境负责人 / 平台负责人", en: "Cross-border Lead / Platform Lead" },
+    "job1.desc": { zh: "负责 TikTok Shop 小店运营，以短视频挂车 + 直播场控 + 达人联盟驱动 GMV，对店铺 GMV、直播间转化与联盟 ROI 负责。", en: "Own TikTok Shop operations — short-video tagging, live-room floor control and creator affiliate — accountable for shop GMV, live conversion and affiliate ROI." },
+    "job1.d1": { zh: "短视频：挂车选品与转化，维护内容日历", en: "Short video: product tagging and conversion, maintain the content calendar" },
+    "job1.d2": { zh: "直播：小店直播排期与场控，输出直播表", en: "Live: shop live scheduling and floor control, maintain the live calendar" },
+    "job1.d3": { zh: "联盟：达人联盟带货与佣金管理，维护联盟台账", en: "Affiliate: creator partnership and commission management, maintain the affiliate ledger" },
+    "job1.d4": { zh: "投流：Shop Ads 计划搭建与 ROI 优化，维护投流台账", en: "Ads: build Shop Ads campaigns and optimise ROI, maintain the spend ledger" },
+    "job1.d5": { zh: "数据：罗盘复盘与优化，输出周报与下一步动作", en: "Data: review via analytics dashboard, ship weekly reports with next actions" },
+    "job1.r1": { zh: "大专及以上，电子商务 / 市场营销优先", en: "College degree or above; e-commerce / marketing preferred" },
+    "job1.r2": { zh: "2 年以上 TikTok Shop 或抖音直播运营经验，有台球 / 运动器材类目优先", en: "2+ years on TikTok Shop or Douyin live operations; billiards / sports equipment category a plus" },
+    "job1.r3": { zh: "熟悉平台规则、流量与转化逻辑，英语能支撑基础商务沟通", en: "Solid grasp of platform rules, traffic and conversion logic; English sufficient for business communication" },
+    "job1.r4": { zh: "会搭投放计划、控 ROI，能看懂转化漏斗并据此调整动作", en: "Can build ad campaigns and control ROI; reads the conversion funnel and acts on it" },
+    "job1.r5": { zh: "数据敏感、执行强、抗压，能接受直播排班（晚间场次）", en: "Data-sensitive, strong execution, resilient; open to live-stream shifts (evening slots)" },
+    "job1.k1": { zh: "GMV 达成率", en: "GMV attainment" },
+    "job1.k2": { zh: "直播间转化", en: "Live-room conversion" },
+    "job1.k3": { zh: "短视频转化", en: "Short-video conversion" },
+    "job1.k4": { zh: "联盟 ROI", en: "Affiliate ROI" },
+    "job1.k5": { zh: "店铺评分", en: "Shop rating" },
+    "job1.sys.val": { zh: "TikTok Shop 后台（短视频 / 直播 / 联盟 / Shop Ads）", en: "TikTok Shop Seller Center (video / live / affiliate / Shop Ads)" },
+    "job1.plus": { zh: "加分项：台球 / 运动器材类目经验、现有海外达人资源、基础剪辑、小语种（日 / 德）。", en: "Bonus: billiards / sports category experience, existing overseas creator network, basic video editing, extra language (JP / DE)." },
+    "job1.red.val": { zh: "虚假宣传 / 绝对化用语 / 刷量刷单 / 违规带货 / 侵权仿牌", en: "False advertising, superlative claims, fake orders or traffic, non-compliant selling, counterfeit or IP infringement" },
+    "job2.title": { zh: "跨境电商运营（Amazon / Temu）", en: "Cross-border E-commerce Operator (Amazon / Temu)" },
+    "job2.loc": { zh: "南通（跨境主阵地）· 南京", en: "Nantong (cross-border hub) · Nanjing" },
+    "job2.type": { zh: "全职", en: "Full-time" },
+    "job2.dept": { zh: "跨境电商", en: "Cross-border E-commerce" },
+    "job2.report.val": { zh: "跨境负责人 / 平台负责人", en: "Cross-border Lead / Platform Lead" },
+    "job2.desc": { zh: "负责 Amazon 多站点与 Temu 半 / 全托管运营：以 Listing + 广告 + FBA 驱动 GMV 与排名，以备货履约与核价驱动走量与毛利。该岗位为储备状态，业务放量时开放，可先投简历进入人才池。", en: "Own Amazon multi-marketplace and Temu semi / fully-managed operations — Listing, ads and FBA drive GMV and rank; stock fulfilment and price negotiation drive volume and margin. Currently a talent-pool role: send your CV and we'll reach out when the business scales." },
+    "job2.d1": { zh: "Listing：标题 / 图文 / A+ 优化与关键词，维护 Listing 表", en: "Listing: titles, images, A+ content and keywords; maintain the listing sheet" },
+    "job2.d2": { zh: "广告：SP / SB / SD 结构与 ACOS 优化，做否定词与预算再分配", en: "Ads: SP / SB / SD structure and ACOS control; negative keywords and budget reallocation" },
+    "job2.d3": { zh: "FBA 库存：补货计划与库存周转，控 IPI，不断货不积压", en: "FBA inventory: replenishment planning and turnover; keep IPI healthy, no stockouts or overhang" },
+    "job2.d4": { zh: "合规与评分：合规索评、类目审核与账户健康维护", en: "Compliance and ratings: compliant review requests, category approvals and account health" },
+    "job2.d5": { zh: "Temu 履约：国内仓备货、核价跟进与爆款选品，控退货率", en: "Temu fulfilment: domestic warehouse stocking, price negotiation and hit product selection; control return rate" },
+    "job2.d6": { zh: "数据复盘：销量与毛利复盘，输出周报与迭代动作", en: "Review: sales and margin analysis, ship weekly reports with next actions" },
+    "job2.r1": { zh: "大专及以上，电子商务 / 市场营销优先", en: "College degree or above; e-commerce / marketing preferred" },
+    "job2.r2": { zh: "2 年以上 Amazon 或 Temu 运营经验，有台球 / 运动器材类目优先", en: "2+ years on Amazon or Temu; billiards / sports equipment category a plus" },
+    "job2.r3": { zh: "Amazon：懂 A9 算法、关键词与转化逻辑、FBA 与自发货差异、Coupon / BD / LD 节奏", en: "Amazon: understands A9 ranking, keyword and conversion logic, FBA vs. FBM, and Coupon / BD / LD cadence" },
+    "job2.r4": { zh: "Temu：懂核价逻辑与毛利空间，能推动备货节奏避免断货 / 积压", en: "Temu: understands price-negotiation logic and margin headroom; drives stocking cadence to avoid stockouts and overhang" },
+    "job2.r5": { zh: "数据敏感、执行强、抗压，能用数据定位断点并迭代", en: "Data-sensitive, strong execution, resilient; locates funnel breakpoints with data and iterates" },
+    "job2.k1": { zh: "GMV 达成率", en: "GMV attainment" },
+    "job2.k2": { zh: "ACOS ≤ 红线（Amazon）/ 履约时效 ≤ SLA（Temu）", en: "ACOS ≤ threshold (Amazon) / fulfilment ≤ SLA (Temu)" },
+    "job2.k3": { zh: "BSR 排名（Amazon）/ 毛利率 ≥ 红线（Temu）", en: "BSR ranking (Amazon) / gross margin ≥ threshold (Temu)" },
+    "job2.k4": { zh: "库存周转（Amazon）/ 缺货率 ≤ 红线（Temu）", en: "Inventory turnover (Amazon) / stockout rate ≤ threshold (Temu)" },
+    "job2.k5": { zh: "评分 ≥ 红线（Amazon）/ 退货率 ≤ 红线（Temu）", en: "Rating ≥ threshold (Amazon) / return rate ≤ threshold (Temu)" },
+    "job2.sys.val": { zh: "Amazon Seller Central（美 / 加 / 英 / 德 / 日 5 站）、广告与品牌分析、Temu 半托管·全托管后台", en: "Amazon Seller Central (US / CA / UK / DE / JP), Ads and Brand Analytics, Temu semi- and fully-managed console" },
+    "job2.plus": { zh: "加分项：Amazon 多站点（美 / 加 / 英 / 德 / 日）实操、海外仓资源、小语种。", en: "Bonus: hands-on Amazon multi-marketplace (US / CA / UK / DE / JP), overseas warehouse resources, extra languages." },
+    "job2.red.val": { zh: "刷评 / 刷单 / 跟卖侵权 / 规避二审 / 虚假发货 / 货不对板 / 恶意低价扰乱", en: "Fake reviews, fake orders, hijacking or IP infringement, evading secondary verification, fake shipping, product mismatch, malicious underpricing" },
+    "job3.title": { zh: "运营自动化 / AI 技能包工程", en: "Ops Automation / AI Skill Pack Engineering" },
+    "job3.loc": { zh: "远程协作 · 南京", en: "Remote · Nanjing" },
+    "job3.type": { zh: "全职 / 兼职", en: "Full-time / Part-time" },
+    "job3.dept": { zh: "数据与增长（技术中台）", en: "Data & Growth (Tech Platform)" },
+    "job3.report.val": { zh: "技术负责人 / 副总", en: "Tech Lead / VP" },
+    "job3.desc": { zh: "技术 / 数据中台支撑岗。打通各平台 API → 沉淀数据底座 → 运维服务器 → 迭代 AI 需求，把投流审核、视觉生产、数据看板、OA 审批这类重复工作封装成可安装的 AI 技能包，交付给零基础同事使用。", en: "A tech / data-platform role. Wire up platform APIs, build the data foundation, run the servers, ship AI requests — turning repeated work (ad review, asset production, dashboards, OA approvals) into installable AI skill packs that non-technical colleagues can use." },
+    "job3.d1": { zh: "API 打通：京东 / 天猫 / 抖音 / 拼多多 + Amazon / Shopify / Temu / 阿里国际站，建自动拉取与鉴权维护", en: "API integration: JD / Tmall / Douyin / PDD + Amazon / Shopify / Temu / Alibaba.com, with automated pulls and credential rotation" },
+    "job3.d2": { zh: "数据底座：聚水潭 / 领星 / 钉钉多维表等异构数据归一化，统一指标口径与质量校验", en: "Data foundation: normalise Jushuitan / Lingxing / DingTalk tables, unify metric definitions and data quality checks" },
+    "job3.d3": { zh: "AI 需求迭代：技能包开发（SKILL.md + run.py）、安全审计与 SHA 校验、语义化版本发布与回滚", en: "AI delivery: build skill packs (SKILL.md + run.py), security audit with SHA checks, semantic versioning and rollback" },
+    "job3.d4": { zh: "服务器部署：云主机 / 容器环境搭建、应用发布与反向代理、公网暴露", en: "Deployment: cloud host / container setup, app release and reverse proxy, public exposure" },
+    "job3.d5": { zh: "日常运维：监控告警、定期备份与恢复演练、日志巡检、安全加固", en: "Ops: monitoring and alerting, scheduled backup and restore drills, log patrol, security hardening" },
+    "job3.r1": { zh: "大专及以上，统计 / 计算机 / 电商数据相关优先", en: "College degree or above; statistics / CS / e-commerce data background preferred" },
+    "job3.r2": { zh: "2 年以上电商数据分析、投流或自动化工程经验", en: "2+ years in e-commerce data analysis, ad operations or automation engineering" },
+    "job3.r3": { zh: "熟悉电商指标体、投放逻辑与 SQL / 表处理，能用 Python 或 Node 写脚本", en: "Fluent in e-commerce metrics, ad logic and SQL / spreadsheets; can script in Python or Node" },
+    "job3.r4": { zh: "做过看板类应用（如 Flask API + ECharts + SQLite）或同等项目", en: "Has shipped dashboard-grade apps (e.g. Flask API + ECharts + SQLite) or equivalent" },
+    "job3.r5": { zh: "逻辑清晰、有工作流洁癖，能把模糊需求拆成可交付的小步", en: "Clear logic and a workflow perfectionist — breaks vague requests into shippable steps" },
+    "job3.k1": { zh: "各平台 API 打通", en: "Platform API integration" },
+    "job3.k2": { zh: "AI 需求升级迭代", en: "AI delivery iteration" },
+    "job3.k3": { zh: "数据底座维护", en: "Data foundation upkeep" },
+    "job3.k4": { zh: "服务器部署能力", en: "Server deployment" },
+    "job3.k5": { zh: "服务器日常维护", en: "Server maintenance" },
+    "job3.sys.val": { zh: "ai-cockpit 看板、生意参谋、京东商智、蝉妈妈、各平台投流后台、billiards-trend-intel", en: "ai-cockpit dashboard, SYCM, JD Shangzhi, Chanmama, platform ad consoles, billiards-trend-intel" },
+    "job3.plus": { zh: "加分项：有已发布的可安装技能包作品、熟悉钉钉 / DWS / Aitable 开放平台、做过 OCR 或图像链路。", en: "Bonus: published installable skill packs, familiar with DingTalk / DWS / Aitable open platforms, OCR or imaging pipelines." },
+    "job3.red.val": { zh: "泄露经营数据 / 私自操作生产后台 / 敷衍错录造成资损 / 交付未过审的技能包", en: "Leaking business data, unauthorised production access, careless entry causing loss, shipping unaudited skill packs" },
+    "careers.culture": { zh: "团队汇报口径：不允许只报结果数字，须同步「原因 — 结论 — 下一步动作」；重大错价、处罚、库存异常须当天上报。", en: "How we report here: never just a number — always pair it with cause, conclusion and next action. Pricing errors, penalties and inventory anomalies are escalated the same day." },
+    "careers.note": { zh: "薪资范围面议（按平台经验与操盘结果定级）。面试含平台实操笔试，会追问真实操盘数据：峰值月销、ACOS、最高场观、千川 ROI——我们只认跑出来的数。", en: "Salary is negotiable and banded by platform experience and track record. Expect a hands-on written test and direct questions about your real numbers — peak monthly sales, ACOS, highest live viewership, Qianchuan ROI. We go by results, not résumés." },
     "job.status.open": { zh: "在招", en: "Open" },
     "job.status.pool": { zh: "储备", en: "Talent pool" },
     "job.duty": { zh: "岗位职责", en: "What you'll do" },
     "job.req": { zh: "任职要求", en: "What we look for" },
     "job.apply": { zh: "投递这个岗位", en: "Apply for this role" },
     "job.apply.pool": { zh: "投简历进人才池", en: "Send your CV" },
-    "job1.title": { zh: "TK 跨境直播运营", en: "TikTok Cross-border Live Operations" },
-    "job1.loc": { zh: "深圳 / 南京", en: "Shenzhen / Nanjing" },
-    "job1.type": { zh: "全职", en: "Full-time" },
-    "job1.dept": { zh: "海外电商", en: "Overseas E-commerce" },
-    "job1.d1": { zh: "负责 TikTok Shop 直播间搭建与日常运营，含排品、脚本、场控与复盘", en: "Build and run TikTok Shop live rooms: product line-up, scripts, floor control and post-stream review" },
-    "job1.d2": { zh: "对接达人资源与投流，做 ROI 与 GMV 双目标的过程管理", en: "Manage creator partnerships and paid traffic against ROI and GMV targets" },
-    "job1.d3": { zh: "联动仓储与客服，保证直播订单履约与售后体验", en: "Coordinate with warehouse and service teams so live orders actually ship and get supported" },
-    "job1.d4": { zh: "沉淀可复用打法（话术、排品模板、复盘表），交给团队复用", en: "Turn what works into reusable assets: scripts, line-up templates, review sheets" },
-    "job1.r1": { zh: "有 TikTok Shop / 抖音直播运营实操经验，能独立开播与复盘", en: "Hands-on TikTok Shop or Douyin live experience, able to run and review sessions independently" },
-    "job1.r2": { zh: "英语能支撑基础商务沟通，熟悉海外用户表达习惯", en: "Working English for business communication and a feel for overseas audiences" },
-    "job1.r3": { zh: "对数据敏感，能看懂 ROI、转化漏斗并据此调整动作", en: "Comfortable with ROI and conversion funnels, and willing to act on what they show" },
-    "job1.r4": { zh: "抗压、能接受直播排班（晚间场次）", en: "Resilient, fine with evening live-stream shifts" },
-    "job1.plus": { zh: "加分项：台球 / 运动品类经验、有达人资源、会基础剪辑。", en: "Bonus: billiards or sports category experience, creator network, basic video editing." },
-    "job2.title": { zh: "跨境电商运营（Amazon / Temu）", en: "Cross-border E-commerce Operator (Amazon / Temu)" },
-    "job2.loc": { zh: "深圳 / 南京", en: "Shenzhen / Nanjing" },
-    "job2.type": { zh: "全职", en: "Full-time" },
-    "job2.dept": { zh: "海外电商", en: "Overseas E-commerce" },
-    "job2.desc": { zh: "负责 Amazon / Temu 店铺的日常运营：listing、广告、库存周转与活动节奏。该岗位为储备状态，业务放量时开放，可先投递简历进入人才池。", en: "Day-to-day Amazon / Temu operations: listings, ads, inventory turns and campaign cadence. This role is in the talent pool — send your CV and we'll reach out when volume opens it." },
-    "job3.title": { zh: "运营自动化 / AI 技能包工程", en: "Ops Automation / AI Skill Pack Engineering" },
-    "job3.loc": { zh: "深圳 / 远程协作", en: "Shenzhen / Remote" },
-    "job3.type": { zh: "全职 / 兼职", en: "Full-time / Part-time" },
-    "job3.dept": { zh: "技能包工程", en: "Skill Pack Engineering" },
-    "job3.desc": { zh: "把投流审核、视觉生产、数据看板、OA 审批这类重复工作封装成 AI 技能包，交付给零基础同事使用。需要一定的脚本能力与强烈的工作流洁癖。", en: "Package repetitive work — ad review, visual production, dashboards, OA approvals — into AI skill packs that non-technical colleagues can use. Needs scripting ability and a strong allergy to messy workflows." },
-    "careers.todo": { zh: "待确认：薪资范围、汇报关系、面试流程等细节以 HR 终稿为准，告诉我即可更新到本页。", en: "To confirm: salary band, reporting line and interview process follow HR's final version. Tell me and I'll update this page." },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     "careers.how": { zh: "怎么投", en: "How to Apply" },
     "careers.how.desc": { zh: "把简历发到邮箱，邮件标题写「应聘 - 岗位名」，正文简单说三件事：做过什么、做成过什么、为什么想来。也可以直接在联系页填表单，选「应聘」。", en: "Email your CV with the subject \"Application - Role name\". In the body, three things: what you did, what you achieved, why here. Or use the contact form and pick \"Job Application\"." },
     "careers.how.cta": { zh: "发简历", en: "Send CV" },
