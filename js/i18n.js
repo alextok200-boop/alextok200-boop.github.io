@@ -41,6 +41,21 @@
     "cap3.title": { zh: "数据驱动决策", en: "Data-Driven Decisions" },
     "cap3.desc": { zh: "ERP 数据中台、店铺看板、库存监控、低价预警，用数据代替拍脑袋。", en: "ERP data platform, store dashboards, inventory monitoring, price alerts — decisions backed by data, not gut feel." },
 
+    // ---- 首页个人成长时间轴 ----
+    "journey.title": { zh: "个人成长时间轴", en: "Growth Timeline" },
+    "journey.tl1.date": { zh: "2026", en: "2026" },
+    "journey.tl1.tag": { zh: "现在", en: "Now" },
+    "journey.tl1.title": { zh: "集团电商运营负责人", en: "Group E-commerce Operations Lead" },
+    "journey.tl1.desc": { zh: "KONLLEN 与 CRICAL 双品牌进入亚马逊 5 站品牌榜，9 品牌矩阵成型，双品牌 B2B 招商同步推进。", en: "KONLLEN & CRICAL both ranked on Amazon brand lists across 5 marketplaces; 9-brand matrix taking shape; dual-brand B2B recruitment underway." },
+    "journey.tl2.date": { zh: "2025", en: "2025" },
+    "journey.tl2.tag": { zh: "体系化", en: "Systematized" },
+    "journey.tl2.title": { zh: "AI 技能包工程体系", en: "AI Skill Pack Engineering" },
+    "journey.tl2.desc": { zh: "把投流、生图、达人分析、数据看板等运营知识封装为 20+ 可复用 AI 技能包，零基础同事一键使用。", en: "Packaging ad planning, imaging, influencer analytics and dashboards into 20+ reusable AI skills that non-technical teammates use with one click." },
+    "journey.tl3.date": { zh: "更早", en: "Earlier" },
+    "journey.tl3.tag": { zh: "积累", en: "Foundation" },
+    "journey.tl3.title": { zh: "多平台电商操盘积累", en: "Multi-platform E-commerce" },
+    "journey.tl3.desc": { zh: "国内兴趣电商 + 货架电商 + 跨境出海，从单店运营到 49 店铺矩阵。", en: "From single-store operations to a 49-store matrix across domestic interest/shelf commerce and overseas." },
+
     // ---- B2B 招募 ----
     "b2b.title": { zh: "B2B 电商招募 · 代理层级方案", en: "B2B Recruitment · Tiered Dealer Plans" },
     "b2b.sub": { zh: "KONLLEN 与 CRICAL 双品牌招商合作，按合作深度与渠道能力匹配差异化政策（公开方案，正式条款以 OA 授权为准）。", en: "KONLLEN & CRICAL dual-brand recruitment. Policies matched to partnership depth and channel capability (public outline; official terms per OA authorization)." },
