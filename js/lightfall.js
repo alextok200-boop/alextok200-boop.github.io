@@ -10,8 +10,8 @@
     return;
   }
 
-  var STAR_COUNT = 32;  // 五角星数量（v1.6.11：60 → 32）
-  var COIN_COUNT = 6;   // 金币数量（v1.6.11：12 → 6）
+  var STAR_COUNT = 22;  // 五角星数量（v1.6.12：32 → 22，减合成层纹理内存）
+  var COIN_COUNT = 4;   // 金币数量（v1.6.12：6 → 4）
 
   var FAST_STAR_LIMIT = 3;  // 快速下坠的星星最多 3 个
   var FAST_COIN_LIMIT = 1;  // 快速下坠的金币一批次只能 1 个

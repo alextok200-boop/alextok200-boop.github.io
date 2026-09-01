@@ -53,6 +53,8 @@
   var DENSITY_MIN = 50;
   var DENSITY_SCROLL_FACTOR = 0.5;
   var SCROLL_SETTLE_MS = 400;
+  // v1.6.12：位图面积封顶 1.9M 像素（≈1600x1200），防全屏 DPR 位图撑爆内存
+  var MAX_BITMAP_PX = 1900000;
   var scrolling = false;
   var scrollTimer = 0;
 
@@ -153,11 +155,15 @@
   function resize() {
     w = window.innerWidth;
     h = window.innerHeight;
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
+    // v1.6.12：面积封顶 1.9M 像素。超出时整体缩放 dpr（允许降到 1 以下），
+    // 位图内存可控。注：不能用 Math.max(1, ...) 兜底——1920x1080 屏封顶后
+    // dpr≈0.96 <1，兜底会让封顶失效。
+    var dprFinal = Math.min(dpr, Math.sqrt(MAX_BITMAP_PX / Math.max(1, w * h)));
+    canvas.width = Math.max(320, Math.floor(w * dprFinal));
+    canvas.height = Math.max(180, Math.floor(h * dprFinal));
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(dprFinal, 0, 0, dprFinal, 0, 0);
 
     // 视口变化会作废消失点快照 → 处于透视阶段的粒子重新散布
     for (var i = 0; i < drops.length; i++) {

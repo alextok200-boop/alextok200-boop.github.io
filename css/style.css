@@ -1156,7 +1156,7 @@ body::after {
 
 /* ============================================
    Lightfall 流星背景（参考 konllen.iepose.cn）
-   流星由 js/lightfall.js 动态生成（30 颗，随机参数）
+   流星由 js/lightfall.js 动态生成（v1.6.12：22 星 + 4 币，随机参数）
    ============================================ */
 .lightfall {
   position: fixed;
