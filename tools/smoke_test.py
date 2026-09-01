@@ -87,6 +87,7 @@ def check_count(path, regex, min_n, label):
 
 
 def main():
+    global fail
     print("== 1. 页面 200 ==")
     for p in PAGES:
         check_status("page", p)
@@ -98,12 +99,12 @@ def main():
     check_contains("index.html", "id=\"lightfall\"", "首页 lightfall 容器")
     check_contains("contact.html", "id=\"inquiryForm\"", "联系表单 inquiryForm")
     check_contains("contact.html", "inquiry.js", "联系表单 inquiry.js")
-    check_contains("brands.html", "class=\"brand-card\"", "品牌卡片")
+    check_contains("brands.html", "brand-card", "品牌卡片")
     check_count("brands.html", r'class="[^"]*brand-card[^"]*"', 9, "品牌卡片数量")
     check_contains("achievements.html", "ach-card", "成绩单数据卡")
     check_count("achievements.html", r'class="[^"]*ach-card[^"]*"', 6, "成绩单卡片数量")
     check_contains("careers.html", "job-card", "招聘岗位卡")
-    check_count("careers.html", r'class="[^"]*job-card[^"]*"', 3, "招聘岗位数量")
+    check_count("careers.html", r'class="[^"]*job-card[^"]*"', 4, "招聘岗位数量")
     print("== 4. JSON-LD 注入 ==")
     check_count("index.html", r'application/ld\+json', 3, "首页 JSON-LD 数")
     check_count("about.html", r'application/ld\+json', 1, "内页 JSON-LD 数")

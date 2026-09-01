@@ -1,11 +1,18 @@
 /* ============================================
-   page-particles.js - 招聘页整页流星（v1.6.6）
+   page-particles.js - 招聘页整页流星（v1.6.11 性能版）
    两段式视觉：
      ① 上 2/3：瀑布式坠落（顶部生成 → 垂直下落 → 渐变拖尾）
      ② 下 1/3：转向「由远及近」—— 自消失点向外呈放射状加速扩散，
         线宽 / 拖尾 / 亮度随 scale 同步放大，模拟流星迎面掠过
    铺满整页（fixed 全屏，z-index -1），非仅 hero 头部
    零依赖、respect prefers-reduced-motion、窄屏关闭
+
+   v1.6.11 性能改造（根因：每帧 130×(createLinearGradient+shadowBlur+字符串) 造成
+   主线程 GC 与光栅化压力，实测滚动 3s 主线程 179ms）：
+     - 拖尾改为 hue 分档（每 10°）预渲染 sprite（含渐变+光晕，一次性成本）
+     - 每帧仅 drawImage 复用 sprite：零对象分配、零 shadowBlur、零字符串拼接
+     - 密度 130 → 90（滚动中再减半至 45，停止 400ms 后恢复）
+     - DPR 上限 2 → 1.5（全屏清屏光栅面积 -44%）
    ============================================ */
 (function () {
   'use strict';
@@ -25,7 +32,7 @@
     return;
   }
 
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   var w = 0, h = 0;
   var drops = [];
   var lastTs = 0;
@@ -38,9 +45,58 @@
   var MIN_RADIUS = 30;      // 距消失点过近 → 视作已掠过身边，直接重生
   var W_POW = 1.3;          // 线宽放大指数：视觉放大快于位移放大，观感更"扑面"
   var LEN_POW = 1.12;       // 拖尾放大指数
-  var MAX_WIDTH = 4.2;      // 线宽上限，防止近处过曝糊成一片
-  var MAX_LEN = 200;        // 拖尾上限
+  var MAX_WIDTH = 4.2;      // 线宽上限（sprite 基础宽 6px * vScale，取 min）
   var MAX_ALPHA = 0.9;
+
+  // —— 密度（v1.6.11：130 → 90，滚动中减半）——
+  var DENSITY_MAX = 90;
+  var DENSITY_MIN = 50;
+  var DENSITY_SCROLL_FACTOR = 0.5;
+  var SCROLL_SETTLE_MS = 400;
+  var scrolling = false;
+  var scrollTimer = 0;
+
+  // —— sprite 预渲染缓存（hue 每 10° 一档，9 档）——
+  var SPRITE_W = 64;        // 含光晕的宽度
+  var SPRITE_H = 512;       // 拖尾最大长度（覆盖放大后的 392px）
+  var SPRITE_HUE_STEP = 10;
+  var spriteCache = {};
+
+  function getSprite(hue) {
+    var key = Math.round(hue / SPRITE_HUE_STEP) * SPRITE_HUE_STEP;
+    var s = spriteCache[key];
+    if (s) return s;
+    s = document.createElement('canvas');
+    s.width = SPRITE_W;
+    s.height = SPRITE_H;
+    var c = s.getContext('2d');
+    var cx = SPRITE_W / 2;
+    // 尾部透明 → 头部亮（一次预渲染，含光晕，运行期零 shadowBlur）
+    var g = c.createLinearGradient(0, SPRITE_H, 0, 0);
+    g.addColorStop(0, 'hsla(' + key + ', 92%, 66%, 0)');
+    g.addColorStop(0.55, 'hsla(' + key + ', 92%, 70%, 0.55)');
+    g.addColorStop(1, 'hsla(' + key + ', 95%, 78%, 0.95)');
+    c.lineCap = 'round';
+    // 第一遍：细线 + 光晕（核心线）
+    c.strokeStyle = g;
+    c.lineWidth = 3;
+    c.shadowBlur = 14;
+    c.shadowColor = 'hsla(' + key + ', 95%, 68%, 0.85)';
+    c.beginPath();
+    c.moveTo(cx, SPRITE_H);
+    c.lineTo(cx, 0);
+    c.stroke();
+    // 第二遍：宽线提亮（加大光晕范围，模拟近处过曝）
+    c.strokeStyle = 'hsla(' + key + ', 95%, 80%, 0.55)';
+    c.lineWidth = 7;
+    c.shadowBlur = 26;
+    c.beginPath();
+    c.moveTo(cx, SPRITE_H);
+    c.lineTo(cx, 6);
+    c.stroke();
+    spriteCache[key] = s;
+    return s;
+  }
 
   function reset(d, initial) {
     d.x = Math.random() * w;
@@ -83,6 +139,17 @@
     d.phase = 1;
   }
 
+  function targetDensity() {
+    var base = Math.min(DENSITY_MAX, Math.max(DENSITY_MIN, Math.floor((w * h) / 16000)));
+    return scrolling ? Math.max(24, Math.floor(base * DENSITY_SCROLL_FACTOR)) : base;
+  }
+
+  function applyDensity() {
+    var target = targetDensity();
+    while (drops.length < target) drops.push(reset({}, true));
+    if (drops.length > target) drops.length = target;
+  }
+
   function resize() {
     w = window.innerWidth;
     h = window.innerHeight;
@@ -96,11 +163,7 @@
     for (var i = 0; i < drops.length; i++) {
       if (drops[i].phase === 1) reset(drops[i], true);
     }
-
-    // 密度随视口面积自适应
-    var target = Math.min(130, Math.max(65, Math.floor((w * h) / 14000)));
-    while (drops.length < target) drops.push(reset({}, true));
-    if (drops.length > target) drops.length = target;
+    applyDensity();
   }
 
   function tick(ts) {
@@ -113,7 +176,6 @@
 
     // 全清：canvas 保持透明，不遮挡页面背景色
     ctx.clearRect(0, 0, w, h);
-    ctx.globalCompositeOperation = 'lighter';
     ctx.lineCap = 'round';
 
     var turnY = h * TURN_RATIO;
@@ -163,36 +225,25 @@
 
         dirx = d.dx;
         diry = d.dy;
-        len = Math.min(MAX_LEN, d.len * Math.pow(scale, LEN_POW));
+        len = d.len;
       }
 
-      // 越近：越粗、越亮、拖尾越长、光晕越大
+      // —— 绘制：drawImage 复用预渲染 sprite（零对象分配 / 零 shadow / 零字符串）——
       var vScale = Math.pow(scale, W_POW);       // 视觉放大（瀑布阶段 scale=1 → 无变化）
-      var lwd = Math.min(MAX_WIDTH, d.width * vScale);
+      var lwd = Math.min(MAX_WIDTH, d.width) * vScale * 6;   // 6 = sprite 基础线宽
+      var imgH = Math.min(SPRITE_H, len * Math.pow(scale, LEN_POW));
       var alp = Math.min(MAX_ALPHA, d.alpha * (0.82 + 0.22 * scale));
-      var blur = Math.min(38, 10 + 9 * (scale - 1));
 
-      var tailX = d.x - dirx * len;
-      var tailY = d.y - diry * len;
-
-      // 渐变拖尾：尾部透明 → 头部亮
-      var g = ctx.createLinearGradient(tailX, tailY, d.x, d.y);
-      g.addColorStop(0, 'hsla(' + d.hue + ', 92%, 66%, 0)');
-      g.addColorStop(0.55, 'hsla(' + d.hue + ', 92%, 70%, ' + (alp * 0.55).toFixed(3) + ')');
-      g.addColorStop(1, 'hsla(' + d.hue + ', 95%, 78%, ' + alp.toFixed(3) + ')');
-
-      ctx.strokeStyle = g;
-      ctx.lineWidth = lwd;
-      ctx.shadowBlur = blur;
-      ctx.shadowColor = 'hsla(' + d.hue + ', 95%, 68%, ' + (alp * 0.8).toFixed(3) + ')';
-      ctx.beginPath();
-      ctx.moveTo(tailX, tailY);
-      ctx.lineTo(d.x, d.y);
-      ctx.stroke();
+      ctx.save();
+      ctx.translate(d.x, d.y);
+      ctx.rotate(Math.atan2(diry, dirx));        // x 轴对齐运动方向
+      ctx.globalAlpha = alp;
+      // sprite 头部映射到原点（粒子头部），拖尾沿 -x（运动反方向）延伸，宽度居中
+      ctx.drawImage(getSprite(d.hue), 0, 0, SPRITE_W, SPRITE_H,
+        -imgH, -lwd / 2, imgH, lwd);
+      ctx.restore();
     }
 
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.shadowBlur = 0;
     rafId = requestAnimationFrame(tick);
   }
 
@@ -205,7 +256,20 @@
     }
   }
 
+  function onScroll() {
+    if (!scrolling) {
+      scrolling = true;
+      applyDensity();                             // 滚动中密度减半
+    }
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      scrolling = false;
+      applyDensity();                             // 停止 400ms 后恢复
+    }, SCROLL_SETTLE_MS);
+  }
+
   window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
   document.addEventListener('visibilitychange', onVisibility);
 
   requestAnimationFrame(function () {

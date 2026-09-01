@@ -75,8 +75,9 @@ body::after {
 /* ---------- Header / Nav ---------- */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(9, 7, 17, 0.85);
-  backdrop-filter: blur(10px);
+  /* v1.6.11 性能修复：去掉 backdrop-filter blur —— 滚动时逐帧全量模糊是
+     卡顿主源之一；改高不透明背景，视觉几乎无差异 */
+  background: rgba(9, 7, 17, 0.96);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -1165,9 +1166,20 @@ body::after {
   pointer-events: none;
 }
 
-.lf {
+/* v1.6.11：.lf-wrap 静态父层承载定位 + rotate/scale（合成器属性），
+   .lf 动画只动 translateY/X + opacity，避免动画 transform 覆盖静态旋转缩放 */
+.lf-wrap {
   position: absolute;
   top: -10%;
+  left: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.lf {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 16px;
   height: 16px;
   /* 五角星：10x10 网格的精确坐标（外半径 5，内半径 2） */
@@ -1213,7 +1225,8 @@ body::after {
 
 @keyframes lf-fall {
   0% {
-    transform: translateY(-8vh) translateX(120px) rotate(var(--lf-angle, -35deg)) scale(var(--lf-scale, 1));
+    /* v1.6.11：rotate/scale 已内联为元素静态 transform，此处只动 translate（合成器属性） */
+    transform: translateY(-8vh) translateX(120px);
     opacity: 0;
   }
   5% {
@@ -1223,7 +1236,7 @@ body::after {
     opacity: 0.9;
   }
   100% {
-    transform: translateY(112vh) translateX(-180px) rotate(var(--lf-angle, -35deg)) scale(var(--lf-scale, 1));
+    transform: translateY(112vh) translateX(-180px);
     opacity: 0;
   }
 }
@@ -1238,12 +1251,13 @@ body::after {
   .lightfall {
     display: block;
   }
+  .lf-wrap {
+    /* 静态模式：用 JS 注入的 --lf-top 随机散布全屏 */
+    top: var(--lf-top, 20%) !important;
+  }
   .lf {
     animation: none !important;
     opacity: 0.95 !important;
-    /* 静态模式：用 JS 注入的 --lf-top 随机散布全屏 */
-    top: var(--lf-top, 20%) !important;
-    transform: rotate(var(--lf-angle, -25deg)) scale(var(--lf-scale, 1)) !important;
   }
 }
 
