@@ -1911,3 +1911,96 @@ body::after {
   color: var(--text-dim);
   line-height: 1.8;
 }
+
+
+/* ---------- Careers hero 视觉（v1.6.4：黑底 + 紫红光晕 + Canvas 粒子光线）---------- */
+.careers-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  background: #050208;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 96px 0 88px;
+}
+
+.careers-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.careers-hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(168, 85, 247, 0.40) 0%, transparent 62%),
+    radial-gradient(ellipse 45% 40% at 50% 45%, rgba(236, 72, 153, 0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(88, 28, 135, 0.20) 0%, transparent 75%);
+}
+
+.careers-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.careers-hero-content .eyebrow {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(196, 181, 253, 0.9);
+}
+
+.careers-hero-content h1 {
+  text-shadow: 0 0 40px rgba(168, 85, 247, 0.45);
+}
+
+.careers-hero-content .hero-sub {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.careers-hero-scroll {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: rgba(196, 181, 253, 0.55);
+  animation: careers-scroll-pulse 2.4s ease-in-out infinite;
+}
+
+.careers-hero-scroll::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 18px;
+  margin: 8px auto 0;
+  background: linear-gradient(180deg, rgba(196, 181, 253, 0.7), transparent);
+}
+
+@keyframes careers-scroll-pulse {
+  0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.85; transform: translateX(-50%) translateY(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .careers-hero-canvas { display: none; }
+  .careers-hero-scroll { animation: none; opacity: 0.5; }
+}
+
+@media (max-width: 640px) {
+  .careers-hero { min-height: 46vh; padding: 64px 0 72px; }
+  .careers-hero-canvas { display: none; }
+  .careers-hero-glow {
+    background:
+      radial-gradient(ellipse 90% 50% at 50% 0%, rgba(168, 85, 247, 0.50) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 45% at 50% 55%, rgba(236, 72, 153, 0.20) 0%, transparent 72%);
+  }
+}
