@@ -490,6 +490,13 @@ body::after {
   font-size: 13px;
 }
 
+.form-intro {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin: -6px 0 18px;
+  line-height: 1.6;
+}
+
 .card h3 {
   font-size: 18px;
   margin-bottom: 12px;

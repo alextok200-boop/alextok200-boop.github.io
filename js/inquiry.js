@@ -1,5 +1,7 @@
 /* ============================================================
-   inquiry.js v1.1.0 —— 询盘/招商表单提交（静态站可用，无需自建服务器）
+   inquiry.js v1.2.0 —— 询盘/招商/授权申请表单提交（静态站可用，无需自建服务器）
+   v1.2.0：授权申请字段 —— collect() 增加 coop_type / channel / market /
+           store_url / scale（授权申请表单专用，其他表单无此字段自动为空）。
    v1.1.0：多表单化 —— 绑定页面内所有 .inquiry-form 元素（contact 页
    #inquiryForm 亦归入该类），字段按 name 属性取值（兼容原 inq-* id）。
    通道按 webhook → FormSubmit 邮件 → 本地邮件客户端 自动降级，
@@ -46,6 +48,11 @@
       company: field(form, "company"),
       intent: field(form, "intent"),
       brand: field(form, "brand"),
+      coopType: field(form, "coop_type"),
+      channel: field(form, "channel"),
+      market: field(form, "market"),
+      storeUrl: field(form, "store_url"),
+      scale: field(form, "scale"),
       message: field(form, "message"),
       subject: form.getAttribute("data-subject") || "网站询盘",
       page: location.pathname,
@@ -72,6 +79,11 @@
       "邮箱：" + data.email + "\n" +
       "公司/渠道：" + (data.company || "-") + "\n" +
       (data.brand ? "意向品牌：" + data.brand + "\n" : "") +
+      (data.coopType ? "申请类型：" + data.coopType + "\n" : "") +
+      (data.channel ? "销售渠道：" + data.channel + "\n" : "") +
+      (data.market ? "目标市场：" + data.market + "\n" : "") +
+      (data.storeUrl ? "现有链接：" + data.storeUrl + "\n" : "") +
+      (data.scale ? "预计规模：" + data.scale + "\n" : "") +
       "合作意向：" + (data.intent || "-") + "\n\n" +
       data.message;
     say(form, t("inquiry.mailto", "正在打开你的邮件客户端…"), "info");

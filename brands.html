@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://alextok200-boop.github.io/assets/img/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://alextok200-boop.github.io/brands.html">
-  <link rel="stylesheet" href="css/style.css?v=1.6.18">
+  <link rel="stylesheet" href="css/style.css?v=1.6.19">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
   <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
@@ -148,6 +148,7 @@
 
         <div class="b2b-cta">
           <a href="#brand-inquiry" class="btn btn-primary" data-i18n="brands.cta">咨询品牌合作 / 代理</a>
+          <a href="#brand-auth-inquiry" class="btn btn-ghost" data-i18n="brands.auth.cta">申请品牌授权</a>
           <span class="b2b-hint" data-i18n="brands.hint">可按单品牌或组合授权 · 正式条款以 OA 审批为准</span>
         </div>
 
@@ -196,6 +197,101 @@
             <p class="form-privacy" data-i18n="contact.form.privacy">信息仅用于本次沟通，不对外共享、不做营销推送。</p>
           </div>
         </div>
+
+        <!-- v1.6.19：品牌授权申请独立通道（与招商咨询分流，邮件主题带【品牌授权申请】） -->
+        <div class="brand-inquiry" id="brand-auth-inquiry">
+          <div class="contact-form inquiry-form" data-subject="品牌授权申请">
+            <h3 data-i18n="brands.auth.title">品牌授权申请</h3>
+            <p class="form-intro" data-i18n="brands.auth.intro">适用于经销商 / 代理商 / 达人 / 线下门店等需要正式品牌授权的合作方。提交后由集团审批，正式条款以授权函与 OA 审批为准。</p>
+
+            <label for="aq-name" data-i18n="contact.form.name">称呼 *</label>
+            <input type="text" id="aq-name" name="name" autocomplete="name"
+                   placeholder="怎么称呼你" required
+                   data-i18n-attr="placeholder:contact.form.name.ph">
+
+            <label for="aq-email" data-i18n="contact.form.email">邮箱 *</label>
+            <input type="email" id="aq-email" name="email" autocomplete="email"
+                   placeholder="你的邮箱" required
+                   data-i18n-attr="placeholder:contact.form.email.ph">
+
+            <label for="aq-company" data-i18n="contact.form.company">公司 / 组织</label>
+            <input type="text" id="aq-company" name="company" autocomplete="organization"
+                   placeholder="公司与主营渠道（选填）"
+                   data-i18n-attr="placeholder:contact.form.company.ph">
+
+            <label for="aq-brand" data-i18n="brands.form.brand">意向品牌</label>
+            <select id="aq-brand" name="brand">
+              <option value="KONLLEN">KONLLEN</option>
+              <option value="CRICAL">CRICAL</option>
+              <option value="ZOKUE">ZOKUE</option>
+              <option value="COWCUE">COWCUE</option>
+              <option value="多品牌组合 / 未定">多品牌组合 / 未定</option>
+            </select>
+
+            <label for="aq-coop" data-i18n="brands.auth.coop">申请类型</label>
+            <select id="aq-coop" name="coop_type">
+              <option value="经销商授权">经销商授权</option>
+              <option value="代理商授权">代理商授权</option>
+              <option value="达人合作授权">达人合作授权</option>
+              <option value="线下门店授权">线下门店授权</option>
+              <option value="贴牌 ODM / OEM">贴牌 ODM / OEM</option>
+              <option value="其他">其他</option>
+            </select>
+
+            <label for="aq-channel" data-i18n="brands.auth.channel">销售渠道</label>
+            <select id="aq-channel" name="channel">
+              <option value="TikTok">TikTok</option>
+              <option value="Amazon">Amazon</option>
+              <option value="独立站">独立站</option>
+              <option value="京东">京东</option>
+              <option value="天猫 / 淘宝">天猫 / 淘宝</option>
+              <option value="拼多多">拼多多</option>
+              <option value="线下">线下</option>
+              <option value="多平台">多平台</option>
+            </select>
+
+            <label for="aq-market" data-i18n="brands.auth.market">目标市场</label>
+            <input type="text" id="aq-market" name="market" list="market-list"
+                   placeholder="如：北美 / 东南亚 / 国内华东（选填）"
+                   data-i18n-attr="placeholder:brands.auth.market.ph">
+            <datalist id="market-list">
+              <option value="国内">国内</option>
+              <option value="北美">北美</option>
+              <option value="欧洲">欧洲</option>
+              <option value="东南亚">东南亚</option>
+              <option value="日本">日本</option>
+              <option value="中东">中东</option>
+              <option value="全球">全球</option>
+            </datalist>
+
+            <label for="aq-store" data-i18n="brands.auth.store">现有店铺 / 主页链接</label>
+            <input type="url" id="aq-store" name="store_url" placeholder="https://…（选填）"
+                   data-i18n-attr="placeholder:brands.auth.store.ph">
+
+            <label for="aq-scale" data-i18n="brands.auth.scale">预计规模</label>
+            <select id="aq-scale" name="scale">
+              <option value="首批 10 万内">首批 10 万内</option>
+              <option value="首批 10-50 万">首批 10-50 万</option>
+              <option value="首批 50 万以上">首批 50 万以上</option>
+              <option value="暂不确定">暂不确定</option>
+            </select>
+
+            <label for="aq-message" data-i18n="contact.form.msg">申请说明 *</label>
+            <textarea id="aq-message" name="message" rows="4"
+                      placeholder="简要说明合作规划：渠道资源、目标市场、预计采购量等" required
+                      data-i18n-attr="placeholder:brands.auth.msg.ph"></textarea>
+
+            <!-- honeypot：正常用户看不到，机器人会填，填了直接丢弃 -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="aq-website">Website</label>
+              <input type="text" id="aq-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-primary" data-i18n="brands.auth.send">提交授权申请</button>
+            <p class="form-note" aria-live="polite"></p>
+            <p class="form-privacy" data-i18n="contact.form.privacy">信息仅用于本次沟通，不对外共享、不做营销推送。</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -217,13 +313,13 @@
     </div>
   </footer>
 
-  <script src="js/site-config.js?v=1.6.18"></script>
-  <script src="js/i18n.js?v=1.6.18"></script>
-  <script src="js/main.js?v=1.6.18"></script>
-  <script src="js/seo.js?v=1.6.18"></script>
-  <script src="js/analytics.js?v=1.6.18"></script>
-  <script src="js/comments.js?v=1.6.18"></script>
-  <script src="js/sw-register.js?v=1.6.18"></script>
-  <script src="js/assistant.js?v=1.6.18"></script>
+  <script src="js/site-config.js?v=1.6.19"></script>
+  <script src="js/i18n.js?v=1.6.19"></script>
+  <script src="js/main.js?v=1.6.19"></script>
+  <script src="js/seo.js?v=1.6.19"></script>
+  <script src="js/analytics.js?v=1.6.19"></script>
+  <script src="js/comments.js?v=1.6.19"></script>
+  <script src="js/sw-register.js?v=1.6.19"></script>
+  <script src="js/assistant.js?v=1.6.19"></script>
 </body>
 </html>
