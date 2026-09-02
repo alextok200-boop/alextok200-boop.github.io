@@ -19,6 +19,57 @@
   --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
 }
 
+/* ============ 明暗主题（v1.6.21）============
+   默认 :root = 暗色；html[data-theme="light"] 覆盖为亮色。
+   全站颜色均走 var()，切变量即切主题；body::before/after
+   （光晕/网格）与 hero 文字（背景恒为视频深色）单独处理。 */
+:root[data-theme="light"] {
+  --bg: #f4f2fb;
+  --bg-card: #ffffff;
+  --border: #ddd5ee;
+  --text: #191428;
+  --text-dim: #5f5878;
+  --neon-green: #00c98a;
+  --neon-blue: #0098d8;
+  --neon-pink: #e04aa8;
+  --violet-1: #7c3aed;
+  --violet-2: #8b5cf6;
+  --violet-3: #6d28d9;
+  --cyan-glow: #0e9cc0;
+}
+
+:root[data-theme="light"] body::before {
+  background:
+    radial-gradient(800px 500px at 20% -5%, rgba(124, 58, 237, 0.14), transparent 60%),
+    radial-gradient(700px 450px at 80% 5%, rgba(0, 152, 216, 0.10), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(139, 92, 246, 0.10), transparent 60%),
+    linear-gradient(180deg, #f4f2fb 0%, #e9e4f8 40%, #ece7fb 75%, #f4f2fb 100%);
+}
+
+:root[data-theme="light"] body::after {
+  background-image:
+    linear-gradient(rgba(60, 45, 110, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 45, 110, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* hero 背景恒为视频深色，文字不随主题变色 */
+:root[data-theme="light"] .hero .hero-text,
+:root[data-theme="light"] .hero .hero-text h1,
+:root[data-theme="light"] .hero .hero-sub {
+  color: #eef0ff;
+}
+
+/* 亮色下的半透明深色元素：header 变浅、输入框底色统一 */
+:root[data-theme="light"] .site-header {
+  background: rgba(244, 242, 251, 0.94);
+}
+
+:root[data-theme="light"] .newsletter-row input[type="email"],
+:root[data-theme="light"] .contact-form select {
+  background: rgba(25, 20, 40, 0.04);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -136,6 +187,46 @@ body::after {
 .lang-btn:hover {
   border-color: var(--violet-2);
   color: var(--violet-3);
+}
+
+/* v1.6.21：明暗主题切换按钮（日月图标按主题显隐） */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: inherit;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--violet-2);
+  color: var(--violet-3);
+}
+
+.theme-toggle .icon-moon {
+  display: block;
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+/* 亮色主题：显示太阳（点了切暗），暗色主题：显示月亮（点了切亮） */
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
 }
 
 .nav-links a {

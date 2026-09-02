@@ -13,6 +13,7 @@
     "nav.blog": { zh: "博客", en: "Blog" },
     "nav.contact": { zh: "联系", en: "Contact" },
     "lang.btn": { zh: "EN", en: "中文" },
+    "theme.toggle": { zh: "切换明暗主题", en: "Toggle light/dark theme" },
     "logo": { zh: "DAI·CP", en: "DAI·CP" },
 
     // ---- 页脚 ----
