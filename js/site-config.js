@@ -42,10 +42,20 @@ window.SITE_CONFIG = {
     fallbackMailto: true
   },
 
-  // 访问统计（留空不加载任何统计脚本，零开销）
+  // 访问统计（全部留空则不加载任何统计脚本，站点零额外请求）
+  // 四种可叠加启用，ID 填一项就生效，互不干扰：
+  //   goatcounter - GoatCounter sitecode（例："dai-cp"）
+  //   clarity     - Microsoft Clarity project id
+  //   umami       - Umami（自托管或 cloud.umami.is），填 websiteId 即生效
+  //   ga4         - Google Analytics 4 measurement id（例："G-XXXXXXX"）
   analytics: {
     goatcounter: "",   // GoatCounter sitecode，例："dai-cp"
-    clarity: ""        // Microsoft Clarity project id，例："abc123xyz"
+    clarity: "",        // Microsoft Clarity project id，例："abc123xyz"
+    umami: {
+      src: "",          // Umami 脚本地址，留空走 cloud.umami.is（推荐自托管）
+      websiteId: ""     // Umami website id
+    },
+    ga4: ""             // Google Analytics 4 measurement id，例："G-XXXXXXX"
   },
 
   // 文章评论 Giscus（repoId / categoryId 留空则评论区自动隐藏）

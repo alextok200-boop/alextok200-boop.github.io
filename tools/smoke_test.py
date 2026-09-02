@@ -21,11 +21,12 @@ RESOURCES = [
     "css/style.css", "js/i18n.js", "js/main.js", "js/site-config.js",
     "js/lightfall.js", "js/blog.js", "js/post.js", "js/posts-data.js",
     "js/seo.js", "js/analytics.js", "js/comments.js", "js/sw-register.js",
-    "js/inquiry.js", "js/assistant.js", "manifest.webmanifest", "sw.js",
+    "js/inquiry.js", "js/newsletter.js", "js/assistant.js", "manifest.webmanifest", "sw.js",
     "rss.xml", "rss-en.xml", "assets/dai-chengpeng.vcf",
-    "assets/img/og-default.png", "assets/img/icon-192.png",
-    "assets/img/icon-512.png", "assets/img/icon-512-maskable.png",
-    "assets/video/hero.mp4",
+    "assets/img/og-default.png", "assets/img/favicon-16.png",
+    "assets/img/favicon-32.png", "assets/img/favicon-180.png",
+    "assets/img/icon-192.png", "assets/img/icon-512.png",
+    "assets/img/icon-512-maskable.png", "assets/video/hero.mp4",
 ]
 
 fail = 0
@@ -112,6 +113,9 @@ def main():
     check_count("achievements.html", r'class="[^"]*ach-card[^"]*"', 6, "成绩单卡片数量")
     check_contains("careers.html", "job-card", "招聘岗位卡")
     check_count("careers.html", r'class="[^"]*job-card[^"]*"', 4, "招聘岗位数量")
+    check_contains("index.html", "newsletter-form", "首页 Newsletter 订阅表单")
+    check_contains("index.html", 'data-subject="Newsletter 订阅"', "首页订阅邮件主题分流")
+    check_contains("blog.html", "newsletter-form", "博客页 Newsletter 订阅表单")
     print("== 4. JSON-LD 注入 ==")
     check_count("index.html", r'application/ld\+json', 3, "首页 JSON-LD 数")
     check_count("about.html", r'application/ld\+json', 1, "内页 JSON-LD 数")

@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>博客 - 戴程鹏</title>
   <meta name="description" content="戴程鹏的行业思考与实战分享：品牌电商、AI 技能包、运营方法论，15 篇文章持续更新。">
-  <link rel="stylesheet" href="css/style.css?v=1.6.19">
+  <link rel="stylesheet" href="css/style.css?v=1.6.20">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
-  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -26,7 +28,7 @@
 <body>
   <header class="site-header">
     <nav class="nav container">
-      <a href="index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <a href="index.html" class="logo"><img class="logo-mark" src="assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
       <div class="nav-links">
         <a href="index.html" data-i18n="nav.home">首页</a>
         <a href="about.html" data-i18n="nav.about">关于</a>
@@ -52,6 +54,20 @@
 
     <section class="section">
       <div class="container">
+
+        <!-- v1.6.20：博客页订阅 banner（toolbar 上方） -->
+        <div class="newsletter newsletter-inline">
+          <h3 data-i18n="newsletter.title">订阅博客更新</h3>
+          <p class="newsletter-sub" data-i18n="newsletter.sub">新文章、复盘与实战记录，第一时间送达邮箱。</p>
+          <form class="newsletter-row newsletter-form" data-subject="Newsletter 订阅" novalidate>
+            <input type="email" name="email" required autocomplete="email"
+              data-i18n-attr="placeholder:newsletter.ph"
+              placeholder="你的邮箱地址">
+            <button type="submit" class="btn btn-primary" data-i18n="newsletter.send">订阅</button>
+          </form>
+          <p class="form-note" aria-live="polite"></p>
+          <p class="newsletter-privacy" data-i18n="newsletter.privacy">只用于订阅通知，不对外共享、不做营销推送。</p>
+        </div>
 
         <div class="blog-toolbar">
           <div class="search-box">
@@ -85,14 +101,15 @@
     </div>
   </footer>
 
-    <script src="js/site-config.js?v=1.6.19"></script>
-<script src="js/i18n.js?v=1.6.19"></script>
+    <script src="js/site-config.js?v=1.6.20"></script>
+<script src="js/i18n.js?v=1.6.20"></script>
   <script src="js/posts-data.js"></script>
   <script src="js/blog.js"></script>
-  <script src="js/seo.js?v=1.6.19"></script>
-  <script src="js/analytics.js?v=1.6.19"></script>
-  <script src="js/comments.js?v=1.6.19"></script>
-  <script src="js/sw-register.js?v=1.6.19"></script>
-  <script src="js/assistant.js?v=1.6.19"></script>
+  <script src="js/newsletter.js?v=1.6.20"></script>
+  <script src="js/seo.js?v=1.6.20"></script>
+  <script src="js/analytics.js?v=1.6.20"></script>
+  <script src="js/comments.js?v=1.6.20"></script>
+  <script src="js/sw-register.js?v=1.6.20"></script>
+  <script src="js/assistant.js?v=1.6.20"></script>
 </body>
 </html>

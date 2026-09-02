@@ -129,6 +129,18 @@
     "blog.views": { zh: "阅读 {n}", en: "{n} views" },
     "blog.readmore": { zh: "阅读全文", en: "Read more" },
 
+    // ---- Newsletter 订阅 ----
+    "newsletter.title": { zh: "订阅博客更新", en: "Subscribe to Updates" },
+    "newsletter.sub": { zh: "新文章、复盘与实战记录，第一时间送达邮箱。", en: "New articles, postmortems and field notes delivered straight to your inbox." },
+    "newsletter.ph": { zh: "你的邮箱地址", en: "Your email address" },
+    "newsletter.send": { zh: "订阅", en: "Subscribe" },
+    "newsletter.success": { zh: "订阅成功！新文章会通过邮件通知你。", en: "Subscribed! You'll get an email when new articles drop." },
+    "newsletter.err.email": { zh: "请填写有效邮箱", en: "Please enter a valid email" },
+    "newsletter.cooldown": { zh: "刚刚已订阅，请稍候再试", en: "Just subscribed, please wait a moment" },
+    "newsletter.nochannel": { zh: "暂未配置订阅通道，请直接发邮件联系。", en: "Subscription channel not configured — please email me directly." },
+    "newsletter.fail": { zh: "提交失败，请直接发邮件到 {mail}", en: "Submission failed. Please email me at {mail}" },
+    "newsletter.privacy": { zh: "只用于订阅通知，不对外共享、不做营销推送。", en: "Used only for subscription notifications. Never shared, never used for marketing." },
+
     // ---- 联系页 ----
     "contact.eyebrow": { zh: "Contact", en: "Contact" },
     "contact.title": { zh: "联系我", en: "Contact Me" },
