@@ -54,10 +54,10 @@ const OUT = path.join(__dirname, "theme-dark.png");
       headerBg: getComputedStyle(document.querySelector(".site-header")).backgroundColor
     };
   });
-  results.push(["点击后 = 亮色", light.theme === "light" && light.bgVar === "#f4f2fb"]);
+  results.push(["点击后 = 亮色", light.theme === "light" && light.bgVar === "#f6f7fb"]);
   results.push(["亮色下显太阳图标", light.sunVisible === true && light.moonVisible === false]);
   results.push(["localStorage 已记录", light.stored === "light"]);
-  results.push(["header 背景已变浅", light.headerBg.indexOf("244") !== -1 || light.headerBg.indexOf("242") !== -1]);
+  results.push(["header 背景已变浅", light.headerBg.indexOf("246") !== -1 || light.headerBg.indexOf("247") !== -1]);
   await page.screenshot({ path: path.join(__dirname, "theme-light.png"), fullPage: true });
   console.log("  ✓ 亮色截图 theme-light.png（bg=" + light.bgVar + "，header=" + light.headerBg + "）");
 

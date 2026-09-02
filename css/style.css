@@ -19,37 +19,37 @@
   --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
 }
 
-/* ============ 明暗主题（v1.6.21）============
-   默认 :root = 暗色；html[data-theme="light"] 覆盖为亮色。
-   全站颜色均走 var()，切变量即切主题；body::before/after
-   （光晕/网格）与 hero 文字（背景恒为视频深色）单独处理。 */
+/* ============ 明暗主题（v1.6.24 亮色 RGB 重做）============
+   暗色：霓虹三色（深底+高亮绿/蓝/粉）
+   亮色：RGB 三原色搭配（明亮底+纯正 R/G/B 共同作为点缀系统） */
 :root[data-theme="light"] {
-  --bg: #f4f2fb;
+  --bg: #f6f7fb;
   --bg-card: #ffffff;
-  --border: #ddd5ee;
-  --text: #191428;
-  --text-dim: #5f5878;
-  --neon-green: #00c98a;
-  --neon-blue: #0098d8;
-  --neon-pink: #e04aa8;
+  --border: #d8def0;
+  --text: #0e1024;
+  --text-dim: #4a4f6a;
+  --neon-green: #00c853;   /* R-G-B 的 G */
+  --neon-blue: #2962ff;    /* R-G-B 的 B */
+  --neon-pink: #ff1744;    /* R-G-B 的 R（鲜红/品红） */
   --violet-1: #7c3aed;
   --violet-2: #8b5cf6;
   --violet-3: #6d28d9;
-  --cyan-glow: #0e9cc0;
+  --cyan-glow: #00b8d4;
 }
 
 :root[data-theme="light"] body::before {
   background:
-    radial-gradient(800px 500px at 20% -5%, rgba(124, 58, 237, 0.14), transparent 60%),
-    radial-gradient(700px 450px at 80% 5%, rgba(0, 152, 216, 0.10), transparent 60%),
-    radial-gradient(900px 600px at 50% 110%, rgba(139, 92, 246, 0.10), transparent 60%),
-    linear-gradient(180deg, #f4f2fb 0%, #e9e4f8 40%, #ece7fb 75%, #f4f2fb 100%);
+    radial-gradient(800px 500px at 15% -5%, rgba(255, 23, 68, 0.12), transparent 60%),
+    radial-gradient(700px 450px at 50% 0%, rgba(0, 200, 83, 0.10), transparent 60%),
+    radial-gradient(700px 450px at 85% 5%, rgba(41, 98, 255, 0.12), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(124, 58, 237, 0.08), transparent 60%),
+    linear-gradient(180deg, #f6f7fb 0%, #eef0fa 50%, #f6f7fb 100%);
 }
 
 :root[data-theme="light"] body::after {
   background-image:
-    linear-gradient(rgba(60, 45, 110, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(60, 45, 110, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(14, 16, 36, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 16, 36, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -62,12 +62,40 @@
 
 /* 亮色下的半透明深色元素：header 变浅、输入框底色统一 */
 :root[data-theme="light"] .site-header {
-  background: rgba(244, 242, 251, 0.94);
+  background: rgba(246, 247, 251, 0.94);
 }
 
 :root[data-theme="light"] .newsletter-row input[type="email"],
 :root[data-theme="light"] .contact-form select {
-  background: rgba(25, 20, 40, 0.04);
+  background: rgba(14, 16, 36, 0.04);
+}
+
+/* === v1.6.24 RGB 三色分配（亮色专属） === */
+:root[data-theme="light"] .stat-grid .stat:nth-child(1) .stat-num { color: #ff1744; }
+:root[data-theme="light"] .stat-grid .stat:nth-child(2) .stat-num { color: #00c853; }
+:root[data-theme="light"] .stat-grid .stat:nth-child(3) .stat-num { color: #2962ff; }
+
+:root[data-theme="light"] .grad-text {
+  background-image: linear-gradient(90deg, #ff1744 0%, #00c853 50%, #2962ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: none;
+}
+
+:root[data-theme="light"] .brand-card:nth-of-type(3n+1) { border-top: 3px solid #ff1744; }
+:root[data-theme="light"] .brand-card:nth-of-type(3n+2) { border-top: 3px solid #00c853; }
+:root[data-theme="light"] .brand-card:nth-of-type(3n+3) { border-top: 3px solid #2962ff; }
+
+:root[data-theme="light"] .brand-tag { color: #4a4f6a; background: rgba(14, 16, 36, 0.04); }
+:root[data-theme="light"] .brand-tag:nth-child(3n+1) { color: #ff1744; background: rgba(255, 23, 68, 0.10); }
+:root[data-theme="light"] .brand-tag:nth-child(3n+2) { color: #00c853; background: rgba(0, 200, 83, 0.10); }
+:root[data-theme="light"] .brand-tag:nth-child(3n+3) { color: #2962ff; background: rgba(41, 98, 255, 0.10); }
+
+:root[data-theme="light"] .tag-filter:hover {
+  border-color: #2962ff;
+  color: #2962ff;
 }
 
 * {
