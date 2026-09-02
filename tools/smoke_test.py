@@ -128,8 +128,8 @@ def main():
     check_status("rss", "rss.xml")
     body = urllib.request.urlopen(BASE + "/rss.xml", timeout=5).read().decode("utf-8", errors="ignore")
     n_item = len(re.findall(r"<item>", body))
-    print("    ✓ rss.xml 条目数", n_item, "（期望 15）")
-    if n_item != 15:
+    print("    ✓ rss.xml 条目数", n_item, "（期望 20）")
+    if n_item != 20:
         fail += 1
 
     print()

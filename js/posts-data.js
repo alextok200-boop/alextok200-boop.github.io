@@ -1,6 +1,22 @@
 /* 博客文章数据源：所有页面共享，新增文章只需在这里加一条 */
 window.POSTS_DATA = [
   {
+    file: "2026-09-02-tong-ji-san-lian-bai",
+    en: { title: "Adding Site Analytics Failed Three Times: Test the Client First", summary: "Three analytics services unreachable while all servers returned 200. The problem wasn't the tools — it was the network layer in between.", tag: "Data & Automation" },
+    title: "给网站接统计，连败三次后我学会了先测客户端",
+    date: "2026-09-02",
+    tag: "数据与自动化",
+    summary: "Umami、GoatCounter、51.la 三次接入全部失败，服务端却都 200。问题不在工具，在用户够不到它的那层网络。"
+  },
+  {
+    file: "2026-09-01-duo-sheet-fen-lei",
+    en: { title: "Multi-Sheet Excel Reports: Classify Before You Process", summary: "Importing six sheets at once silently dropped half the data. The fix: identify each sheet's type first, then decide how to handle it.", tag: "Data & Automation" },
+    title: "Excel 多 Sheet 报表，先分类再动手",
+    date: "2026-09-01",
+    tag: "数据与自动化",
+    summary: "一张工作簿六个 sheet 一起导进脚本，一半解析失败还静默丢数。先识别每个 sheet 的类型，再决定怎么处理。"
+  },
+  {
     file: "2026-08-31-ku-cun-guard-rail",
     en: { title: "How to Set Inventory Alert Thresholds Without False Alarms", summary: "Three-tier thresholds based on sell-through speed, replenishment lead time and promo cycles.", tag: "E-commerce" },
     title: "库存告警阈值怎么定，才不误报又不漏报",
@@ -9,12 +25,36 @@ window.POSTS_DATA = [
     summary: "库存看板跑起来不难，难的是阈值设得准。怎么根据动销速度、在途周期和促销节点定三层阈值。"
   },
   {
+    file: "2026-08-30-erp-403",
+    en: { title: "403 Is Not Always a Wrong Key: One ERP API Debugging Session", summary: "Swapped AppIDs again and again, still 403. The key never even reached the server — an IP whitelist was blocking the request.", tag: "Data & Automation" },
+    title: "403 不一定是密钥错了：一次 ERP 接口排查",
+    date: "2026-08-30",
+    tag: "数据与自动化",
+    summary: "AppID 换了一个又一个，403 照旧。最后发现密钥根本没机会进服务器——是 IP 白名单把请求拦在了门外。"
+  },
+  {
+    file: "2026-08-29-ban-ben-men-jin",
+    en: { title: "22 Versions of a Personal Site, Zero Version Drift", summary: "Once I changed only CSS and forgot to bump the version — visitors kept seeing the old page. Now a CI gate checks it for me.", tag: "AI Skills" },
+    title: "个人网站改了 22 版，版本号没乱过",
+    date: "2026-08-29",
+    tag: "AI 技能包",
+    summary: "有一次只改了 CSS 忘了 bump 版本号，访客看到的还是旧页面。后来把版本检查做成了机器门禁，人肉记忆不再可信。"
+  },
+  {
     file: "2026-08-28-qing-cang",
     en: { title: "Clearing 14,000 Cues in 8 Weeks: A Liquidation Playbook", summary: "Pricing anchor, tiered launch, unified B/C pricing, SKU-level decomposition.", tag: "E-commerce" },
     title: "8 周清掉 1.4 万支库存：一次清仓的拆解",
     date: "2026-08-28",
     tag: "电商操盘",
     summary: "整杆 7 SKU 约 13200 支 + 前肢 363 支，8 周清完。定价锚、阶梯首发、BC 同价、按 SKU 拆解。"
+  },
+  {
+    file: "2026-08-27-kou-jing-tong-yi",
+    en: { title: "Two Tables That Won't Reconcile: Fix the Definition, Not the Numbers", summary: "The calculator said 100, the rating sheet said 90. Nobody miscalculated — the two tables defined 'sales' differently.", tag: "Team" },
+    title: "两套表对不上账，先别急着改数据",
+    date: "2026-08-27",
+    tag: "团队管理",
+    summary: "绩效计算器算出 100，评级表却是 90。不是谁算错了，是两套表对\"销售额\"的定义不一样。"
   },
   {
     file: "2026-08-25-da-ren-roi",

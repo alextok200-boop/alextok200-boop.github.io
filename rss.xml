@@ -5,8 +5,24 @@
     <link>https://alextok200-boop.github.io/blog.html</link>
     <description>电商操盘、跨境增长与 AI 技能包的实战笔记，来自一个 49 店铺、9 品牌的操盘现场。</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 01 Sep 2026 00:56:28 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 09:50:16 GMT</lastBuildDate>
     <atom:link href="https://alextok200-boop.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>给网站接统计，连败三次后我学会了先测客户端</title>
+      <link>https://alextok200-boop.github.io/posts/2026-09-02-tong-ji-san-lian-bai.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-09-02-tong-ji-san-lian-bai.html</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <category>数据与自动化</category>
+      <description>Umami、GoatCounter、51.la 三次接入全部失败，服务端却都 200。问题不在工具，在用户够不到它的那层网络。</description>
+    </item>
+    <item>
+      <title>Excel 多 Sheet 报表，先分类再动手</title>
+      <link>https://alextok200-boop.github.io/posts/2026-09-01-duo-sheet-fen-lei.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-09-01-duo-sheet-fen-lei.html</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <category>数据与自动化</category>
+      <description>一张工作簿六个 sheet 一起导进脚本，一半解析失败还静默丢数。先识别每个 sheet 的类型，再决定怎么处理。</description>
+    </item>
     <item>
       <title>库存告警阈值怎么定，才不误报又不漏报</title>
       <link>https://alextok200-boop.github.io/posts/2026-08-31-ku-cun-guard-rail.html</link>
@@ -16,12 +32,36 @@
       <description>库存看板跑起来不难，难的是阈值设得准。怎么根据动销速度、在途周期和促销节点定三层阈值。</description>
     </item>
     <item>
+      <title>403 不一定是密钥错了：一次 ERP 接口排查</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-30-erp-403.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-30-erp-403.html</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <category>数据与自动化</category>
+      <description>AppID 换了一个又一个，403 照旧。最后发现密钥根本没机会进服务器——是 IP 白名单把请求拦在了门外。</description>
+    </item>
+    <item>
+      <title>个人网站改了 22 版，版本号没乱过</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-29-ban-ben-men-jin.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-29-ban-ben-men-jin.html</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <category>AI 技能包</category>
+      <description>有一次只改了 CSS 忘了 bump 版本号，访客看到的还是旧页面。后来把版本检查做成了机器门禁，人肉记忆不再可信。</description>
+    </item>
+    <item>
       <title>8 周清掉 1.4 万支库存：一次清仓的拆解</title>
       <link>https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</link>
       <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
       <category>电商操盘</category>
       <description>整杆 7 SKU 约 13200 支 + 前肢 363 支，8 周清完。定价锚、阶梯首发、BC 同价、按 SKU 拆解。</description>
+    </item>
+    <item>
+      <title>两套表对不上账，先别急着改数据</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-27-kou-jing-tong-yi.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-27-kou-jing-tong-yi.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+      <category>团队管理</category>
+      <description>绩效计算器算出 100，评级表却是 90。不是谁算错了，是两套表对&quot;销售额&quot;的定义不一样。</description>
     </item>
     <item>
       <title>达人投放不是请人拍视频，是 ROI 管理</title>

@@ -5,8 +5,24 @@
     <link>https://alextok200-boop.github.io/blog.html</link>
     <description>E-commerce operations, cross-border growth and AI skill packs — field notes from running a 49-store, 9-brand operation.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Sep 2026 00:56:28 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 09:50:16 GMT</lastBuildDate>
     <atom:link href="https://alextok200-boop.github.io/rss-en.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Adding Site Analytics Failed Three Times: Test the Client First</title>
+      <link>https://alextok200-boop.github.io/posts/2026-09-02-tong-ji-san-lian-bai.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-09-02-tong-ji-san-lian-bai.html</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Data &amp; Automation</category>
+      <description>Three analytics services unreachable while all servers returned 200. The problem wasn't the tools — it was the network layer in between.</description>
+    </item>
+    <item>
+      <title>Multi-Sheet Excel Reports: Classify Before You Process</title>
+      <link>https://alextok200-boop.github.io/posts/2026-09-01-duo-sheet-fen-lei.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-09-01-duo-sheet-fen-lei.html</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Data &amp; Automation</category>
+      <description>Importing six sheets at once silently dropped half the data. The fix: identify each sheet's type first, then decide how to handle it.</description>
+    </item>
     <item>
       <title>How to Set Inventory Alert Thresholds Without False Alarms</title>
       <link>https://alextok200-boop.github.io/posts/2026-08-31-ku-cun-guard-rail.html</link>
@@ -16,12 +32,36 @@
       <description>Three-tier thresholds based on sell-through speed, replenishment lead time and promo cycles.</description>
     </item>
     <item>
+      <title>403 Is Not Always a Wrong Key: One ERP API Debugging Session</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-30-erp-403.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-30-erp-403.html</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Data &amp; Automation</category>
+      <description>Swapped AppIDs again and again, still 403. The key never even reached the server — an IP whitelist was blocking the request.</description>
+    </item>
+    <item>
+      <title>22 Versions of a Personal Site, Zero Version Drift</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-29-ban-ben-men-jin.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-29-ban-ben-men-jin.html</guid>
+      <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+      <category>AI Skills</category>
+      <description>Once I changed only CSS and forgot to bump the version — visitors kept seeing the old page. Now a CI gate checks it for me.</description>
+    </item>
+    <item>
       <title>Clearing 14,000 Cues in 8 Weeks: A Liquidation Playbook</title>
       <link>https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</link>
       <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-28-qing-cang.html</guid>
       <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
       <category>E-commerce</category>
       <description>Pricing anchor, tiered launch, unified B/C pricing, SKU-level decomposition.</description>
+    </item>
+    <item>
+      <title>Two Tables That Won't Reconcile: Fix the Definition, Not the Numbers</title>
+      <link>https://alextok200-boop.github.io/posts/2026-08-27-kou-jing-tong-yi.html</link>
+      <guid isPermaLink="true">https://alextok200-boop.github.io/posts/2026-08-27-kou-jing-tong-yi.html</guid>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Team</category>
+      <description>The calculator said 100, the rating sheet said 90. Nobody miscalculated — the two tables defined 'sales' differently.</description>
     </item>
     <item>
       <title>Influencer Campaigns Are ROI Management, Not Just Filming</title>
