@@ -1,5 +1,6 @@
-/* shot_lightfall.js — v1.6.15 流星/金币视觉效果截图
-   桌面 1920x1080 正常态 + prefers-reduced-motion 静态态 各截一张 */
+/* shot_lightfall.js — v1.6.16 流星/金币视觉效果截图
+   桌面 1920x1080 正常态 + prefers-reduced-motion 静态态 各截一张
+   v1.6.16 可见性修复后：reduced-motion 必须 72/72 元素全部可见 */
 const puppeteer = require('puppeteer-core');
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const BASE = 'http://127.0.0.1:8000';

@@ -11,7 +11,13 @@
       位移跑进旋转坐标系：运动方向被随机角度扭曲、位移量被 scale 放大——与 v1.6.10
       原始设定（单元素动画 translate 全局方向 + rotate/scale 只影响自身）不符。
       对调后：wrap 的 translate 是全局方向（不受 rotate/scale 影响），inner 的
-      rotate/scale 只作用于星形自身，视觉与 v1.6.10 完全一致，性能收益保留。 */
+      rotate/scale 只作用于星形自身，视觉与 v1.6.10 完全一致，性能收益保留。
+   v1.6.16 可见性修复：v1.6.15 把 opacity:0 静态留在 .lf/.lf-coin 内层，但 opacity
+      动画已迁移到 .lf-wrap 外层（keyframes 0%→100% 控透明度），内层静态 opacity:0
+      无人覆盖 → 星/币永远不可见。修复：opacity:0 从 .lf/.lf-coin 移除，放到 .lf-wrap
+      ——动画帧正常驱动 wrap 透明度，delay 期 wrap opacity:0 + 元素 top:-10% 双保险
+      隐藏。reduced-motion 时 .lf-wrap animation:none → 必须 !important opacity:0.95
+      覆盖静态 opacity:0，否则 60+12 元素全黑。 */
 (function () {
   var container = document.getElementById("lightfall");
   if (!container) {

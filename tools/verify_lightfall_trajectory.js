@@ -1,9 +1,10 @@
-/* verify_lightfall_trajectory.js — v1.6.15 流星轨迹验证
-   验证目标：
+/* verify_lightfall_trajectory.js — v1.6.16 流星轨迹验证
+   验证目标（v1.6.15 层级对调 + v1.6.16 可见性修复后）：
    1. .lf-wrap（外层）动画 transform 必须是纯位移（无 rotate/scale 分量）
    2. .lf（内层）transform 是静态 rotate+scale（星形自身朝向）
    3. 所有星星的位移方向一致（全局方向，不被各自角度扭曲）
-   4. 位移量不被 scale 放大（等时长内不同 scale 的星位移一致） */
+   4. 位移量不被 scale 放大（等时长内不同 scale 的星位移一致）
+   5. .lf 内层无 opacity:0（v1.6.16 修复）——inner.getComputedStyle.opacity 默认 1 */
 const puppeteer = require('puppeteer-core');
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const BASE = 'http://127.0.0.1:8000';
