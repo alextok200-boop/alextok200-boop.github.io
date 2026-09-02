@@ -43,18 +43,13 @@ window.SITE_CONFIG = {
   },
 
   // 访问统计（全部留空则不加载任何统计脚本，站点零额外请求）
-  // 四种可叠加启用，ID 填一项就生效，互不干扰：
-  //   goatcounter - GoatCounter sitecode（例："dai-cp"）
-  //   clarity     - Microsoft Clarity project id
-  //   umami       - Umami（自托管或 cloud.umami.is），填 websiteId 即生效
-  //   ga4         - Google Analytics 4 measurement id（例："G-XXXXXXX"）
+  // 三种可叠加启用，ID 填一项就生效，互不干扰：
+  //   la51   - 51.la siteid（国内直连，主统计；后台统计代码 data-la-code="XXXXXX" 里的 XXXXXX）
+  //   clarity - Microsoft Clarity project id（海外，热力图/录屏，海外访客分析用）
+  //   ga4    - Google Analytics 4 measurement id（海外，双语站海外访客统计用）
   analytics: {
-    goatcounter: "",   // GoatCounter sitecode，例："dai-cp"
+    la51: "",           // 51.la siteid，例："d2e1f0a1"（填了即启用 sdk.51.la）
     clarity: "",        // Microsoft Clarity project id，例："abc123xyz"
-    umami: {
-      src: "",          // Umami 脚本地址，留空走 cloud.umami.is（推荐自托管）
-      websiteId: ""     // Umami website id
-    },
     ga4: ""             // Google Analytics 4 measurement id，例："G-XXXXXXX"
   },
 
