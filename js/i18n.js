@@ -126,6 +126,7 @@
     "blog.all": { zh: "全部", en: "All" },
     "blog.empty": { zh: "没有找到匹配的文章。", en: "No matching articles found." },
     "blog.count": { zh: "共 {n} 篇", en: "{n} articles" },
+    "blog.views": { zh: "阅读 {n}", en: "{n} views" },
     "blog.readmore": { zh: "阅读全文", en: "Read more" },
 
     // ---- 联系页 ----
@@ -197,6 +198,10 @@
     "brands.todo": { zh: "待确认：品牌中文名与英文名的对应关系以集团最新口径为准，如需调整请告诉我具体品牌与描述。", en: "To confirm: Chinese/English brand naming follows the group's latest standard. Tell me which brand to fix and I'll update it." },
     "brands.cta": { zh: "咨询品牌合作 / 代理", en: "Enquire About Partnership" },
     "brands.hint": { zh: "可按单品牌或组合授权 · 正式条款以 OA 审批为准", en: "Single-brand or bundled licensing · official terms per OA approval" },
+    "brands.form.title": { zh: "品牌合作 / 招商咨询 / 授权申请", en: "Brand Partnership / Licensing Inquiry" },
+    "brands.form.brand": { zh: "意向品牌", en: "Preferred Brand" },
+    "brands.form.msg.ph": { zh: "想合作哪个品牌、什么模式（代理 / 经销 / 授权 / 贴牌）？", en: "Which brand and mode — dealership, distribution, licensing, OEM?" },
+    "brands.form.send": { zh: "提交咨询", en: "Submit Inquiry" },
     "brand.konllen.tag": { zh: "集团主品牌 · 亚马逊日本 #5 / 德国 #8", en: "Flagship brand · Amazon JP #5 / DE #8" },
     "brand.konllen.desc": { zh: "集团核心台球用品品牌，产品覆盖整杆、前肢与配件；旗下 KONLLEN GO 面向青年玩家，走更轻的量级与更年轻的表达。", en: "The group's core billiards brand covering full cues, shafts and accessories. KONLLEN GO targets younger players with lighter builds and louder design." },
     "brand.konllen.m1": { zh: "主线：整杆 / 前肢 / 配件", en: "Core line: cues / shafts / accessories" },

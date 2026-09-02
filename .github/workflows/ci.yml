@@ -1,0 +1,29 @@
+# CI —— 质量门禁：版本一致性 + 冒烟测试
+# 触发：push / PR 到 main。静态站由 GitHub Pages 直接部署，本流水线只做校验，不负责发布。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 版本号一致性检查
+        run: python3 tools/check_version.py
+
+      - name: 冒烟测试（页面 / 资源 / DOM / JSON-LD / RSS）
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 &
+          SERVER_PID=$!
+          sleep 2
+          python3 tools/smoke_test.py
+          STATUS=$?
+          kill $SERVER_PID 2>/dev/null || true
+          exit $STATUS

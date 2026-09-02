@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://alextok200-boop.github.io/assets/img/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://alextok200-boop.github.io/brands.html">
-  <link rel="stylesheet" href="css/style.css?v=1.6.17">
+  <link rel="stylesheet" href="css/style.css?v=1.6.18">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
   <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
@@ -147,8 +147,54 @@
         </p>
 
         <div class="b2b-cta">
-          <a href="contact.html" class="btn btn-primary" data-i18n="brands.cta">咨询品牌合作 / 代理</a>
+          <a href="#brand-inquiry" class="btn btn-primary" data-i18n="brands.cta">咨询品牌合作 / 代理</a>
           <span class="b2b-hint" data-i18n="brands.hint">可按单品牌或组合授权 · 正式条款以 OA 审批为准</span>
+        </div>
+
+        <!-- v1.6.18：品牌页内嵌招商表单（复用 inquiry.js，一律走邮箱 FormSubmit 通道） -->
+        <div class="brand-inquiry" id="brand-inquiry">
+          <div class="contact-form inquiry-form">
+            <h3 data-i18n="brands.form.title">品牌合作 / 招商咨询 / 授权申请</h3>
+
+            <label for="bq-name" data-i18n="contact.form.name">称呼 *</label>
+            <input type="text" id="bq-name" name="name" autocomplete="name"
+                   placeholder="怎么称呼你" required
+                   data-i18n-attr="placeholder:contact.form.name.ph">
+
+            <label for="bq-email" data-i18n="contact.form.email">邮箱 *</label>
+            <input type="email" id="bq-email" name="email" autocomplete="email"
+                   placeholder="你的邮箱" required
+                   data-i18n-attr="placeholder:contact.form.email.ph">
+
+            <label for="bq-company" data-i18n="contact.form.company">公司 / 渠道</label>
+            <input type="text" id="bq-company" name="company" autocomplete="organization"
+                   placeholder="公司与主营渠道（选填）"
+                   data-i18n-attr="placeholder:contact.form.company.ph">
+
+            <label for="bq-brand" data-i18n="brands.form.brand">意向品牌</label>
+            <select id="bq-brand" name="brand">
+              <option value="KONLLEN">KONLLEN</option>
+              <option value="CRICAL">CRICAL</option>
+              <option value="ZOKUE">ZOKUE</option>
+              <option value="COWCUE">COWCUE</option>
+              <option value="多品牌组合 / 未定">多品牌组合 / 未定</option>
+            </select>
+
+            <label for="bq-message" data-i18n="contact.form.msg">需求说明 *</label>
+            <textarea id="bq-message" name="message" rows="4"
+                      placeholder="想合作哪个品牌、什么模式（代理 / 经销 / 授权 / 贴牌）？" required
+                      data-i18n-attr="placeholder:brands.form.msg.ph"></textarea>
+
+            <!-- honeypot：正常用户看不到，机器人会填，填了直接丢弃 -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="bq-website">Website</label>
+              <input type="text" id="bq-website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit" class="btn btn-primary" data-i18n="brands.form.send">提交咨询</button>
+            <p class="form-note" aria-live="polite"></p>
+            <p class="form-privacy" data-i18n="contact.form.privacy">信息仅用于本次沟通，不对外共享、不做营销推送。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -171,13 +217,13 @@
     </div>
   </footer>
 
-  <script src="js/site-config.js?v=1.6.17"></script>
-  <script src="js/i18n.js?v=1.6.17"></script>
-  <script src="js/main.js?v=1.6.17"></script>
-  <script src="js/seo.js?v=1.6.17"></script>
-  <script src="js/analytics.js?v=1.6.17"></script>
-  <script src="js/comments.js?v=1.6.17"></script>
-  <script src="js/sw-register.js?v=1.6.17"></script>
-  <script src="js/assistant.js?v=1.6.17"></script>
+  <script src="js/site-config.js?v=1.6.18"></script>
+  <script src="js/i18n.js?v=1.6.18"></script>
+  <script src="js/main.js?v=1.6.18"></script>
+  <script src="js/seo.js?v=1.6.18"></script>
+  <script src="js/analytics.js?v=1.6.18"></script>
+  <script src="js/comments.js?v=1.6.18"></script>
+  <script src="js/sw-register.js?v=1.6.18"></script>
+  <script src="js/assistant.js?v=1.6.18"></script>
 </body>
 </html>

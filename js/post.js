@@ -1,4 +1,4 @@
-/* 文章页增强：阅读进度条 + TOC + 上一篇/下一篇 + 相关推荐 */
+/* 文章页增强：阅读计数 + 阅读进度条 + TOC + 上一篇/下一篇 + 相关推荐 */
 (function () {
   var posts = window.POSTS_DATA || [];
   var cur = location.pathname.split("/").pop().replace(".html", "");
@@ -11,6 +11,24 @@
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
+
+  // 0. 阅读计数：localStorage 本机累计 + posts-data 基线（站长可填真实值）
+  (function countViews() {
+    var KEY = "post_views";
+    var store = {};
+    try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { store = {}; }
+    var f = posts[idx].file;
+    store[f] = (store[f] || 0) + 1;
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+    var total = (posts[idx].views || 0) + (store[f] || 0);
+    if (total > 0) {
+      var meta = document.querySelector(".post-meta");
+      if (meta) {
+        var label = window.i18n ? window.i18n.t("blog.views").replace("{n}", total) : "阅读 " + total;
+        meta.insertAdjacentHTML("beforeend", " · <span class=\"post-views\">" + label + "</span>");
+      }
+    }
+  })();
 
   // 1. 阅读进度条
   var bar = document.createElement("div");

@@ -1,6 +1,15 @@
-/* 博客页：搜索 + 标签筛选 + 文章列表渲染（数据源 js/posts-data.js，支持中英双语） */
+/* 博客页：搜索 + 标签筛选 + 文章列表渲染 + 阅读计数（数据源 js/posts-data.js，支持中英双语） */
 (function () {
   var posts = window.POSTS_DATA || [];
+
+  // 本机阅读增量（localStorage 累计，与文章页 post.js 同 key）
+  var VIEWS_KEY = "post_views";
+  var localViews = {};
+  try { localViews = JSON.parse(localStorage.getItem(VIEWS_KEY) || "{}") || {}; } catch (e) { localViews = {}; }
+
+  function viewsOf(p) {
+    return (p.views || 0) + (localViews[p.file] || 0);
+  }
 
   function lang() {
     return window.i18n ? window.i18n.lang() : "zh";
@@ -57,11 +66,16 @@
     if (empty) empty.hidden = true;
 
     var html = filtered.map(function (p) {
+      var v = viewsOf(p);
+      var viewsHtml = v > 0
+        ? '<span class="blog-views">' + (window.i18n ? window.i18n.t("blog.views").replace("{n}", v) : "阅读 " + v) + "</span>"
+        : "";
       return (
         '<article class="card blog-item">' +
         '<div class="blog-meta">' +
         '<span class="blog-tag">' + L(p, "tag") + "</span>" +
         '<time class="blog-date">' + p.date + "</time>" +
+        viewsHtml +
         "</div>" +
         '<h3><a href="posts/' + p.file + '.html">' + L(p, "title") + "</a></h3>" +
         "<p>" + L(p, "summary") + "</p>" +
