@@ -1,5 +1,8 @@
 /* ============================================================
-   inquiry.js v1.2.0 —— 询盘/招商/授权申请表单提交（静态站可用，无需自建服务器）
+   inquiry.js v1.3.0 —— 咨询表单提交（静态站可用，无需自建服务器）
+   v1.3.0：v1.7.0 定位整改 —— 移除品牌授权申请专用字段
+           （brand / coop_type / channel / market / store_url / scale），
+           表单精简为通用咨询：姓名 / 邮箱 / 公司 / 合作意向 / 说明。
    v1.2.0：授权申请字段 —— collect() 增加 coop_type / channel / market /
            store_url / scale（授权申请表单专用，其他表单无此字段自动为空）。
    v1.1.0：多表单化 —— 绑定页面内所有 .inquiry-form 元素（contact 页
@@ -47,12 +50,6 @@
       email: field(form, "email"),
       company: field(form, "company"),
       intent: field(form, "intent"),
-      brand: field(form, "brand"),
-      coopType: field(form, "coop_type"),
-      channel: field(form, "channel"),
-      market: field(form, "market"),
-      storeUrl: field(form, "store_url"),
-      scale: field(form, "scale"),
       message: field(form, "message"),
       subject: form.getAttribute("data-subject") || "网站询盘",
       page: location.pathname,
@@ -73,17 +70,11 @@
   }
 
   function mailtoFallback(data, form) {
-    var subject = "[" + data.subject + "] " + (data.intent || data.brand || "合作咨询") + " - " + data.name;
+    var subject = "[" + data.subject + "] " + (data.intent || "合作咨询") + " - " + data.name;
     var body =
       "称呼：" + data.name + "\n" +
       "邮箱：" + data.email + "\n" +
       "公司/渠道：" + (data.company || "-") + "\n" +
-      (data.brand ? "意向品牌：" + data.brand + "\n" : "") +
-      (data.coopType ? "申请类型：" + data.coopType + "\n" : "") +
-      (data.channel ? "销售渠道：" + data.channel + "\n" : "") +
-      (data.market ? "目标市场：" + data.market + "\n" : "") +
-      (data.storeUrl ? "现有链接：" + data.storeUrl + "\n" : "") +
-      (data.scale ? "预计规模：" + data.scale + "\n" : "") +
       "合作意向：" + (data.intent || "-") + "\n\n" +
       data.message;
     say(form, t("inquiry.mailto", "正在打开你的邮件客户端…"), "info");

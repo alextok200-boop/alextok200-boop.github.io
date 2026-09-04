@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通用型方法论手册 - 戴程鹏</title>
+  <meta name="description" content="换项目、换业务线都能直接套用的组织能力杠杆资产：技能研发流水线、知识库与数据中台、交付物规范、自动化集成、多 Agent 协同。">
+  <meta property="og:title" content="通用型方法论手册 - 戴程鹏">
+  <meta property="og:description" content="换项目、换业务线都能直接套用的组织能力杠杆资产：技能研发流水线、知识库与数据中台、交付物规范、自动化集成、多 Agent 协同。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://alextok200-boop.github.io/methods/2026-09-04-methodology.html">
+  <meta property="og:image" content="https://alextok200-boop.github.io/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://alextok200-boop.github.io/methods/2026-09-04-methodology.html">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.0">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#9333ea">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"通用型方法论手册","datePublished":"2026-09-04","dateModified":"2026-09-04","author":{"@type":"Person","name":"戴程鹏","url":"https://alextok200-boop.github.io/"},"publisher":{"@type":"Person","name":"戴程鹏"},"inLanguage":"zh-CN","url":"https://alextok200-boop.github.io/methods/2026-09-04-methodology.html"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://alextok200-boop.github.io/"},{"@type":"ListItem","position":2,"name":"方法论","item":"https://alextok200-boop.github.io/methods.html"},{"@type":"ListItem","position":3,"name":"通用型方法论手册","item":"https://alextok200-boop.github.io/methods/2026-09-04-methodology.html"}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><img class="logo-mark" src="../assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../work.html">作品集</a>
+        <a href="../brands.html">项目经历</a>
+        <a href="../methods.html" class="active">方法论</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article class="container" style="max-width:760px;padding:60px 24px 80px;">
+      <p style="color:var(--neon-green);font-size:13px;letter-spacing:1px;">方法论 · 2026-09-04</p>
+      <h1 style="font-size:32px;margin:8px 0 12px;">通用型方法论手册</h1>
+      <p style="color:var(--text-dim);font-size:15px;line-height:1.7;margin-bottom:36px;">换项目、换业务线都能直接套用的组织能力杠杆资产：技能研发流水线、知识库与数据中台、交付物规范、自动化集成、多 Agent 协同。</p>
+      <div class="article-body" style="font-size:15px;line-height:1.85;color:var(--text);">
+<h1>通用型方法论手册（v1.0.0）</h1>
+<blockquote>本文从《[AI 平台] 对话价值汇总》拆出「通用型」部分，独立成册。内容不依赖具体业务，换个项目、换条产品线都能直接套用——是组织能力的杠杆资产。</blockquote>
+<blockquote>已入库 [本地 RAG] <code>business-alex</code>，供所有接入的 Agent 检索调用。</blockquote>
+
+<h2>0. 怎么用这本手册</h2>
+<ul>
+<li>遇到"要做个新技能 / 新方案 / 新看板"类任务，先翻对应小节，照流程走，别从零造轮子。</li>
+<li>凡标注"强制"的，是用户长期踩坑后定的硬规矩，优先遵守。</li>
+</ul>
+
+<p>---</p>
+
+<h2>1. 技能（Skill）研发与交付流水线</h2>
+<ul>
+<li><strong>分层开发 + 独立审计 + 版本化打包 + 按阶段回滚</strong>：每个技能分层实现，每层独立审计、打语义化版本号、可单独回滚，避免一次性大包难以排查。</li>
+<li><strong>审计优先、先修缺陷再升级（最高优先级，强制）</strong>：收到别人的代码 / AI 产出 / 工程包，默认先读懂并审计（完整性、质量、真实可用性、风险），给 P0/P1/P2 分级意见，<strong>先把缺陷修好，再谈功能升级</strong>。绝不一上来就 build 或加链路。例外：用户明确说"直接做 / 帮我实现 / 接上 XX"才进 build 模式。</li>
+<li><strong>通用母版 → 业务分支（强制）</strong>：新技能先做通用型跑通验证，再单独存为业务分支（如 <code>ad-plan-generator</code> 通用版 + <code>ad-plan-generator-[category]s</code> [品类 A]分支并存）。母版只承载通用逻辑，行业特定约束只叠加在分支，互不回写。</li>
+<li><strong>安全准入审计（skills-security-check）</strong>：对第三方 Agent Skill 走云鼎 P0/P1/P2 框架，全量验证（非抽样），审计结论对照源码，附 SHA-256 哈希。</li>
+<li><strong>一键防呆安装</strong>：面向零基础同事（HR/行政），安装只需输入单个 [[回调地址] 地址] 等极简参数，管理端/员工端双版本同步迭代。</li>
+</ul>
+
+<h2>2. 本地知识库 / 数据中台搭建方法论</h2>
+<ul>
+<li><strong>[本地 RAG] 本地 RAG 部署踩坑清单（已实测）</strong>：</li>
+<li>容器 <code>restart=unless-stopped</code> + 绑定 <code>[host:port]</code> → 开机自启、本机任意 Agent 随时可拉起。</li>
+<li>v1.15.0 中 <code>/workspace/{slug}/update</code> 是"改设置"假入口，会回 "No valid fields to update!"；<strong>真正加文档的端点是 <code>POST /api/v1/workspace/{slug}/update-embeddings</code>，且 <code>adds</code> 传文档相对路径（如 <code>custom-documents/<file>.json</code>），不是文档 id</strong>。</li>
+<li>多个看似存在的路由（<code>/document/upload</code>、<code>/documents</code>、<code>/workspace/{slug}/documents</code>）实为 SPA 假路由，返回 HTML 200 导致静默失败。</li>
+<li>系统上传响应里的 <code>id</code> 与持久化后的 <code>localFiles.id</code> 不同；attach 必须用 storage 里的 location，不能用上传响应里的 id。</li>
+<li>上传接口 <code>POST /api/v1/document/upload</code>（multipart，字段 <code>file</code>）的响应里直接给 <code>location</code> 字段，拿它去调 <code>update-embeddings</code> 即可。</li>
+<li><strong>[本地推理] 本地推理接入</strong>：[本地 RAG] 的 <code>chatProvider</code> 设 <code>[本地推理]</code>、<code>chatModel</code> 用 <code>[本地 LLM]:7b</code>，经 <code>[docker host]</code> 连通，免云 API 依赖、数据不出本机。</li>
+<li><strong>零依赖 MCP Server 写法</strong>：纯 stdlib（urllib）+ JSON-RPC stdio，不依赖 <code>requests</code>；用 <code>while True: readline()</code> 而非 <code>for line in stdin</code>（管道会吞最后一行）。已落地 <code>[本地 RAG]_mcp_server.py</code>，暴露 <code>query_knowledge_base</code> 与 <code>list_documents</code> 两工具，[AI 平台] / [Agent 客户端] 共用。</li>
+<li><strong>数据中台 6 层架构</strong>：采集 → 归一化 → 核算 → 分析 → 推送 → 交互；[国内 ERP] ERP（国内多平台）与[跨境 ERP] ERP（Amazon 财务）双源，Flask API + ECharts + SQLite 云部署（[数据中台]）。</li>
+</ul>
+
+<h2>3. 交付物规范（强制）</h2>
+<ul>
+<li><strong>语义化版本号 + 强制递增</strong>：所有可交付文件统一「中文内容名-v版本号」格式，初版 v1.0.0；每次更新（含一处修正）必须 bump 版本，绝不当覆盖。</li>
+<li><strong>Excel(xlsx) 优先</strong>：能结构化的内容（对照表、清单、拆解、打卡、考核、数据）默认出 xlsx；Word 只留给强叙述/方案正文/公文。</li>
+<li><strong>Word+PPT 双格式</strong>：正式方案默认 docx + pptx 双交付，PPT 含表格层级、英雄/过渡页、技术蓝渐变主题。</li>
+<li><strong>前后对照 + 待确认标注</strong>：修订类交付必须含"调整前后对照表"和明确"待确认"标记，保证可核验、可复现。</li>
+<li><strong>去 AI 味润色</strong>：所有叙述性正文默认走 humanizer-zh 规则（删填充词、破公式结构、变节奏、删宣传语/金句/三段式/冒号标题列表/破折号滥用），保留表格数据与术语准确性。</li>
+</ul>
+
+<h2>4. [IM] / 自动化集成</h2>
+<ul>
+<li><strong>[IM]群机器人固定分配（单一事实源）</strong>：<code>[[回调地址] 注册表]</code> 技能的 <code>[事实源文件]</code> 是唯一事实源，绑定只认它；任何 [回调地址] 改动必须走 <code>[变更脚本]</code>（自动写更改前后日志）。现行主群 <code>[主群/废弃群]</code>，旧 <code>[主群/废弃群]</code>/<code>[视觉生产]_group</code> 已废弃。</li>
+<li><strong>每日[IM]对话摘要看板</strong>：聚合全量会话、待办、@提及、OA、考勤、请假、日历，推送格式 Markdown 摘要 + 整页 PNG dashboard（[整页截图]，设备比例克制以适配[IM]显示高度）。</li>
+<li><strong>[IM]推图规范</strong>：看板大屏作图片推群（非 [卡片消息] 文字）；截图 <code>[整页截图]</code>；高度克制（图表≤220px、表格≤Top12、[截图缩放] 1.5、比例~1.1）避免[IM]只显示上半截。</li>
+<li><strong>[IM] [审批流程]自动化技能</strong>：管理端+员工端双版本，已沉淀为可打包部署的一键安装技能。</li>
+</ul>
+
+<h2>5. 多 Agent 协同范式</h2>
+<ul>
+<li>本机 Agent（[AI 平台] / [Agent 客户端] / [LLM 引擎] Harness）通过本地 MCP Server 共享同一份 [本地 RAG] 知识库，避免各自为政、知识孤岛。</li>
+<li>通用型技能与业务分支并存，既保证跨 Agent 复用，又隔离行业敏感逻辑。</li>
+</ul>
+
+<h2>6. 通用型待办 / 卡点</h2>
+<tr><td>卡点</td><td>说明</td></tr>
+
+<tr><td>[Agent 客户端] 接入</td><td>装好后需经 UI 加 MCP Server（运行中的 data.db 不便直改）</td></tr>
+<tr><td>[LLM 引擎] Harness</td><td>待 GitHub 重下 + 加 OpenAI→[本地 RAG] 薄代理（本版无标准 /v1/chat/completions）</td></tr>
+<tr><td>知识库持续扩充</td><td>更多源文档持续入库，保持口径一致</td></tr>
+
+      </div>
+      <hr style="border:0;border-top:1px dashed var(--border);margin:48px 0 24px;">
+      <p style="color:var(--text-dim);font-size:13px;">
+        原文来自本地知识库，经脱敏后发布。
+        品牌名、公司名、内部系统名均已替换为占位符。
+      </p>
+      <p style="margin-top:16px;">
+        <a href="../methods.html" class="btn btn-ghost">← 返回方法论列表</a>
+      </p>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Powered by GitHub Pages</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -17,3 +17,6 @@ assets/img/_source/
 
 # Python 缓存
 tools/__pycache__/
+
+# v1.7.0：本地知识库原文备份（公司/品牌敏感信息，不入公网）
+tools/kb-source/

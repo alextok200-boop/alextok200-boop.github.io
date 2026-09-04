@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 PAGES = [
     "index.html", "about.html", "work.html", "blog.html", "contact.html",
-    "brands.html", "achievements.html", "careers.html",
+    "brands.html", "achievements.html", "careers.html", "methods.html",
 ]
 RESOURCES = [
     "css/style.css", "js/i18n.js", "js/main.js", "js/site-config.js",
@@ -96,23 +96,30 @@ def main():
     for p in RESOURCES:
         check_status("asset", p)
     print("== 3. 关键 DOM 节点 ==")
-    check_contains("index.html", "B2B 电商招募", "首页 B2B 模块")
+    # v1.7.0：B2B 招商段已删除；brands.html 改造为项目作品集；about 简历化
     check_contains("index.html", "id=\"lightfall\"", "首页 lightfall 容器")
     check_contains("contact.html", "id=\"inquiryForm\"", "联系表单 inquiryForm")
     check_contains("contact.html", "inquiry.js", "联系表单 inquiry.js")
-    check_contains("brands.html", "brand-card", "品牌卡片")
-    check_count("brands.html", r'class="[^"]*brand-card[^"]*"', 9, "品牌卡片数量")
-    check_contains("brands.html", 'id="brand-inquiry"', "品牌页招商表单容器")
-    check_contains("brands.html", 'class="contact-form inquiry-form"', "品牌页招商表单（inquiry 多表单）")
-    check_contains("brands.html", 'name="brand"', "招商表单意向品牌字段")
-    check_contains("brands.html", 'id="brand-auth-inquiry"', "品牌授权申请表单容器")
-    check_contains("brands.html", 'data-subject="品牌授权申请"', "授权申请表单邮件主题分流")
-    check_contains("brands.html", 'name="coop_type"', "授权申请类型字段")
-    check_contains("brands.html", 'name="channel"', "授权申请销售渠道字段")
+    # brands.html：项目作品集
+    check_contains("brands.html", "project-card", "项目卡片类名")
+    check_count("brands.html", r'class="[^"]*project-card[^"]*"', 6, "项目卡片数量（6 个）")
+    check_contains("brands.html", "项目作品", "项目页 h1")
+    # about.html：简历化
+    check_contains("about.html", "resume-name", "简历姓名")
+    check_contains("about.html", "resume-stats", "核心数字条")
+    check_count("about.html", r'class="[^"]*resume-stat"', 5, "数字条 5 项")
+    check_count("about.html", r'class="[^"]*skill-tag"', 9, "技能标签 9 个")
+    check_contains("about.html", "timeline-item", "工作经历时间线")
+    check_contains("about.html", "methods.html", "简历→方法论外链")
+    # methods.html：方法论栏目
+    check_contains("methods.html", "方法论", "方法论列表页 h1")
+    check_contains("methods.html", "project-card", "方法论卡片类名")
+    # achievements / careers 保持
     check_contains("achievements.html", "ach-card", "成绩单数据卡")
     check_count("achievements.html", r'class="[^"]*ach-card[^"]*"', 6, "成绩单卡片数量")
     check_contains("careers.html", "job-card", "招聘岗位卡")
     check_count("careers.html", r'class="[^"]*job-card[^"]*"', 4, "招聘岗位数量")
+    # newsletter + 主题
     check_contains("index.html", "newsletter-form", "首页 Newsletter 订阅表单")
     check_contains("index.html", 'data-subject="Newsletter 订阅"', "首页订阅邮件主题分流")
     check_contains("blog.html", "newsletter-form", "博客页 Newsletter 订阅表单")
@@ -121,7 +128,8 @@ def main():
     check_contains("about.html", 'class="theme-toggle"', "内页主题切换按钮")
     check_count("index.html", r'data-theme', 1, "主题 data-theme 属性")
     print("== 4. JSON-LD 注入 ==")
-    check_count("index.html", r'application/ld\+json', 3, "首页 JSON-LD 数")
+    # v1.7.0：删独立 Organization 实体（品牌官网声明），保留 worksFor 履历信息
+    check_count("index.html", r'application/ld\+json', 4, "首页 JSON-LD 数（4：zh+en WebSite+Person）")
     check_count("about.html", r'application/ld\+json', 1, "内页 JSON-LD 数")
     check_count("posts/2026-07-28-b2b.html", r'application/ld\+json', 2, "文章页 JSON-LD 数")
     print("== 5. RSS 内容 ==")
