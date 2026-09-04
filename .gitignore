@@ -20,3 +20,9 @@ tools/__pycache__/
 
 # v1.7.0：本地知识库原文备份（公司/品牌敏感信息，不入公网）
 tools/kb-source/
+
+# v1.7.1：本地视觉验证截图（含真实头像 QA 图，不入公网）
+tools/v*-showcase/
+
+# 旧版 LOGO 源备份（仅本地留存作回滚，不入公网）
+tools/_source/
