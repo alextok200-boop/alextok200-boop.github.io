@@ -88,7 +88,7 @@
     "resume.j1.p2": { zh: "49 家店铺矩阵：覆盖国内 9+ 平台与海外多平台，推动国内外业务向 50/50 调整", en: "49-store matrix across 9+ domestic platforms and multiple overseas marketplaces, rebalancing toward 50/50." },
     "resume.j1.p3": { zh: "主打品牌进入亚马逊 5 站类目榜（日本 #5 / 德国 #8 / 美国 #11 / 加拿大 #11）", en: "Flagship brands on Amazon category lists across 5 marketplaces (JP #5 / DE #8 / US #11 / CA #11)." },
     "resume.j1.p4": { zh: "主导数据中台 / 财务 Agent / 审批自动化等工程化项目，用工具沉淀运营能力", en: "Led engineering projects — data platform, finance agent, approval automation — encoding operations into tooling." },
-    "resume.j2.title": { zh: "北京亚辰科技服务（领星分公司）· 分公司 / 财务负责人", en: "Beijing Yachen Tech Services (LingXing Branch) · Branch / Finance Lead" },
+    "resume.j2.title": { zh: "北京亚昆科技服务有限公司 · 南京分公司负责人", en: "Beijing Yakun Tech Services Co., Ltd. · Nanjing Branch Lead" },
     "resume.j2.p1": { zh: "运用领星跨境 ERP 为团队提供财务数据同步：FBA 库存、回款与账目统一口径，2018.10 - 2025.10 共 7 年", en: "Used LingXing cross-border ERP to sync financial data for the team — unified FBA stock, payments and books; 2018.10 - 2025.10 (7 years)." },
     "resume.j2.p2": { zh: "管理 5 人团队，推动月度复盘、KPI 同步与财务流程标准化", en: "Led a 5-person team; drove monthly reviews, KPI sync and standardised finance workflows." },
     "resume.j2.p3": { zh: "沉淀 IFC 0-1 流程设计与零基础可读 SOP 能力，为后续电商与技能包主线打底", en: "Built IFC 0-1 process design and non-engineer-readable SOPs — foundation for later e-commerce and skill-pack tracks." },
