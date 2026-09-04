@@ -2453,6 +2453,33 @@ body::after {
   color: var(--neon-blue);
 }
 
+.education-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.edu-item {
+  flex: 1 1 240px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.edu-item h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.edu-item p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
 .resume-note {
   color: var(--text-dim);
   font-size: 12px;
