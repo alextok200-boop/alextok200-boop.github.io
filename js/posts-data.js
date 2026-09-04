@@ -114,11 +114,11 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-08-08-pin-pai-ju-zhen",
-    en: { title: "Nine Brands, One Category: How to Deploy a Brand Matrix", summary: "Differentiate positioning, price bands and channels; concentrate resources on the lead brand.", tag: "Brand" },
-    title: "9 个品牌一条产品线：品牌矩阵怎么排兵布阵",
+    en: { title: "Multi-brand Matrix: Position, Price and Channel", summary: "Differentiate positioning, price bands and channels; concentrate resources on the lead brand.", tag: "Brand" },
+    title: "多品牌矩阵怎么排兵布阵：定位、价格、渠道三错开",
     date: "2026-08-08",
     tag: "品牌操盘",
-    summary: "九个品牌不能都是全能选手。定位错开、价格错开、渠道错开，资源向主品牌集中。"
+    summary: "品牌不能都是全能选手。定位错开、价格错开、渠道错开，资源向主品牌集中。"
   },
   {
     file: "2026-08-05-chu-hai",
@@ -146,11 +146,11 @@ window.POSTS_DATA = [
   },
   {
     file: "2026-07-28-b2b",
-    en: { title: "B2B Recruitment: Deploying Dual Brands Across Channels", summary: "Tier channels, keep brands separate, put licensing and warranty in writing. Signing is just the start.", tag: "Brand" },
-    title: "B2B 招商打法：双品牌怎么铺渠道",
+    en: { title: "Building a B2B Channel System: Tier, License, Support", summary: "Tier channels, license in writing, use joint warranty as a trust point. Signing is just the start.", tag: "Brand" },
+    title: "B2B 渠道体系怎么搭：分层、授权、联保、跟进",
     date: "2026-07-28",
     tag: "品牌操盘",
-    summary: "渠道分层给政策、双品牌错开不打架、授权联保写清楚。签约只是起点，养商才是增长。"
+    summary: "渠道分层给政策、品牌线错开不打架、授权联保写清楚。签约只是起点，养商才是增长。"
   },
   {
     file: "2026-07-25-ling-ji-chu",
