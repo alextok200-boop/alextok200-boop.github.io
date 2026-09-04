@@ -196,6 +196,7 @@
 
     // ---- 新导航 ----
     "nav.projects": { zh: "项目经历", en: "Projects" },
+    "nav.methods": { zh: "方法论", en: "Methods" },
     "nav.results": { zh: "成绩单", en: "Results" },
     "nav.careers": { zh: "加入我们", en: "Careers" },
 
