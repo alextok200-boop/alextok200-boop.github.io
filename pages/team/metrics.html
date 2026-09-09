@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据统计 - 戴程鹏</title>
+  <meta name="description" content="数据统计分析">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <style>
+    .metrics-section {
+      margin-top: 32px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 24px;
+    }
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .metric-card h3 {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: var(--neon-blue);
+    }
+    .chart-placeholder {
+      height: 200px;
+      background: var(--bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    .stat-table th,
+    .stat-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .stat-table th {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+    .stat-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><img class="logo-mark" src="../assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../methods.html">方法论</a>
+        <a href="../pages/team/dashboard.html">团队看板</a>
+        <a href="../pages/team/metrics.html" class="active">数据统计</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Metrics</p>
+        <h1>数据统计</h1>
+        <p class="hero-sub">深度数据分析 · 趋势洞察 · 决策支持</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container metrics-section">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h3>月度 GMV 趋势</h3>
+            <div class="chart-placeholder">[图表占位：ECharts 折线图]</div>
+          </div>
+          <div class="metric-card">
+            <h3>平台销售占比</h3>
+            <div class="chart-placeholder">[图表占位：ECharts 饼图]</div>
+          </div>
+        </div>
+
+        <div class="metric-card" style="margin-top: 24px;">
+          <h3>各店铺销售额 TOP10</h3>
+          <table class="stat-table">
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>店铺名称</th>
+                <th>平台</th>
+                <th>月销售额</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>KONLLEN 旗舰店</td><td>Amazon US</td><td>¥284,560</td></tr>
+              <tr><td>2</td><td>CRICAL 旗舰店</td><td>Amazon DE</td><td>€186,200</td></tr>
+              <tr><td>3</td><td>康伦球杆官方</td><td>天猫</td><td>¥142,800</td></tr>
+              <tr><td>4</td><td>CRICAL 京东店</td><td>京东</td><td>¥98,400</td></tr>
+              <tr><td>5</td><td>KONLLEN 海外</td><td>亚马逊 EU</td><td>€76,500</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top: 32px; color: var(--text-dim); font-size: 13px; text-align: center;">
+          详细数据请查看 AI Cockpit 数据中台或联系管理员导出
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/config/roles.js"></script>
+  <script>
+    // 权限检查：仅管理员可访问
+    if (!Auth.isAuthenticated() || !Auth.hasRole('admin')) {
+      window.location.href = '/pages/login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成员管理 - 戴程鹏</title>
+  <meta name="description" content="团队成员管理">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <style>
+    .members-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+    .members-table th,
+    .members-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .members-table th {
+      color: var(--text-dim);
+      font-weight: 500;
+      font-size: 13px;
+    }
+    .members-table td {
+      font-size: 14px;
+    }
+    .role-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .role-admin {
+      background: var(--neon-green);
+      color: #000;
+    }
+    .role-leader {
+      background: var(--neon-blue);
+      color: #000;
+    }
+    .role-member {
+      background: var(--text-dim);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><img class="logo-mark" src="../assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../methods.html">方法论</a>
+        <a href="../pages/admin.html">管理后台</a>
+        <a href="../pages/team/members.html" class="active">成员管理</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Members</p>
+        <h1>成员管理</h1>
+        <p class="hero-sub">团队成员列表 · 角色分配 · 权限管理</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <table class="members-table">
+          <thead>
+            <tr>
+              <th>姓名</th>
+              <th>角色</th>
+              <th>访问权限</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>戴程鹏</td>
+              <td><span class="role-badge role-admin">管理员</span></td>
+              <td>全部页面</td>
+              <td>在线</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>[团队成员 A]</td>
+              <td><span class="role-badge role-leader">团队主管</span></td>
+              <td>数据看板、数据统计</td>
+              <td>离线</td>
+              <td><a href="#" class="btn-sm">编辑</a></td>
+            </tr>
+            <tr>
+              <td>[团队成员 B]</td>
+              <td><span class="role-badge role-member">团队成员</span></td>
+              <td>公开内容、方法论</td>
+              <td>在线</td>
+              <td><a href="#" class="btn-sm">编辑</a></td>
+            </tr>
+            <tr>
+              <td>[团队成员 C]</td>
+              <td><span class="role-badge role-member">团队成员</span></td>
+              <td>公开内容、方法论</td>
+              <td>离线</td>
+              <td><a href="#" class="btn-sm">编辑</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top: 24px; color: var(--text-dim); font-size: 13px;">
+          提示：修改角色权限请编辑 <code>js/config/roles.js</code> 文件并重新部署
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/config/roles.js"></script>
+  <script>
+    if (!Auth.isAuthenticated() || !Auth.hasRole('admin')) {
+      window.location.href = '/pages/login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - 戴程鹏</title>
+  <meta name="description" content="系统管理后台">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <style>
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .admin-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+    .admin-card:hover {
+      border-color: var(--neon-green);
+      transform: translateY(-2px);
+    }
+    .admin-card h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--neon-green);
+    }
+    .admin-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .admin-card a {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--neon-green);
+      color: #000;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .admin-card a:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><img class="logo-mark" src="../assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../methods.html">方法论</a>
+        <a href="../pages/admin.html" class="active">管理后台</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Admin</p>
+        <h1>管理后台</h1>
+        <p class="hero-sub">系统管理 · 内容更新 · 权限配置</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="admin-grid">
+          <div class="admin-card">
+            <h3>📊 数据看板</h3>
+            <p>查看各店铺、平台运营数据汇总，支持按时间维度筛选</p>
+            <a href="./team/dashboard.html">进入看板</a>
+          </div>
+
+          <div class="admin-card">
+            <h3>📝 内容管理</h3>
+            <p>管理方法论文章、博客内容、项目案例等公开内容</p>
+            <a href="./team/content.html">内容管理</a>
+          </div>
+
+          <div class="admin-card">
+            <h3>👥 成员管理</h3>
+            <p>查看团队成员列表，调整角色权限和访问范围</p>
+            <a href="./team/members.html">成员管理</a>
+          </div>
+
+          <div class="admin-card">
+            <h3>⚙️ 系统配置</h3>
+            <p>修改登录密码、配置角色权限、管理会话策略</p>
+            <a href="./team/settings.html">系统配置</a>
+          </div>
+
+          <div class="admin-card">
+            <h3>📈 数据统计</h3>
+            <p>访问统计、内容热度、用户行为分析等深度数据</p>
+            <a href="./team/metrics.html">数据统计</a>
+          </div>
+
+          <div class="admin-card">
+            <h3>🔐 安全日志</h3>
+            <p>查看登录记录、权限变更、异常访问等安全事件</p>
+            <a href="./team/logs.html">安全日志</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/config/roles.js"></script>
+  <script>
+    // 权限检查：仅管理员可访问
+    if (!Auth.isAuthenticated() || !Auth.hasRole('admin')) {
+      window.location.href = '/pages/login.html';
+    }
+  </script>
+</body>
+</html>

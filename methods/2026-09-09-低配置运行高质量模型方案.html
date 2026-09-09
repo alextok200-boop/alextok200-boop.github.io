@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://alextok200-boop.github.io/assets/img/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://alextok200-boop.github.io/methods/2026-09-09-低配置运行高质量模型方案.html">
-  <link rel="stylesheet" href="../css/style.css?v=1.7.7">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
@@ -108,12 +108,18 @@
 
 <h2>技术类别 × 低配价值总览</h2>
 <ul>
-<li><strong>量化</strong>：性价比最高的一招，Q4_K_M/IQ4_XS 是消费级默认；1-bit(BitNet) 是 CPU 极限路线但生态未成熟</li>
-<li><strong>蒸馏/MoE</strong>：用 [LLM 引擎]-R1 蒸馏小模型或 MoE 稀疏激活，是"质量不降档"的最佳路径</li>
-<li><strong>加速</strong>：投机解码+KV 量化+FlashAttention 三者叠加通常白捡 1.5–2x</li>
-<li><strong>offload</strong>：显存差一点用 llama.cpp -ngl 混合；差很多(想跑 70B)用 AirLLM/FlexGen 但要接受延迟</li>
-<li><strong>Intel 平台</strong>：优先 IPEX-LLM 吃满 AMX/XMX，而非裸 llama.cpp</li>
-<li><strong>Skill 包</strong>：用 agent-skills 标准把上述调优流程工程化，是 2026 新兴的"方法论沉淀"形态</li>
+<li><strong>量化</strong>：性价比最高的一招，Q4_K_M/IQ4_XS 是消费级默认；1-bit(BitNet) 是 CPU 极限路线但生态未成熟
+</li>
+<li><strong>蒸馏/MoE</strong>：用 [LLM 引擎]-R1 蒸馏小模型或 MoE 稀疏激活，是"质量不降档"的最佳路径
+</li>
+<li><strong>加速</strong>：投机解码+KV 量化+FlashAttention 三者叠加通常白捡 1.5–2x
+</li>
+<li><strong>offload</strong>：显存差一点用 llama.cpp -ngl 混合；差很多(想跑 70B)用 AirLLM/FlexGen 但要接受延迟
+</li>
+<li><strong>Intel 平台</strong>：优先 IPEX-LLM 吃满 AMX/XMX，而非裸 llama.cpp
+</li>
+<li><strong>Skill 包</strong>：用 agent-skills 标准把上述调优流程工程化，是 2026 新兴的"方法论沉淀"形态
+</li>
 </ul>
 
 <h2>结论一句话</h2>
@@ -121,20 +127,34 @@
 
 <h2>检索来源（联网搜索）</h2>
 <ul>
-<li>bitnet.xin — BitNet vs GPTQ/AWQ/GGUF 量化对比</li>
-<li>bestaiweb.ai — BitNet/FP8/NVFP4 量化三 tier 2026</li>
-<li>humblebee14/Weekend-Learnings — LLM Optimization Techniques(量化决策树、lm-eval-harness)</li>
-<li>bcloud.consulting — Microsoft BitNet 1-bit 成本分析</li>
-<li>devops.gheware.com — LLM Quantization on Kubernetes(生产级对比)</li>
-<li>youngju.dev — Local AI & On-Device LLMs 2026(量化格式全景)</li>
-<li>toolhalla.ai / arunbaby.com — BitNet 100B CPU、量化决策树 2026</li>
-<li>callsphere.tech — LLM Compression Techniques(蒸馏/剪枝/投机解码)</li>
-<li>easytool.me / most.tw / scrapingbee.com / notatechguy.com — addyosmani/agent-skills 详解(39K→90K Star)</li>
-<li>canitrun.dev / vucense.com / docs.bswen.com / CSDN — llama.cpp 优化实战(-ngl/投机解码/KV 量化/-fa)</li>
-<li>dev.to / opensourcealternatives.to / deepwiki.com / nerddleveltech.com / sourcefeed.dev — AirLLM 逐层推理实测(70B@4GB，真实延迟)</li>
-<li>onegen.ai / intel.com / deepwiki.com / github(ipex-llm) — IPEX-LLM Intel XPU 低比特加速</li>
-<li>awesome-repositories.com / arxiv 2409.04833 / FMInference/FlexGen / deepspeedai/DeepSpeed — FlexGen/ZeRO-Inference/DeepSpeed 异构 offload</li>
-<li>github(jingyaogong/minimind, modelscope/swift, sjtu-ipads/PowerInfer) — 蒸馏框架与稀疏推理</li>
+<li>bitnet.xin — BitNet vs GPTQ/AWQ/GGUF 量化对比
+</li>
+<li>bestaiweb.ai — BitNet/FP8/NVFP4 量化三 tier 2026
+</li>
+<li>humblebee14/Weekend-Learnings — LLM Optimization Techniques(量化决策树、lm-eval-harness)
+</li>
+<li>bcloud.consulting — Microsoft BitNet 1-bit 成本分析
+</li>
+<li>devops.gheware.com — LLM Quantization on Kubernetes(生产级对比)
+</li>
+<li>youngju.dev — Local AI & On-Device LLMs 2026(量化格式全景)
+</li>
+<li>toolhalla.ai / arunbaby.com — BitNet 100B CPU、量化决策树 2026
+</li>
+<li>callsphere.tech — LLM Compression Techniques(蒸馏/剪枝/投机解码)
+</li>
+<li>easytool.me / most.tw / scrapingbee.com / notatechguy.com — addyosmani/agent-skills 详解(39K→90K Star)
+</li>
+<li>canitrun.dev / vucense.com / docs.bswen.com / CSDN — llama.cpp 优化实战(-ngl/投机解码/KV 量化/-fa)
+</li>
+<li>dev.to / opensourcealternatives.to / deepwiki.com / nerddleveltech.com / sourcefeed.dev — AirLLM 逐层推理实测(70B@4GB，真实延迟)
+</li>
+<li>onegen.ai / intel.com / deepwiki.com / github(ipex-llm) — IPEX-LLM Intel XPU 低比特加速
+</li>
+<li>awesome-repositories.com / arxiv 2409.04833 / FMInference/FlexGen / deepspeedai/DeepSpeed — FlexGen/ZeRO-Inference/DeepSpeed 异构 offload
+</li>
+<li>github(jingyaogong/minimind, modelscope/swift, sjtu-ipads/PowerInfer) — 蒸馏框架与稀疏推理
+</li>
 </ul>
 <p>*（内容由AI生成，仅供参考）*</p>
 <p>*（内容由AI生成，仅供参考）*</p>

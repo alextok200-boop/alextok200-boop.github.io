@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 - 戴程鹏</title>
+  <meta name="description" content="内部系统登录">
+  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <style>
+    .login-container {
+      min-height: calc(100vh - 200px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .login-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .login-header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: var(--neon-green);
+    }
+    .login-header p {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .form-group select,
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+    }
+    .form-group select:focus,
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--neon-green);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--neon-green);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .login-btn:hover {
+      opacity: 0.9;
+    }
+    .error-msg {
+      color: var(--neon-pink);
+      font-size: 14px;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: var(--text-dim);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      color: var(--neon-green);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo"><img class="logo-mark" src="../assets/img/favicon-32.png" alt="">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../methods.html">方法论</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="login-header">
+          <h1>系统登录</h1>
+          <p>请输入角色和密码以访问受保护内容</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="roleSelect">选择角色</label>
+            <select id="roleSelect" required>
+              <option value="">-- 请选择 --</option>
+              <option value="admin">管理员</option>
+              <option value="team_leader">团队主管</option>
+              <option value="member">团队成员</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordInput">密码</label>
+            <input type="password" id="passwordInput" placeholder="请输入密码" required>
+          </div>
+
+          <button type="submit" class="login-btn">登录</button>
+          <div id="errorMsg" class="error-msg"></div>
+        </form>
+
+        <a href="../index.html" class="back-link">← 返回首页</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/config/roles.js"></script>
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+
+      const role = document.getElementById('roleSelect').value;
+      const password = document.getElementById('passwordInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (!role || !password) {
+        errorMsg.textContent = '请填写完整信息';
+        errorMsg.style.display = 'block';
+        return;
+      }
+
+      const result = Auth.login(role, password);
+
+      if (result.success) {
+        // 根据角色跳转到对应页面
+        const roleConfig = ROLES[role];
+        if (role === 'admin') {
+          window.location.href = '../pages/admin.html';
+        } else if (role === 'team_leader') {
+          window.location.href = '../pages/team/dashboard.html';
+        } else {
+          window.location.href = '../index.html';
+        }
+      } else {
+        errorMsg.textContent = result.error;
+        errorMsg.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
