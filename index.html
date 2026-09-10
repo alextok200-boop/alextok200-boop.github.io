@@ -24,7 +24,9 @@
       } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
     })();
   </script>
-<link rel="stylesheet" href="css/style.css?v=1.7.8">
+<link rel="stylesheet" href="css/style.css?v=1.8.2">
+<link rel="stylesheet" href="css/patterns.css?v=1.8.2">
+
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
@@ -54,6 +56,10 @@
         <a href="blog.html" data-i18n="nav.blog">博客</a>
         <a href="careers.html" data-i18n="nav.careers">加入我们</a>
         <a href="contact.html" data-i18n="nav.contact">联系</a>
+        <a href="/pages/login.html" class="nav-login" title="站长登录">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          登录
+        </a>
                 <button class="theme-toggle" type="button" aria-label="切换明暗主题" title="切换明暗主题" data-i18n-attr="aria-label:theme.toggle">
           <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -82,7 +88,7 @@
             <a href="contact.html" class="btn btn-ghost" data-i18n="hero.btn2">联系我</a>
           </div>
         </div>
-        <div class="hero-card glow-card">
+        <div class="hero-card glow-card p-glass p-refract p-card--neon">
           <div class="stat-grid">
             <div class="stat">
               <span class="stat-num">15+</span>
@@ -121,23 +127,23 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title" data-i18n="cap.title">核心能力</h2>
+        <h2 class="section-title p-animate-slide-up" data-i18n="cap.title">核心能力</h2>
         <div class="card-grid">
-          <div class="card feature-card">
+          <div class="card feature-card p-card p-glow p-card--neon">
             <div class="feature-icon icon-green">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
             </div>
             <h3 data-i18n="cap1.title">电商操盘</h3>
             <p data-i18n="cap1.desc">抖音/天猫/京东/拼多多 + Amazon/TikTok 等跨境平台，国内海外 50/50 布局，年 GMV 已实现超千万美元。</p>
           </div>
-          <div class="card feature-card">
+          <div class="card feature-card p-card p-glow p-card--neon">
             <div class="feature-icon icon-blue">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg>
             </div>
             <h3 data-i18n="cap2.title">AI 技能包工程</h3>
             <p data-i18n="cap2.desc">投流计划、达人分析、视觉生产、数据看板……把运营知识沉淀为可复用的 AI 技能，零基础同事一键使用。</p>
           </div>
-          <div class="card feature-card">
+          <div class="card feature-card p-card p-glow p-card--neon">
             <div class="feature-icon icon-pink">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             </div>
@@ -150,11 +156,11 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title" data-i18n="journey.title">个人成长时间轴</h2>
+        <h2 class="section-title p-animate-slide-up" data-i18n="journey.title">个人成长时间轴</h2>
         <div class="journey" id="journey" aria-label="个人成长时间轴">
           <div class="journey-item">
             <div class="journey-dot" aria-hidden="true"></div>
-            <div class="journey-card card">
+            <div class="journey-card card p-card p-glow"
               <span class="journey-date" data-i18n="journey.tl1.date">2026.06 - 至今</span>
               <span class="journey-tag" data-i18n="journey.tl1.tag">现在</span>
               <h3 data-i18n="journey.tl1.title">集团电商运营负责人 · 南京万世康伦体育用品有限公司</h3>
@@ -163,7 +169,7 @@
           </div>
           <div class="journey-item">
             <div class="journey-dot" aria-hidden="true"></div>
-            <div class="journey-card card">
+            <div class="journey-card card p-card p-glow"
               <span class="journey-date" data-i18n="journey.tl2.date">2018.10 - 2025.10 · 7 年</span>
               <span class="journey-tag" data-i18n="journey.tl2.tag">财务与合规</span>
               <h3 data-i18n="journey.tl2.title">北京亚昆科技服务有限公司 · 南京分公司负责人</h3>
@@ -172,7 +178,7 @@
           </div>
           <div class="journey-item">
             <div class="journey-dot" aria-hidden="true"></div>
-            <div class="journey-card card">
+            <div class="journey-card card p-card p-glow"
               <span class="journey-date" data-i18n="journey.tl3.date">跨年度独立主线</span>
               <span class="journey-tag" data-i18n="journey.tl3.tag">工程化</span>
               <h3 data-i18n="journey.tl3.title">AI 技能包工程体系</h3>
@@ -181,7 +187,7 @@
           </div>
           <div class="journey-item">
             <div class="journey-dot" aria-hidden="true"></div>
-            <div class="journey-card card">
+            <div class="journey-card card p-card p-glow"
               <span class="journey-date" data-i18n="journey.tl4.date">2002 - 2018</span>
               <span class="journey-tag" data-i18n="journey.tl4.tag">积累</span>
               <h3 data-i18n="journey.tl4.title">多平台电商操盘积累</h3>
@@ -211,17 +217,18 @@
     </div>
   </footer>
 
-    <script src="js/site-config.js?v=1.7.8"></script>
-<script src="js/i18n.js?v=1.7.8"></script>
-  <script src="js/main.js?v=1.7.8"></script>
-  <script src="js/auth.js?v=1.7.8"></script>
-  <script src="js/lightfall.js?v=1.7.8"></script>
-  <script src="js/newsletter.js?v=1.7.8"></script>
-  <script src="js/seo.js?v=1.7.8"></script>
-  <script src="js/analytics.js?v=1.7.8"></script>
-  <script src="js/comments.js?v=1.7.8"></script>
-  <script src="js/sw-register.js?v=1.7.8"></script>
-  <script src="js/assistant.js?v=1.7.8"></script>
-  <script src="js/theme.js?v=1.7.8"></script>
+    <script src="js/site-config.js?v=1.8.2"></script>
+<script src="js/i18n.js?v=1.8.2"></script>
+  <script src="js/main.js?v=1.8.2"></script>
+  <script src="js/config/roles.js?v=1.8.2"></script>
+  <script src="js/auth.js?v=1.8.2"></script>
+  <script src="js/lightfall.js?v=1.8.2"></script>
+  <script src="js/newsletter.js?v=1.8.2"></script>
+  <script src="js/seo.js?v=1.8.2"></script>
+  <script src="js/analytics.js?v=1.8.2"></script>
+  <script src="js/comments.js?v=1.8.2"></script>
+  <script src="js/sw-register.js?v=1.8.2"></script>
+  <script src="js/assistant.js?v=1.8.2"></script>
+  <script src="js/theme.js?v=1.8.2"></script>
 </body>
 </html>

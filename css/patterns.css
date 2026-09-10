@@ -1,0 +1,497 @@
+/* ============================================
+   Web UI Design Patterns — Neon Theme Edition
+   v1.8.0 | Zero Dependency | Pure CSS
+   配色：霓虹绿/蓝/粉 × 亮暗双主题
+   用法：引入此文件后即可使用 pattern-* 类名
+   ============================================ */
+
+/* ───────────────────────────────────────────
+   0. 设计 Token（与 style.css :root 对齐）
+   ─────────────────────────────────────────── */
+:root {
+  /* 间距系统（8px 基准，与 site.css 一致） */
+  --p-xs: 0.5rem;    /* 8px */
+  --p-sm: 1rem;      /* 16px */
+  --p-md: 1.5rem;    /* 24px */
+  --p-lg: 2rem;      /* 32px */
+  --p-xl: 3rem;      /* 48px */
+  --p-2xl: 4rem;     /* 64px */
+  --p-3xl: 6rem;     /* 96px */
+
+  /* 圆角 */
+  --p-radius-sm: 8px;
+  --p-radius-md: 12px;
+  --p-radius-lg: 16px;
+  --p-radius-xl: 24px;
+
+  /* 玻璃参数 */
+  --p-glass-bg: rgba(9, 7, 17, 0.82);
+  --p-glass-border: rgba(147, 51, 234, 0.22);
+  --p-glass-blur: 20px;
+  --p-glass-highlight: rgba(255, 255, 255, 0.06);
+  --p-glass-saturate: 160%;
+
+  /* 动画 */
+  --p-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --p-base: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  --p-slow: 480ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 亮色玻璃参数覆盖 */
+:root[data-theme="light"] {
+  --p-glass-bg: rgba(246, 247, 251, 0.88);
+  --p-glass-border: rgba(124, 58, 237, 0.18);
+  --p-glass-highlight: rgba(255, 255, 255, 0.65);
+}
+
+/* ───────────────────────────────────────────
+   1. 留白系统（Whitespace）
+   ─────────────────────────────────────────── */
+.p-y-0  { padding-top: 0; padding-bottom: 0; }
+.p-y-xs { padding-top: var(--p-xs); padding-bottom: var(--p-xs); }
+.p-y-sm { padding-top: var(--p-sm); padding-bottom: var(--p-sm); }
+.p-y-md { padding-top: var(--p-md); padding-bottom: var(--p-md); }
+.p-y-lg { padding-top: var(--p-lg); padding-bottom: var(--p-lg); }
+.p-y-xl { padding-top: var(--p-xl); padding-bottom: var(--p-xl); }
+.p-y-2xl { padding-top: var(--p-2xl); padding-bottom: var(--p-2xl); }
+.p-y-3xl { padding-top: var(--p-3xl); padding-bottom: var(--p-3xl); }
+
+.p-x-0  { padding-left: 0; padding-right: 0; }
+.p-x-xs { padding-left: var(--p-xs); padding-right: var(--p-xs); }
+.p-x-sm { padding-left: var(--p-sm); padding-right: var(--p-sm); }
+.p-x-md { padding-left: var(--p-md); padding-right: var(--p-md); }
+.p-x-lg { padding-left: var(--p-lg); padding-right: var(--p-lg); }
+.p-x-xl { padding-left: var(--p-xl); padding-right: var(--p-xl); }
+
+.m-y-0  { margin-top: 0; margin-bottom: 0; }
+.m-y-xs { margin-top: var(--p-xs); margin-bottom: var(--p-xs); }
+.m-y-sm { margin-top: var(--p-sm); margin-bottom: var(--p-sm); }
+.m-y-md { margin-top: var(--p-md); margin-bottom: var(--p-md); }
+.m-y-lg { margin-top: var(--p-lg); margin-bottom: var(--p-lg); }
+.m-y-xl { margin-top: var(--p-xl); margin-bottom: var(--p-xl); }
+
+.m-x-xs { margin-left: var(--p-xs); margin-right: var(--p-xs); }
+.m-x-sm { margin-left: var(--p-sm); margin-right: var(--p-sm); }
+.m-x-md { margin-left: var(--p-md); margin-right: var(--p-md); }
+.m-x-lg { margin-left: var(--p-lg); margin-right: var(--p-lg); }
+
+/* 呼吸感行高 */
+.p-leading-relaxed { line-height: 1.75; }
+.p-leading-loose   { line-height: 2; }
+
+/* 最小高度 */
+.p-min-h-screen { min-height: 100vh; }
+.p-min-h-80     { min-height: 80vh; }
+
+/* ───────────────────────────────────────────
+   2. 栅格系统（Grid）— 12 列标准
+   ─────────────────────────────────────────── */
+.p-grid { display: grid; gap: var(--p-lg); }
+.p-grid-sm { gap: var(--p-md); }
+.p-grid-xl { gap: var(--p-xl); }
+
+.p-cols-2  { grid-template-columns: repeat(2, 1fr); }
+.p-cols-3  { grid-template-columns: repeat(3, 1fr); }
+.p-cols-4  { grid-template-columns: repeat(4, 1fr); }
+.p-cols-6  { grid-template-columns: repeat(6, 1fr); }
+.p-cols-12 { grid-template-columns: repeat(12, 1fr); }
+
+.p-col-1  { grid-column: span 1; }
+.p-col-2  { grid-column: span 2; }
+.p-col-3  { grid-column: span 3; }
+.p-col-4  { grid-column: span 4; }
+.p-col-6  { grid-column: span 6; }
+.p-col-8  { grid-column: span 8; }
+.p-col-9  { grid-column: span 9; }
+.p-col-12 { grid-column: span 12; }
+
+.p-align-start { align-items: start; }
+.p-align-center { align-items: center; }
+.p-align-end   { align-items: end; }
+
+@media (max-width: 767px) {
+  .p-cols-mb2  { grid-template-columns: repeat(2, 1fr); }
+  .p-cols-mb1  { grid-template-columns: 1fr; }
+  .p-col-mb12  { grid-column: span 12; }
+}
+@media (min-width: 768px) {
+  .p-cols-mt2  { grid-template-columns: repeat(2, 1fr); }
+  .p-cols-mt3  { grid-template-columns: repeat(3, 1fr); }
+  .p-cols-mt4  { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1024px) {
+  .p-cols-desktop3 { grid-template-columns: repeat(3, 1fr); }
+  .p-cols-desktop4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ───────────────────────────────────────────
+   3. 卡片微交互（Card + Micro）
+   ─────────────────────────────────────────── */
+.p-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--p-radius-lg);
+  padding: var(--p-lg);
+  transition: transform var(--p-base), border-color var(--p-base), box-shadow var(--p-base);
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+}
+.p-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 255, 163, 0.45);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,163,0.07);
+}
+.p-card:active { transform: translateY(-1px); transition-duration: var(--p-fast); }
+
+.p-card--elevated { box-shadow: 0 4px 16px rgba(0,0,0,0.35); }
+.p-card--interactive { cursor: pointer; }
+.p-card--no-hover:hover { transform: none; border-color: var(--border); box-shadow: none; }
+
+.p-card__media {
+  border-radius: var(--p-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--p-md);
+  position: relative;
+}
+.p-card__media img,
+.p-card__media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform var(--p-slow);
+}
+.p-card:hover .p-card__media img,
+.p-card:hover .p-card__media video { transform: scale(1.04); }
+
+.p-card__body { flex: 1; display: flex; flex-direction: column; }
+.p-card__title { font-size: 1.125rem; font-weight: 600; margin-bottom: var(--p-xs); }
+.p-card__desc  { font-size: 0.875rem; color: var(--text-dim); line-height: 1.65; flex: 1; }
+.p-card__footer {
+  margin-top: var(--p-md);
+  padding-top: var(--p-md);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: var(--p-sm);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* 微交互标签 */
+.p-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  border-radius: var(--p-radius-full);
+  background: var(--bg);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  transition: all var(--p-fast);
+  letter-spacing: 0.3px;
+}
+.p-tag:hover {
+  background: var(--neon-green);
+  color: #07130d;
+  border-color: var(--neon-green);
+}
+.p-tag--green  { color: var(--neon-green); background: rgba(0,255,163,0.08); border-color: rgba(0,255,163,0.25); }
+.p-tag--blue   { color: var(--neon-blue); background: rgba(0,200,255,0.08); border-color: rgba(0,200,255,0.25); }
+.p-tag--pink   { color: var(--neon-pink); background: rgba(255,94,201,0.08); border-color: rgba(255,94,201,0.25); }
+.p-tag--violet { color: var(--violet-3); background: rgba(168,85,247,0.10); border-color: rgba(168,85,247,0.28); }
+
+/* 微交互按钮 */
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--p-radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--p-fast);
+  text-decoration: none;
+}
+.p-btn:hover {
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  box-shadow: 0 0 18px rgba(0,200,255,0.18);
+  transform: translateY(-1px);
+}
+.p-btn:active { transform: translateY(0); }
+.p-btn--primary {
+  background: var(--neon-green);
+  color: #07130d;
+  border-color: var(--neon-green);
+  box-shadow: 0 0 20px rgba(0,255,163,0.22);
+}
+.p-btn--primary:hover {
+  box-shadow: 0 0 28px rgba(0,255,163,0.45);
+  color: #07130d;
+}
+
+/* ───────────────────────────────────────────
+   4. 瀑布流（Masonry）— CSS Column 方案
+   ─────────────────────────────────────────── */
+.p-masonry {
+  column-count: 3;
+  column-gap: var(--p-lg);
+}
+.p-masonry-item {
+  break-inside: avoid;
+  margin-bottom: var(--p-lg);
+}
+.p-masonry .p-card { margin-bottom: 0; }
+
+@media (max-width: 1023px) { .p-masonry { column-count: 2; } }
+@media (max-width: 639px)  { .p-masonry { column-count: 1; } }
+
+/* 网格瀑布流备选（JS 初始化后切换） */
+.p-masonry--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--p-lg);
+  align-items: start;
+}
+.p-masonry--grid .p-masonry-item { break-inside: avoid; }
+
+/* ───────────────────────────────────────────
+   5. 液态玻璃（Liquid Glass）
+   ─────────────────────────────────────────── */
+.p-glass {
+  background: var(--p-glass-bg);
+  backdrop-filter: blur(var(--p-glass-blur)) saturate(var(--p-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--p-glass-blur)) saturate(var(--p-glass-saturate));
+  border: 1px solid var(--p-glass-border);
+  border-radius: var(--p-radius-lg);
+  box-shadow: inset 0 1px 0 var(--p-glass-highlight), 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.p-glass--nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(9,7,17,0.92) 0%, rgba(9,7,17,0.82) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--p-glass-border);
+}
+:root[data-theme="light"] .p-glass--nav {
+  background: linear-gradient(180deg, rgba(246,247,251,0.94) 0%, rgba(246,247,251,0.88) 100%);
+}
+
+.p-glass--modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.p-glass--modal-content {
+  max-width: 480px;
+  width: 92%;
+  padding: var(--p-xl);
+  background: var(--p-glass-bg);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--p-glass-border);
+  border-radius: var(--p-radius-xl);
+  box-shadow: inset 0 1px 0 var(--p-glass-highlight), 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* 霓虹光晕 */
+.p-glow { position: relative; }
+.p-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(0,255,163,0.35), transparent 40%, rgba(0,200,255,0.30));
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity var(--p-base);
+}
+.p-glow:hover::before { opacity: 1; }
+
+/* 折射高光扫过 */
+.p-refract { position: relative; overflow: hidden; }
+.p-refract::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.07) 50%, transparent 60%);
+  transform: rotate(45deg) translateY(-100%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
+}
+.p-refract:hover::after { transform: rotate(45deg) translateY(100%); }
+
+/* ───────────────────────────────────────────
+   6. 骨架屏（Skeleton）
+   ─────────────────────────────────────────── */
+@keyframes p-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.p-skeleton {
+  background: linear-gradient(90deg,
+    var(--border) 25%,
+    rgba(147,51,234,0.12) 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  animation: p-skeleton-pulse 1.4s ease-in-out infinite;
+  border-radius: var(--p-radius-sm);
+}
+.p-skeleton--text  { height: 0.9rem; margin-bottom: 0.6rem; width: 100%; }
+.p-skeleton--text:last-child { width: 70%; }
+.p-skeleton--circle { width: 3rem; height: 3rem; border-radius: 50%; }
+.p-skeleton--rect  { height: 10rem; border-radius: var(--p-radius-md); }
+.p-skeleton--card  { padding: var(--p-lg); display: flex; flex-direction: column; gap: var(--p-sm); }
+
+:root[data-theme="light"] .p-skeleton {
+  background: linear-gradient(90deg,
+    #d8def0 25%,
+    rgba(168,85,247,0.15) 50%,
+    #d8def0 75%
+  );
+}
+
+/* ───────────────────────────────────────────
+   7. 空状态（Empty State）
+   ─────────────────────────────────────────── */
+.p-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--p-3xl) var(--p-lg);
+  text-align: center;
+  gap: var(--p-lg);
+}
+.p-empty__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  opacity: 0.7;
+  margin-bottom: var(--p-xs);
+}
+.p-empty__title { font-size: 1.15rem; font-weight: 600; color: var(--text); margin: 0; }
+.p-empty__desc  { font-size: 0.875rem; color: var(--text-dim); max-width: 22rem; line-height: 1.6; margin: 0; }
+.p-empty__actions { display: flex; gap: var(--p-sm); margin-top: var(--p-md); }
+
+/* ───────────────────────────────────────────
+   工具类集合
+   ─────────────────────────────────────────── */
+.p-container {
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--p-md);
+  padding-right: var(--p-md);
+}
+
+.p-section { padding-top: var(--p-3xl); padding-bottom: var(--p-3xl); }
+
+.p-text-gradient {
+  background: linear-gradient(90deg, var(--violet-2), var(--violet-3) 45%, var(--cyan-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.p-hidden { display: none !important; }
+.p-block  { display: block !important; }
+.p-flex   { display: flex !important; }
+.p-grid-active { display: grid !important; }
+
+.p-opacity-0  { opacity: 0; }
+.p-opacity-50 { opacity: 0.5; }
+.p-opacity-100 { opacity: 1; }
+
+/* ───────────────────────────────────────────
+   辅助动画
+   ─────────────────────────────────────────── */
+@keyframes p-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes p-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes p-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.p-animate-fade-in  { animation: p-fade-in var(--p-slow) ease-out forwards; }
+.p-animate-slide-up { animation: p-slide-up var(--p-base) ease-out forwards; }
+.p-animate-shimmer  {
+  background: linear-gradient(90deg, var(--border) 25%, rgba(147,51,234,0.18) 50%, var(--border) 75%);
+  background-size: 200% 100%;
+  animation: p-shimmer 1.8s linear infinite;
+}
+
+.p-delay-100 { animation-delay: 100ms; }
+.p-delay-200 { animation-delay: 200ms; }
+.p-delay-300 { animation-delay: 300ms; }
+.p-delay-400 { animation-delay: 400ms; }
+.p-delay-500 { animation-delay: 500ms; }
+
+/* ───────────────────────────────────────────
+   霓虹微交互动效（适配 neon 主题）
+   ─────────────────────────────────────────── */
+
+/* 霓虹边框脉冲 */
+@keyframes p-neon-pulse {
+  0%, 100% { box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green); }
+  50% { box-shadow: 0 0 20px var(--neon-green), 0 0 30px var(--neon-green); }
+}
+
+/* 霓虹边框呼吸 */
+@keyframes p-neon-breathe {
+  0%, 100% { border-color: rgba(0, 255, 163, 0.3); box-shadow: 0 0 10px rgba(0, 255, 163, 0.1); }
+  50% { border-color: rgba(0, 255, 163, 0.8); box-shadow: 0 0 20px rgba(0, 255, 163, 0.3); }
+}
+
+.p-card--neon {
+  animation: p-neon-breathe 3s ease-in-out infinite;
+}
+
+/* 标题下划线流光 */
+@keyframes p-underline-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-blue), var(--neon-pink));
+  background-size: 200% auto;
+  margin-top: 8px;
+  border-radius: 2px;
+  animation: p-underline-shimmer 3s linear infinite;
+}

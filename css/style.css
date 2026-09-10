@@ -2587,3 +2587,30 @@ body::after {
   border-bottom: 1px solid var(--border);
   color: var(--text-dim);
 }
+
+/* ============================================================
+   登录入口（强制可见，不依赖主题）
+   ============================================================ */
+.nav-login {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  padding: 6px 14px;
+  background: rgba(0, 255, 163, 0.12) !important;
+  border: 1px solid rgba(0, 255, 163, 0.45) !important;
+  border-radius: 6px;
+  color: #00ffa3 !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 163, 0.15);
+}
+.nav-login:hover {
+  background: rgba(0, 255, 163, 0.25) !important;
+  border-color: #00ffa3 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.4);
+  transform: translateY(-1px);
+}
+.nav-login svg { display: block; }

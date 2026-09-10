@@ -1,46 +1,26 @@
 /* ============================================================
-   roles.js —— 角色权限配置表
-   原则：只在此处管理权限，页面通过 API 读取
+   roles.js —— 个人后台权限配置
+   站点性质：个人简历 + 能力展示
+   后台仅服务站长本人（内容管理），不再承载团队协作
    ============================================================ */
 
 /**
  * 角色配置
+ * 说明：本文件已随团队门户独立而精简，仅保留单一管理员角色。
+ *       team_leader / member 已于清理中移除，团队协作迁移至 team-portal 项目。
+ *
  * role: 角色标识
  * name: 显示名称
  * password: 登录密码（生产环境应改为哈希）
  * pages: 可查看的页面路径数组
  */
 const ROLES = {
-  // 管理员：全权，可访问所有页面 + 后台
+  // 管理员（站长本人）：全权，可访问所有页面 + 后台
   admin: {
-    name: "管理员",
+    name: "站长",
     password: "admin2026",  // 修改这里
-    pages: ["*"],          // * 表示全部
+    pages: ["*"],           // * 表示全部
     canEdit: true
-  },
-
-  // 团队主管：看数据看板 + 团队指标
-  team_leader: {
-    name: "团队主管",
-    password: "team2026",  // 修改这里
-    pages: ["/pages/team/dashboard.html", "/pages/team/metrics.html"],
-    canEdit: false
-  },
-
-  // 团队成员：只看公开内容 + 方法论
-  member: {
-    name: "团队成员",
-    password: "view2026",  // 修改这里
-    pages: [
-      "/index.html",
-      "/about.html",
-      "/work.html",
-      "/brands.html",
-      "/methods.html",
-      "/blog.html",
-      "/contact.html"
-    ],
-    canEdit: false
   }
 };
 
@@ -74,21 +54,22 @@ const Auth = {
   },
 
   /**
-   * 登录验证
+   * 登录验证（单账号：不传 role 时默认 admin）
    */
   login: function(role, password) {
-    const roleConfig = ROLES[role];
+    const roleKey = role || "admin";
+    const roleConfig = ROLES[roleKey];
     if (!roleConfig) return { success: false, error: "角色不存在" };
     if (roleConfig.password !== password) return { success: false, error: "密码错误" };
 
     // 存入 session（关闭浏览器即失效）
     sessionStorage.setItem("auth_session", JSON.stringify({
-      role: role,
+      role: roleKey,
       name: roleConfig.name,
       loginTime: Date.now()
     }));
 
-    return { success: true, role: role, name: roleConfig.name };
+    return { success: true, role: roleKey, name: roleConfig.name };
   },
 
   /**

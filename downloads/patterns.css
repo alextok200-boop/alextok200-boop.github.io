@@ -1,0 +1,643 @@
+/* ============================================
+   Web UI Design Patterns — Component Library
+   v1.0.0 | Zero Dependency | Pure CSS + Minimal JS
+   ============================================ */
+
+/* ───────────────────────────────────────────
+   0. 设计 Token（CSS 变量）
+   ─────────────────────────────────────────── */
+:root {
+  /* 色彩体系 */
+  --pattern-primary: #6366f1;
+  --pattern-primary-light: #818cf8;
+  --pattern-primary-dark: #4f46e5;
+  --pattern-secondary: #ec4899;
+  --pattern-success: #22c55e;
+  --pattern-warning: #f59e0b;
+  --pattern-danger: #ef4444;
+  
+  /* 背景色 */
+  --pattern-bg: #0f172a;
+  --pattern-bg-alt: #1e293b;
+  --pattern-surface: #1e293b;
+  --pattern-surface-elevated: #334155;
+  
+  /* 文字色 */
+  --pattern-text: #f8fafc;
+  --pattern-text-muted: #94a3b8;
+  --pattern-text-subtle: #64748b;
+  
+  /* 边框 */
+  --pattern-border: rgba(255, 255, 255, 0.1);
+  --pattern-border-hover: rgba(255, 255, 255, 0.2);
+  
+  /* 间距系统（8px 基准） */
+  --pattern-space-xs: 0.5rem;   /* 8px */
+  --pattern-space-sm: 1rem;     /* 16px */
+  --pattern-space-md: 1.5rem;   /* 24px */
+  --pattern-space-lg: 2rem;     /* 32px */
+  --pattern-space-xl: 3rem;     /* 48px */
+  --pattern-space-2xl: 4rem;    /* 64px */
+  --pattern-space-3xl: 6rem;    /* 96px */
+  
+  /* 圆角 */
+  --pattern-radius-sm: 8px;
+  --pattern-radius-md: 12px;
+  --pattern-radius-lg: 20px;
+  --pattern-radius-xl: 28px;
+  --pattern-radius-full: 9999px;
+  
+  /* 阴影层级 */
+  --pattern-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --pattern-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --pattern-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --pattern-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --pattern-shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+  
+  /* 玻璃效果 */
+  --pattern-glass-bg: rgba(255, 255, 255, 0.05);
+  --pattern-glass-border: rgba(255, 255, 255, 0.1);
+  --pattern-glass-blur: 20px;
+  --pattern-glass-highlight: rgba(255, 255, 255, 0.1);
+  
+  /* 动画时间 */
+  --pattern-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pattern-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --pattern-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 字体 */
+  --pattern-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --pattern-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* 亮色主题适配 */
+[data-theme="light"] {
+  --pattern-bg: #f8fafc;
+  --pattern-bg-alt: #f1f5f9;
+  --pattern-surface: #ffffff;
+  --pattern-surface-elevated: #f8fafc;
+  --pattern-text: #0f172a;
+  --pattern-text-muted: #64748b;
+  --pattern-text-subtle: #94a3b8;
+  --pattern-border: rgba(0, 0, 0, 0.1);
+  --pattern-border-hover: rgba(0, 0, 0, 0.2);
+  --pattern-glass-bg: rgba(255, 255, 255, 0.7);
+  --pattern-glass-border: rgba(255, 255, 255, 0.5);
+  --pattern-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --pattern-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --pattern-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* ───────────────────────────────────────────
+   1. 留白系统（Whitespace）
+   ─────────────────────────────────────────── */
+.pattern-py- { padding-top: var(--pattern-space-, var(--pattern-space-md)); }
+.pattern-px- { padding-left: var(--pattern-space-, var(--pattern-space-md)); padding-right: var(--pattern-space-, var(--pattern-space-md)); }
+.pattern-my- { margin-top: var(--pattern-space-, var(--pattern-space-md)); margin-bottom: var(--pattern-space-, var(--pattern-space-md)); }
+.pattern-mx- { margin-left: var(--pattern-space-, var(--pattern-space-md)); margin-right: var(--pattern-space-, var(--pattern-space-md)); }
+
+/* 辅助类 */
+.pattern-space-xl { padding: var(--pattern-space-xl); }
+.pattern-space-2xl { padding: var(--pattern-space-2xl); }
+.pattern-space-3xl { padding: var(--pattern-space-3xl); }
+
+/* 呼吸感排版 */
+.pattern-leading-relaxed { line-height: 1.75; }
+.pattern-leading-loose { line-height: 2; }
+
+/* 最小高度约束 */
+.pattern-min-h-screen { min-height: 100vh; }
+.pattern-min-h-hero { min-height: 80vh; }
+
+/* ───────────────────────────────────────────
+   2. 栅格系统（Grid）
+   ─────────────────────────────────────────── */
+.pattern-grid {
+  display: grid;
+  gap: var(--pattern-space-lg);
+}
+
+/* 12列栅格 */
+.pattern-grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.pattern-grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.pattern-grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pattern-grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pattern-grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* 响应式断点 */
+@media (min-width: 640px) {
+  .pattern-sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pattern-sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pattern-sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .pattern-md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pattern-md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pattern-md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .pattern-lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pattern-lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pattern-lg\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+  .pattern-xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pattern-xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .pattern-xl\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+}
+
+/* 列跨度 */
+.pattern-col-span-1 { grid-column: span 1; }
+.pattern-col-span-2 { grid-column: span 2; }
+.pattern-col-span-3 { grid-column: span 3; }
+.pattern-col-span-4 { grid-column: span 4; }
+.pattern-col-span-6 { grid-column: span 6; }
+.pattern-col-span-12 { grid-column: span 12; }
+
+@media (min-width: 768px) {
+  .pattern-md\:col-span-2 { grid-column: span 2; }
+  .pattern-md\:col-span-3 { grid-column: span 3; }
+  .pattern-md\:col-span-4 { grid-column: span 4; }
+}
+
+/* 垂直对齐 */
+.pattern-items-start { align-items: start; }
+.pattern-items-center { align-items: center; }
+.pattern-items-end { align-items: end; }
+.pattern-content-center { align-content: center; }
+
+/* ───────────────────────────────────────────
+   3. 卡片微交互（Card + Micro）
+   ─────────────────────────────────────────── */
+.pattern-card {
+  background: var(--pattern-surface);
+  border: 1px solid var(--pattern-border);
+  border-radius: var(--pattern-radius-lg);
+  padding: var(--pattern-space-lg);
+  transition: 
+    transform var(--pattern-transition-base),
+    box-shadow var(--pattern-transition-base);
+  will-change: transform;
+}
+
+.pattern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pattern-shadow-lg), var(--pattern-shadow-glow);
+  border-color: var(--pattern-border-hover);
+}
+
+.pattern-card:active {
+  transform: translateY(-2px);
+  transition-duration: var(--pattern-transition-fast);
+}
+
+/* 卡片变体 */
+.pattern-card--elevated {
+  box-shadow: var(--pattern-shadow-md);
+}
+
+.pattern-card--interactive {
+  cursor: pointer;
+}
+
+.pattern-card--vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.pattern-card__media {
+  border-radius: var(--pattern-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--pattern-space-md);
+}
+
+.pattern-card__media img,
+.pattern-card__media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform var(--pattern-transition-slow);
+}
+
+.pattern-card:hover .pattern-card__media img,
+.pattern-card:hover .pattern-card__media video {
+  transform: scale(1.05);
+}
+
+.pattern-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pattern-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--pattern-space-xs);
+  color: var(--pattern-text);
+}
+
+.pattern-card__desc {
+  font-size: 0.875rem;
+  color: var(--pattern-text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.pattern-card__footer {
+  margin-top: var(--pattern-space-md);
+  padding-top: var(--pattern-space-md);
+  border-top: 1px solid var(--pattern-border);
+  display: flex;
+  gap: var(--pattern-space-sm);
+}
+
+/* 微交互：标签 */
+.pattern-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: var(--pattern-radius-full);
+  background: var(--pattern-glass-bg);
+  color: var(--pattern-text-muted);
+  border: 1px solid var(--pattern-glass-border);
+  transition: all var(--pattern-transition-fast);
+}
+
+.pattern-tag:hover {
+  background: var(--pattern-primary);
+  color: white;
+  border-color: var(--pattern-primary);
+}
+
+/* 微交互：按钮 */
+.pattern-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--pattern-radius-md);
+  border: 1px solid var(--pattern-border);
+  background: var(--pattern-surface);
+  color: var(--pattern-text);
+  cursor: pointer;
+  transition: all var(--pattern-transition-fast);
+}
+
+.pattern-btn:hover {
+  background: var(--pattern-primary);
+  border-color: var(--pattern-primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--pattern-shadow-md);
+}
+
+.pattern-btn:active {
+  transform: translateY(0);
+}
+
+.pattern-btn--primary {
+  background: var(--pattern-primary);
+  border-color: var(--pattern-primary);
+  color: white;
+}
+
+.pattern-btn--primary:hover {
+  background: var(--pattern-primary-dark);
+  border-color: var(--pattern-primary-dark);
+}
+
+/* ───────────────────────────────────────────
+   4. 瀑布流布局（Masonry）
+   ─────────────────────────────────────────── */
+.pattern-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--pattern-space-lg);
+  align-items: start;
+}
+
+.pattern-masonry-item {
+  break-inside: avoid;
+  margin-bottom: 0;
+  background: var(--pattern-surface);
+  border: 1px solid var(--pattern-border);
+  border-radius: var(--pattern-radius-lg);
+  overflow: hidden;
+  transition: transform var(--pattern-transition-base);
+}
+
+.pattern-masonry-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--pattern-shadow-lg);
+}
+
+/* JS 增强模式（按实际内容高度布局） */
+.pattern-masonry--js {
+  column-count: 3;
+  column-gap: var(--pattern-space-lg);
+}
+
+.pattern-masonry--js .pattern-masonry-item {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: var(--pattern-space-lg);
+}
+
+@media (max-width: 1023px) {
+  .pattern-masonry--js {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .pattern-masonry--js {
+    column-count: 1;
+  }
+}
+
+/* ───────────────────────────────────────────
+   5. 液态玻璃（Liquid Glass）
+   ─────────────────────────────────────────── */
+.pattern-glass {
+  background: var(--pattern-glass-bg);
+  backdrop-filter: blur(var(--pattern-glass-blur));
+  -webkit-backdrop-filter: blur(var(--pattern-glass-blur));
+  border: 1px solid var(--pattern-glass-border);
+  border-radius: var(--pattern-radius-lg);
+  box-shadow: 
+    inset 0 1px 0 var(--pattern-glass-highlight),
+    var(--pattern-shadow-md);
+}
+
+.pattern-glass--nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--pattern-space-md) var(--pattern-space-lg);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--pattern-glass-border);
+}
+
+.pattern-glass--modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pattern-glass--modal-content {
+  max-width: 480px;
+  width: 90%;
+  padding: var(--pattern-space-xl);
+  background: var(--pattern-glass-bg);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--pattern-glass-border);
+  border-radius: var(--pattern-radius-xl);
+  box-shadow: 
+    inset 0 1px 0 var(--pattern-glass-highlight),
+    var(--pattern-shadow-xl),
+    var(--pattern-shadow-glow);
+}
+
+/* 光晕效果 */
+.pattern-glow {
+  position: relative;
+}
+
+.pattern-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.4) 0%,
+    rgba(236, 72, 153, 0.4) 50%,
+    rgba(99, 102, 241, 0.4) 100%
+  );
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity var(--pattern-transition-base);
+}
+
+.pattern-glow:hover::before {
+  opacity: 1;
+}
+
+/* 折射效果 */
+.pattern-refract {
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern-refract::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 60%
+  );
+  transform: rotate(45deg) translateY(-100%);
+  transition: transform 0.6s ease;
+}
+
+.pattern-refract:hover::after {
+  transform: rotate(45deg) translateY(100%);
+}
+
+/* ───────────────────────────────────────────
+   6. 骨架屏（Skeleton）
+   ─────────────────────────────────────────── */
+@keyframes pattern-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pattern-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--pattern-surface-elevated) 25%,
+    var(--pattern-bg-alt) 50%,
+    var(--pattern-surface-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: pattern-skeleton-pulse 1.5s ease-in-out infinite;
+  border-radius: var(--pattern-radius-sm);
+}
+
+/* 骨架屏变体 */
+.pattern-skeleton--text {
+  height: 1rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.pattern-skeleton--text:last-child {
+  width: 75%;
+}
+
+.pattern-skeleton--circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--pattern-radius-full);
+}
+
+.pattern-skeleton--rect {
+  height: 12rem;
+  border-radius: var(--pattern-radius-md);
+}
+
+.pattern-skeleton--card {
+  padding: var(--pattern-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pattern-space-sm);
+}
+
+/* 主题适配 */
+[data-theme="light"] .pattern-skeleton {
+  background: linear-gradient(
+    90deg,
+    #e2e8f0 25%,
+    #f1f5f9 50%,
+    #e2e8f0 75%
+  );
+}
+
+/* ───────────────────────────────────────────
+   7. 空状态（Empty State）
+   ─────────────────────────────────────────── */
+.pattern-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pattern-space-3xl) var(--pattern-space-lg);
+  text-align: center;
+  gap: var(--pattern-space-lg);
+}
+
+.pattern-empty__illustration {
+  width: 12rem;
+  height: 12rem;
+  opacity: 0.6;
+}
+
+.pattern-empty__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--pattern-text);
+  margin: 0;
+}
+
+.pattern-empty__desc {
+  font-size: 0.875rem;
+  color: var(--pattern-text-muted);
+  max-width: 24rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pattern-empty__actions {
+  display: flex;
+  gap: var(--pattern-space-sm);
+  margin-top: var(--pattern-space-md);
+}
+
+/* ───────────────────────────────────────────
+   工具类集合
+   ─────────────────────────────────────────── */
+.pattern-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--pattern-space-lg);
+  padding-right: var(--pattern-space-lg);
+}
+
+.pattern-section {
+  padding-top: var(--pattern-space-3xl);
+  padding-bottom: var(--pattern-space-3xl);
+}
+
+.pattern-text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--pattern-primary) 0%,
+    var(--pattern-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pattern-hidden { display: none !important; }
+.pattern-block { display: block !important; }
+.pattern-flex { display: flex !important; }
+.pattern-grid { display: grid !important; }
+
+.pattern-opacity-0 { opacity: 0; }
+.pattern-opacity-50 { opacity: 0.5; }
+.pattern-opacity-100 { opacity: 1; }
+
+.pattern-pointer-events-none { pointer-events: none; }
+.pattern-pointer-events-auto { pointer-events: auto; }
+
+/* ───────────────────────────────────────────
+   辅助动画
+   ─────────────────────────────────────────── */
+@keyframes pattern-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pattern-animate-fade-in {
+  animation: pattern-fade-in var(--pattern-transition-slow) ease-out forwards;
+}
+
+@keyframes pattern-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pattern-animate-slide-up {
+  animation: pattern-slide-up var(--pattern-transition-base) ease-out forwards;
+}
+
+/* 延迟动画 */
+.pattern-delay-100 { animation-delay: 100ms; }
+.pattern-delay-200 { animation-delay: 200ms; }
+.pattern-delay-300 { animation-delay: 300ms; }
+.pattern-delay-400 { animation-delay: 400ms; }
+.pattern-delay-500 { animation-delay: 500ms; }

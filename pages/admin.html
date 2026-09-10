@@ -3,22 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>管理后台 - 戴程鹏</title>
-  <meta name="description" content="系统管理后台">
-  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <title>内容管理 - 戴程鹏</title>
+  <meta name="description" content="站长内容管理后台">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+  <link rel="stylesheet" href="../css/style.css?v=1.8.2">
+  <link rel="stylesheet" href="../css/patterns.css?v=1.8.2">
   <style>
+    /* ---------- 概要条 ---------- */
+    .admin-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 24px;
+    }
+    .admin-bar .who {
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+    .admin-bar .who strong {
+      color: var(--neon-green);
+    }
+    .btn-ghost {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all .2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+    }
+
+    /* ---------- 内容卡片 ---------- */
     .admin-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
     }
     .admin-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
-      transition: all 0.2s;
+      padding: 22px;
+      transition: all .2s;
+      display: flex;
+      flex-direction: column;
     }
     .admin-card:hover {
       border-color: var(--neon-green);
@@ -26,26 +71,97 @@
     }
     .admin-card h3 {
       font-size: 16px;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
       color: var(--neon-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-card h3 .count {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-dim);
+      background: rgba(255,255,255,.05);
+      padding: 2px 8px;
+      border-radius: 10px;
     }
     .admin-card p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-dim);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      line-height: 1.6;
     }
-    .admin-card a {
-      display: inline-block;
-      padding: 8px 16px;
-      background: var(--neon-green);
-      color: #000;
+    .card-path {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--text-dim);
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
       border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+    .card-path b {
+      color: var(--neon-blue);
       font-weight: 500;
     }
-    .admin-card a:hover {
-      opacity: 0.9;
+    .card-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card-actions a {
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all .2s;
+    }
+    .card-actions a.primary {
+      background: var(--neon-green);
+      color: #000;
+      border-color: var(--neon-green);
+    }
+    .card-actions a:hover {
+      opacity: .85;
+    }
+
+    /* ---------- 工作流提示 ---------- */
+    .workflow {
+      margin-top: 40px;
+      padding: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--neon-blue);
+      border-radius: 10px;
+    }
+    .workflow h2 {
+      font-size: 17px;
+      margin-bottom: 16px;
+      color: var(--neon-blue);
+    }
+    .workflow ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 2;
+    }
+    .workflow code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: var(--neon-green);
     }
   </style>
 </head>
@@ -57,7 +173,8 @@
         <a href="../index.html">首页</a>
         <a href="../about.html">关于</a>
         <a href="../methods.html">方法论</a>
-        <a href="../pages/admin.html" class="active">管理后台</a>
+        <a href="../blog.html">博客</a>
+        <a href="./admin.html" class="active">内容管理</a>
       </div>
     </nav>
   </header>
@@ -66,60 +183,113 @@
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow">Admin</p>
-        <h1>管理后台</h1>
-        <p class="hero-sub">系统管理 · 内容更新 · 权限配置</p>
+        <h1>内容管理</h1>
+        <p class="hero-sub">站长专属 · 方法论 / 博客 / 项目案例</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="admin-grid">
-          <div class="admin-card">
-            <h3>📊 数据看板</h3>
-            <p>查看各店铺、平台运营数据汇总，支持按时间维度筛选</p>
-            <a href="./team/dashboard.html">进入看板</a>
-          </div>
 
-          <div class="admin-card">
-            <h3>📝 内容管理</h3>
-            <p>管理方法论文章、博客内容、项目案例等公开内容</p>
-            <a href="./team/content.html">内容管理</a>
-          </div>
-
-          <div class="admin-card">
-            <h3>👥 成员管理</h3>
-            <p>查看团队成员列表，调整角色权限和访问范围</p>
-            <a href="./team/members.html">成员管理</a>
-          </div>
-
-          <div class="admin-card">
-            <h3>⚙️ 系统配置</h3>
-            <p>修改登录密码、配置角色权限、管理会话策略</p>
-            <a href="./team/settings.html">系统配置</a>
-          </div>
-
-          <div class="admin-card">
-            <h3>📈 数据统计</h3>
-            <p>访问统计、内容热度、用户行为分析等深度数据</p>
-            <a href="./team/metrics.html">数据统计</a>
-          </div>
-
-          <div class="admin-card">
-            <h3>🔐 安全日志</h3>
-            <p>查看登录记录、权限变更、异常访问等安全事件</p>
-            <a href="./team/logs.html">安全日志</a>
-          </div>
+        <!-- 概要条 -->
+        <div class="admin-bar">
+          <span class="who">当前身份：<strong id="whoName">站长</strong> · 已登录</span>
+          <button class="btn-ghost" onclick="doLogout()">退出登录</button>
         </div>
+
+        <!-- 内容模块 -->
+        <div class="admin-grid">
+
+          <div class="admin-card">
+            <h3>🧭 方法论 <span class="count" id="c-methods">— 篇</span></h3>
+            <p>从本地知识库同步的通用型方法论文章，是站点「方法论」栏目与主导航的数据来源。</p>
+            <div class="card-path">列表页：<b>methods.html</b><br>详情页：<b>methods/*.html</b></div>
+            <div class="card-actions">
+              <a href="../methods.html" class="primary">查看栏目</a>
+              <a href="../methods/2026-09-09-经验沉淀---总索引.html">总索引</a>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>📝 博客文章 <span class="count" id="c-posts">— 篇</span></h3>
+            <p>个人工作随笔与实战复盘，按时间倒序展示在博客栏目。</p>
+            <div class="card-path">列表页：<b>blog.html</b><br>详情页：<b>posts/*.html</b></div>
+            <div class="card-actions">
+              <a href="../blog.html" class="primary">查看栏目</a>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>💼 项目经历</h3>
+            <p>6 个项目作品卡（数据中台 / 技能包 / 店铺矩阵 / 团队体系 / 审批自动化 / 内容生产）。</p>
+            <div class="card-path">页面：<b>brands.html</b></div>
+            <div class="card-actions">
+              <a href="../brands.html" class="primary">查看页面</a>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>👤 简历信息</h3>
+            <p>身份头、5 项数字条、3 段工作经历、技能标签。数据源为本地知识库方法论手册。</p>
+            <div class="card-path">页面：<b>about.html</b></div>
+            <div class="card-actions">
+              <a href="../about.html" class="primary">查看页面</a>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>🏆 成果展示</h3>
+            <p>关键成果与数据看板式呈现，用于对外展示能力沉淀。</p>
+            <div class="card-path">页面：<b>achievements.html</b></div>
+            <div class="card-actions">
+              <a href="../achievements.html" class="primary">查看页面</a>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>🧩 组件示范</h3>
+            <p>web-ui-design-patterns 技能产出的 7 种设计模式演示与下载包。</p>
+            <div class="card-path">路径：<b>downloads/</b></div>
+            <div class="card-actions">
+              <a href="../downloads/patterns-demo.html" class="primary">查看示范</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 发布工作流 -->
+        <div class="workflow">
+          <h2>发布工作流</h2>
+          <ol>
+            <li>在本地仓库目录（<code>C:\Users\alext\Web\personal-site</code>）新增或修改内容文件</li>
+            <li>同步 bump 全站版本号：所有 HTML 的 <code>?v=</code> 参数 + <code>sw.js</code> 内的 <code>konllen-site-vX.Y.Z</code></li>
+            <li>本地跑版本门禁自检：<code>python tools/check_version.py</code></li>
+            <li>提交并推送：<code>git add -A &amp;&amp; git commit -m "..."</code>，再推送至远端</li>
+            <li>等待约 50 秒 CDN 生效后，访问线上地址复核关键节点</li>
+          </ol>
+        </div>
+
       </div>
     </section>
   </main>
 
-  <script src="../js/config/roles.js"></script>
+  <script src="../js/config/roles.js?v=1.8.2"></script>
   <script>
-    // 权限检查：仅管理员可访问
+    // 权限检查：仅站长（admin）可访问
     if (!Auth.isAuthenticated() || !Auth.hasRole('admin')) {
-      window.location.href = '/pages/login.html';
+      window.location.href = './login.html';
+    } else {
+      var s = Auth.getSession();
+      if (s && s.name) document.getElementById('whoName').textContent = s.name;
     }
+
+    function doLogout() {
+      Auth.logout();
+    }
+
+    // 内容数量提示（静态占位，后续可接构建脚本注入真实条数）
+    document.getElementById('c-methods').textContent = '11 篇';
+    document.getElementById('c-posts').textContent = '20 篇';
   </script>
 </body>
 </html>

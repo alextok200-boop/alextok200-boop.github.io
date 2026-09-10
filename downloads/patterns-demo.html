@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web UI 设计模式演示 - v1.8.0</title>
+  <link rel="stylesheet" href="../css/style.css?v=1.8.2">
+  <link rel="stylesheet" href="../css/patterns.css?v=1.8.2">
+  <style>
+    .demo-section { margin-bottom: 60px; }
+    .demo-title { color: var(--neon-green); font-size: 24px; margin-bottom: 20px; }
+    .demo-desc { color: var(--text-dim); margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="../index.html" class="logo">DAI<span class="accent">·</span>CP</a>
+      <div class="nav-links">
+        <a href="../index.html">首页</a>
+        <a href="patterns-demo.html" class="active">模式演示</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container p-y-xl">
+    <h1 class="p-text-gradient p-y-lg">Web UI 设计模式演示</h1>
+    <p class="p-leading-relaxed">基于 7 种现代前端设计模式，应用于霓虹暗黑风格网站</p>
+
+    <!-- 1. 留白系统 -->
+    <section class="demo-section">
+      <h2 class="demo-title">1. 留白系统 (Whitespace)</h2>
+      <p class="demo-desc">留白是呼吸空间，不是白色背景。通过间距控制节奏感。</p>
+      <div class="p-grid p-cols-3">
+        <div class="p-card">
+          <h3 class="p-card__title">紧凑布局</h3>
+          <p class="p-card__desc">元素间距小，信息密度高，适合数据表格。</p>
+        </div>
+        <div class="p-card">
+          <h3 class="p-card__title">标准布局</h3>
+          <p class="p-card__desc">平衡的间距，适合大多数内容展示场景。</p>
+        </div>
+        <div class="p-card">
+          <h3 class="p-card__title">宽松布局</h3>
+          <p class="p-card__desc">大间距营造高端感，适合展示重要内容。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 栅格系统 -->
+    <section class="demo-section">
+      <h2 class="demo-title">2. 栅格系统 (Grid)</h2>
+      <p class="demo-desc">12列标准栅格，响应式断点适配各种屏幕。</p>
+      <div class="p-grid p-cols-12">
+        <div class="p-col-4 p-card">列 1-4</div>
+        <div class="p-col-4 p-card">列 5-8</div>
+        <div class="p-col-4 p-card">列 9-12</div>
+      </div>
+    </section>
+
+    <!-- 3. 卡片微交互 -->
+    <section class="demo-section">
+      <h2 class="demo-title">3. 卡片微交互 (Card + Micro)</h2>
+      <p class="demo-desc">悬停提升、边框发光、标签变色等微交互动效。</p>
+      <div class="p-grid p-cols-3">
+        <div class="p-card p-glow">
+          <span class="p-tag p-tag--green">霓虹绿</span>
+          <h3 class="p-card__title">发光效果</h3>
+          <p class="p-card__desc">悬停时产生霓虹光晕，增强视觉吸引力。</p>
+        </div>
+        <div class="p-card p-refract">
+          <span class="p-tag p-tag--blue">折射效果</span>
+          <h3 class="p-card__title">高光扫过</h3>
+          <p class="p-card__desc">悬停时一道高光从左上滑到右下。</p>
+        </div>
+        <div class="p-card">
+          <span class="p-tag p-tag--pink">基础卡片</span>
+          <h3 class="p-card__title">标准卡片</h3>
+          <p class="p-card__desc">简洁的卡片样式，适合大多数场景。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 瀑布流 -->
+    <section class="demo-section">
+      <h2 class="demo-title">4. 瀑布流 (Masonry)</h2>
+      <p class="demo-desc">CSS Column 方案实现不等高卡片瀑布流布局。</p>
+      <div class="p-masonry">
+        <div class="p-masonry-item">
+          <div class="p-card">
+            <h3 class="p-card__title">短内容</h3>
+            <p class="p-card__desc">这是简短的内容展示。</p>
+          </div>
+        </div>
+        <div class="p-masonry-item">
+          <div class="p-card">
+            <h3 class="p-card__title">长内容</h3>
+            <p class="p-card__desc">这是较长的内容，会占据更多垂直空间，用于展示瀑布流的效果。内容可以有不同的长度，形成错落有致的布局。</p>
+          </div>
+        </div>
+        <div class="p-masonry-item">
+          <div class="p-card">
+            <h3 class="p-card__title">中等内容</h3>
+            <p class="p-card__desc">这是中等长度的内容展示。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 液态玻璃 -->
+    <section class="demo-section">
+      <h2 class="demo-title">5. 液态玻璃 (Liquid Glass)</h2>
+      <p class="demo-desc">毛玻璃效果，backdrop-filter 模糊+饱和，营造通透感。</p>
+      <div class="p-glass p-p-xl">
+        <h3 class="p-card__title">玻璃卡片</h3>
+        <p class="p-card__desc">半透明背景 + 模糊效果，背景内容隐约可见。</p>
+      </div>
+    </section>
+
+    <!-- 6. 骨架屏 -->
+    <section class="demo-section">
+      <h2 class="demo-title">6. 骨架屏 (Skeleton)</h2>
+      <p class="demo-desc">加载占位符，渐变动画模拟内容加载状态。</p>
+      <div class="p-grid p-cols-3">
+        <div class="p-skeleton p-skeleton--card">
+          <div class="p-skeleton p-skeleton--text"></div>
+          <div class="p-skeleton p-skeleton--text"></div>
+          <div class="p-skeleton p-skeleton--text" style="width:60%"></div>
+        </div>
+        <div class="p-skeleton p-skeleton--rect"></div>
+        <div class="p-skeleton p-skeleton--circle"></div>
+      </div>
+    </section>
+
+    <!-- 7. 空状态 -->
+    <section class="demo-section">
+      <h2 class="demo-title">7. 空状态 (Empty State)</h2>
+      <p class="demo-desc">数据为空时的友好提示，引导用户操作。</p>
+      <div class="p-empty">
+        <div class="p-empty__icon">📭</div>
+        <h3 class="p-empty__title">暂无数据</h3>
+        <p class="p-empty__desc">当前没有可显示的内容，点击按钮创建第一条记录。</p>
+        <div class="p-empty__actions">
+          <button class="p-btn p-btn--primary">创建记录</button>
+          <button class="p-btn">刷新</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 戴程鹏 · Web UI Design Patterns Demo</p>
+    </div>
+  </footer>
+</body>
+</html>

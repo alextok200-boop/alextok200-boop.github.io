@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web UI Design Patterns — 设计模式演示</title>
+  <link rel="stylesheet" href="css/patterns.css">
+  <style>
+    /* Demo 页面专属样式 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--pattern-font-sans);
+      background: var(--pattern-bg);
+      color: var(--pattern-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* 导航栏 */
+    .demo-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .demo-nav__inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .demo-nav__logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .demo-nav__links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .demo-nav__link {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      color: var(--pattern-text-muted);
+      text-decoration: none;
+      border-radius: var(--pattern-radius-md);
+      transition: all var(--pattern-transition-fast);
+    }
+
+    .demo-nav__link:hover,
+    .demo-nav__link.active {
+      background: var(--pattern-primary);
+      color: white;
+    }
+
+    .demo-nav__theme-toggle {
+      width: 2.5rem;
+      height: 1.5rem;
+      background: var(--pattern-surface-elevated);
+      border-radius: var(--pattern-radius-full);
+      cursor: pointer;
+      position: relative;
+      transition: background var(--pattern-transition-fast);
+    }
+
+    .demo-nav__theme-toggle::after {
+      content: '';
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background: white;
+      border-radius: 50%;
+      transition: transform var(--pattern-transition-fast);
+    }
+
+    [data-theme="light"] .demo-nav__theme-toggle::after {
+      transform: translateX(1rem);
+    }
+
+    /* 主体内容 */
+    .demo-main {
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* Hero 区域 */
+    .demo-hero {
+      text-align: center;
+      padding: var(--pattern-space-3xl) 0;
+    }
+
+    .demo-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--pattern-glass-bg);
+      color: var(--pattern-text-muted);
+      border: 1px solid var(--pattern-glass-border);
+      border-radius: var(--pattern-radius-full);
+      margin-bottom: var(--pattern-space-lg);
+    }
+
+    .demo-hero__title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: var(--pattern-space-md);
+    }
+
+    .demo-hero__subtitle {
+      font-size: 1.125rem;
+      color: var(--pattern-text-muted);
+      max-width: 48rem;
+      margin: 0 auto var(--pattern-space-xl);
+    }
+
+    /* 模式展示区 */
+    .demo-section {
+      margin-bottom: var(--pattern-space-3xl);
+      scroll-margin-top: 6rem;
+    }
+
+    .demo-section__header {
+      margin-bottom: var(--pattern-space-xl);
+    }
+
+    .demo-section__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--pattern-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-section__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-section__desc {
+      font-size: 0.875rem;
+      color: var(--pattern-text-muted);
+    }
+
+    /* Demo 容器 */
+    .demo-demo {
+      background: var(--pattern-surface);
+      border: 1px solid var(--pattern-border);
+      border-radius: var(--pattern-radius-xl);
+      padding: var(--pattern-space-xl);
+      overflow: hidden;
+    }
+
+    /* 1. 留白 Demo */
+    .whitespace-demo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--pattern-space-lg);
+    }
+
+    .whitespace-demo__item {
+      display: flex;
+      align-items: center;
+      gap: var(--pattern-space-md);
+    }
+
+    .whitespace-demo__label {
+      width: 4rem;
+      font-size: 0.75rem;
+      color: var(--pattern-text-muted);
+      font-family: var(--pattern-font-mono);
+    }
+
+    .whitespace-demo__bar {
+      height: 3rem;
+      background: linear-gradient(90deg, var(--pattern-primary) 0%, var(--pattern-secondary) 100%);
+      border-radius: var(--pattern-radius-sm);
+      opacity: 0.6;
+      transition: width var(--pattern-transition-base);
+    }
+
+    /* 2. 栅格 Demo */
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--pattern-space-sm);
+      min-height: 12rem;
+    }
+
+    .grid-demo__cell {
+      background: var(--pattern-glass-bg);
+      border: 1px solid var(--pattern-glass-border);
+      border-radius: var(--pattern-radius-sm);
+      padding: 0.75rem;
+      font-size: 0.75rem;
+      font-family: var(--pattern-font-mono);
+      color: var(--pattern-text-muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 3. 卡片微交互 Demo */
+    .cards-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--pattern-space-lg);
+    }
+
+    .cards-demo__card {
+      background: var(--pattern-surface);
+      border: 1px solid var(--pattern-border);
+      border-radius: var(--pattern-radius-lg);
+      overflow: hidden;
+      transition: transform var(--pattern-transition-base), box-shadow var(--pattern-transition-base);
+      cursor: pointer;
+    }
+
+    .cards-demo__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--pattern-shadow-lg), 0 0 40px rgba(99, 102, 241, 0.3);
+    }
+
+    .cards-demo__media {
+      height: 12rem;
+      background: linear-gradient(135deg, var(--pattern-primary) 0%, var(--pattern-secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .cards-demo__body {
+      padding: var(--pattern-space-lg);
+    }
+
+    .cards-demo__title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .cards-demo__desc {
+      font-size: 0.875rem;
+      color: var(--pattern-text-muted);
+      line-height: 1.5;
+    }
+
+    /* 4. 瀑布流 Demo */
+    .masonry-demo {
+      column-count: 3;
+      column-gap: var(--pattern-space-lg);
+    }
+
+    .masonry-demo__item {
+      break-inside: avoid;
+      margin-bottom: var(--pattern-space-lg);
+      background: var(--pattern-surface);
+      border: 1px solid var(--pattern-border);
+      border-radius: var(--pattern-radius-lg);
+      overflow: hidden;
+      transition: transform var(--pattern-transition-base);
+    }
+
+    .masonry-demo__item:hover {
+      transform: translateY(-4px);
+    }
+
+    .masonry-demo__media {
+      height: var(--item-height, 12rem);
+      background: linear-gradient(135deg, var(--pattern-primary) 0%, var(--pattern-secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      opacity: 0.8;
+    }
+
+    .masonry-demo__body {
+      padding: var(--pattern-space-md);
+    }
+
+    /* 5. 液态玻璃 Demo */
+    .glass-demo {
+      position: relative;
+      min-height: 20rem;
+      background: 
+        radial-gradient(ellipse at top, var(--pattern-primary) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, var(--pattern-secondary) 0%, transparent 50%),
+        var(--pattern-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .glass-demo__blobs {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .glass-demo__blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .glass-demo__blob:nth-child(1) {
+      width: 16rem;
+      height: 16rem;
+      background: var(--pattern-primary);
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .glass-demo__blob:nth-child(2) {
+      width: 12rem;
+      height: 12rem;
+      background: var(--pattern-secondary);
+      top: 40%;
+      right: 20%;
+      animation-delay: -2s;
+    }
+
+    .glass-demo__blob:nth-child(3) {
+      width: 10rem;
+      height: 10rem;
+      background: #22c55e;
+      bottom: 20%;
+      left: 40%;
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    .glass-demo__content {
+      position: relative;
+      z-index: 1;
+      max-width: 28rem;
+      padding: var(--pattern-space-xl);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--pattern-radius-xl);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-demo__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .glass-demo__text {
+      font-size: 0.875rem;
+      color: var(--pattern-text-muted);
+      line-height: 1.6;
+    }
+
+    /* 6. 骨架屏 Demo */
+    .skeleton-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--pattern-space-lg);
+    }
+
+    .skeleton-demo__card {
+      background: var(--pattern-surface);
+      border: 1px solid var(--pattern-border);
+      border-radius: var(--pattern-radius-lg);
+      padding: var(--pattern-space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--pattern-space-sm);
+    }
+
+    .skeleton-demo__circle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(90deg, var(--pattern-surface-elevated) 25%, var(--pattern-bg-alt) 50%, var(--pattern-surface-elevated) 75%);
+      background-size: 200% 100%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .skeleton-demo__text {
+      height: 1rem;
+      background: linear-gradient(90deg, var(--pattern-surface-elevated) 25%, var(--pattern-bg-alt) 50%, var(--pattern-surface-elevated) 75%);
+      background-size: 200% 100%;
+      animation: pulse 1.5s ease-in-out infinite;
+      border-radius: var(--pattern-radius-sm);
+    }
+
+    .skeleton-demo__text:last-child {
+      width: 60%;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* 7. 空状态 Demo */
+    .empty-demo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .empty-demo__state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--pattern-space-lg);
+      padding: var(--pattern-space-3xl);
+      text-align: center;
+    }
+
+    .empty-demo__icon {
+      width: 8rem;
+      height: 8rem;
+      opacity: 0.5;
+    }
+
+    .empty-demo__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .empty-demo__desc {
+      font-size: 0.875rem;
+      color: var(--pattern-text-muted);
+      max-width: 24rem;
+    }
+
+    /* 页脚 */
+    .demo-footer {
+      text-align: center;
+      padding: var(--pattern-space-xl);
+      color: var(--pattern-text-subtle);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--pattern-border);
+      margin-top: var(--pattern-space-3xl);
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .demo-nav__links { display: none; }
+      .masonry-demo { column-count: 2; }
+    }
+
+    @media (max-width: 480px) {
+      .masonry-demo { column-count: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav class="demo-nav">
+    <div class="demo-nav__inner">
+      <div class="demo-nav__logo">UI Patterns</div>
+      <div class="demo-nav__links">
+        <a href="#whitespace" class="demo-nav__link active">留白</a>
+        <a href="#grid" class="demo-nav__link">栅格</a>
+        <a href="#cards" class="demo-nav__link">卡片</a>
+        <a href="#masonry" class="demo-nav__link">瀑布流</a>
+        <a href="#glass" class="demo-nav__link">液态玻璃</a>
+        <a href="#skeleton" class="demo-nav__link">骨架屏</a>
+        <a href="#empty" class="demo-nav__link">空状态</a>
+      </div>
+      <div class="demo-nav__theme-toggle" onclick="toggleTheme()" title="切换主题"></div>
+    </div>
+  </nav>
+
+  <!-- 主体内容 -->
+  <main class="demo-main">
+    <!-- Hero -->
+    <section class="demo-hero">
+      <div class="demo-hero__badge">v1.0.0 • Zero Dependency</div>
+      <h1 class="demo-hero__title">Web UI <span class="pattern-text-gradient">Design Patterns</span></h1>
+      <p class="demo-hero__subtitle">7 种现代前端设计模式沉淀，包含留白系统、栅格布局、卡片微交互、瀑布流、液态玻璃、骨架屏、空状态，全部基于 CSS 变量实现，零外部依赖。</p>
+    </section>
+
+    <!-- 1. 留白系统 -->
+    <section id="whitespace" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 01</div>
+        <h2 class="demo-section__title">留白系统 Whitespace</h2>
+        <p class="demo-section__desc">8px 基准间距系统，通过 CSS 变量实现像素级精准控制，营造呼吸感排版。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="whitespace-demo">
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">XS 8px</span>
+            <div class="whitespace-demo__bar" style="width: 8rem;"></div>
+          </div>
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">SM 16px</span>
+            <div class="whitespace-demo__bar" style="width: 16rem;"></div>
+          </div>
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">MD 24px</span>
+            <div class="whitespace-demo__bar" style="width: 24rem;"></div>
+          </div>
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">LG 32px</span>
+            <div class="whitespace-demo__bar" style="width: 32rem;"></div>
+          </div>
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">XL 48px</span>
+            <div class="whitespace-demo__bar" style="width: 48rem;"></div>
+          </div>
+          <div class="whitespace-demo__item">
+            <span class="whitespace-demo__label">2XL 64px</span>
+            <div class="whitespace-demo__bar" style="width: 64rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 栅格系统 -->
+    <section id="grid" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 02</div>
+        <h2 class="demo-section__title">栅格系统 Grid</h2>
+        <p class="demo-section__desc">12列自适应栅格，支持响应式断点与列跨度，适用于列表页、仪表盘、营销页。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="grid-demo">
+          <div class="grid-demo__cell" style="grid-column: span 12;">12</div>
+          <div class="grid-demo__cell" style="grid-column: span 6;">6</div>
+          <div class="grid-demo__cell" style="grid-column: span 6;">6</div>
+          <div class="grid-demo__cell" style="grid-column: span 4;">4</div>
+          <div class="grid-demo__cell" style="grid-column: span 4;">4</div>
+          <div class="grid-demo__cell" style="grid-column: span 4;">4</div>
+          <div class="grid-demo__cell" style="grid-column: span 3;">3</div>
+          <div class="grid-demo__cell" style="grid-column: span 3;">3</div>
+          <div class="grid-demo__cell" style="grid-column: span 3;">3</div>
+          <div class="grid-demo__cell" style="grid-column: span 3;">3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 卡片微交互 -->
+    <section id="cards" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 03</div>
+        <h2 class="demo-section__title">卡片微交互 Card + Micro</h2>
+        <p class="demo-section__desc">Hover 上升 + Shadow 扩散 + Scale 微动，配合图片缩放效果。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="cards-demo">
+          <div class="cards-demo__card">
+            <div class="cards-demo__media">🎯</div>
+            <div class="cards-demo__body">
+              <h3 class="cards-demo__title">卡片标题</h3>
+              <p class="cards-demo__desc">悬停查看微交互效果：上升、阴影扩散、边框高亮。</p>
+            </div>
+          </div>
+          <div class="cards-demo__card">
+            <div class="cards-demo__media">✨</div>
+            <div class="cards-demo__body">
+              <h3 class="cards-demo__title">卡片标题</h3>
+              <p class="cards-demo__desc">配合图片缩放效果，营造沉浸式体验。</p>
+            </div>
+          </div>
+          <div class="cards-demo__card">
+            <div class="cards-demo__media">🚀</div>
+            <div class="cards-demo__body">
+              <h3 class="cards-demo__title">卡片标题</h3>
+              <p class="cards-demo__desc">Active 状态按下效果，增强点击反馈。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 瀑布流 -->
+    <section id="masonry" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 04</div>
+        <h2 class="demo-section__title">瀑布流 Masonry</h2>
+        <p class="demo-section__desc">多列不等高布局，自动填充间隙，适用于图片库、作品集、Feed。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="masonry-demo">
+          <div class="masonry-demo__item" style="--item-height: 10rem;">
+            <div class="masonry-demo__media">1</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">短内容</p></div>
+          </div>
+          <div class="masonry-demo__item" style="--item-height: 16rem;">
+            <div class="masonry-demo__media">2</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">中等内容，适合展示更多细节</p></div>
+          </div>
+          <div class="masonry-demo__item" style="--item-height: 12rem;">
+            <div class="masonry-demo__media">3</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">中等长度内容</p></div>
+          </div>
+          <div class="masonry-demo__item" style="--item-height: 14rem;">
+            <div class="masonry-demo__media">4</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">较长内容，展示完整信息</p></div>
+          </div>
+          <div class="masonry-demo__item" style="--item-height: 8rem;">
+            <div class="masonry-demo__media">5</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">短</p></div>
+          </div>
+          <div class="masonry-demo__item" style="--item-height: 18rem;">
+            <div class="masonry-demo__media">6</div>
+            <div class="masonry-demo__body"><p style="font-size:0.75rem;color:var(--pattern-text-muted)">最长内容，适合详细展示</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 液态玻璃 -->
+    <section id="glass" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 05</div>
+        <h2 class="demo-section__title">液态玻璃 Liquid Glass</h2>
+        <p class="demo-section__desc">毛玻璃模糊 + 折射光效 + 动态光晕，打造沉浸式玻璃质感。</p>
+      </div>
+      <div class="demo-demo" style="padding:0;overflow:hidden;">
+        <div class="glass-demo">
+          <div class="glass-demo__blobs">
+            <div class="glass-demo__blob"></div>
+            <div class="glass-demo__blob"></div>
+            <div class="glass-demo__blob"></div>
+          </div>
+          <div class="glass-demo__content">
+            <h3 class="glass-demo__title">液态玻璃效果</h3>
+            <p class="glass-demo__text">backdrop-filter blur 24px + saturate 180%，配合渐变光晕和折射动画，营造未来感玻璃质感。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 骨架屏 -->
+    <section id="skeleton" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 06</div>
+        <h2 class="demo-section__title">骨架屏 Skeleton</h2>
+        <p class="demo-section__desc">脉冲动画占位，提升加载体验，减少用户等待焦虑。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="skeleton-demo">
+          <div class="skeleton-demo__card">
+            <div class="skeleton-demo__circle"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+          </div>
+          <div class="skeleton-demo__card">
+            <div class="skeleton-demo__circle"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+          </div>
+          <div class="skeleton-demo__card">
+            <div class="skeleton-demo__circle"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+            <div class="skeleton-demo__text"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 空状态 -->
+    <section id="empty" class="demo-section">
+      <div class="demo-section__header">
+        <div class="demo-section__label">Pattern 07</div>
+        <h2 class="demo-section__title">空状态 Empty State</h2>
+        <p class="demo-section__desc">插画 + 文案 + CTA，引导用户操作，避免空白尴尬。</p>
+      </div>
+      <div class="demo-demo">
+        <div class="empty-demo">
+          <div class="empty-demo__state">
+            <svg class="empty-demo__icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="2" stroke-opacity="0.2"/>
+              <path d="M60 100h80M100 60v80" stroke="currentColor" stroke-width="3" stroke-opacity="0.4" stroke-linecap="round"/>
+              <circle cx="100" cy="100" r="30" stroke="currentColor" stroke-width="2" stroke-opacity="0.3"/>
+            </svg>
+            <div>
+              <h3 class="empty-demo__title">暂无内容</h3>
+              <p class="empty-demo__desc">这里还没有任何数据，点击下方按钮开始创建你的第一个项目。</p>
+            </div>
+            <button class="pattern-btn pattern-btn--primary" onclick="alert('CTA 点击事件')">
+              <span>创建新项目</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="demo-footer">
+    <p>Web UI Design Patterns v1.0.0 • Built with Pure CSS + Minimal JS</p>
+  </footer>
+
+  <script>
+    // 主题切换
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', html.getAttribute('data-theme'));
+    }
+
+    // 恢复主题
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+    // 导航高亮
+    const links = document.querySelectorAll('.demo-nav__link');
+    const sections = document.querySelectorAll('.demo-section');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // 平滑滚动
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

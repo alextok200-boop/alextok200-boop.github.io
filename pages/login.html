@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登录 - 戴程鹏</title>
-  <meta name="description" content="内部系统登录">
-  <link rel="stylesheet" href="../css/style.css?v=1.7.8">
+  <title>后台登录 - 戴程鹏</title>
+  <meta name="description" content="站长后台登录">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+  <link rel="stylesheet" href="../css/style.css?v=1.8.2">
+  <link rel="stylesheet" href="../css/patterns.css?v=1.8.2">
   <style>
     .login-container {
       min-height: calc(100vh - 200px);
@@ -44,7 +49,6 @@
       font-size: 14px;
       color: var(--text);
     }
-    .form-group select,
     .form-group input {
       width: 100%;
       padding: 12px 16px;
@@ -54,7 +58,6 @@
       color: var(--text);
       font-size: 15px;
     }
-    .form-group select:focus,
     .form-group input:focus {
       outline: none;
       border-color: var(--neon-green);
@@ -110,24 +113,14 @@
     <div class="login-container">
       <div class="login-box">
         <div class="login-header">
-          <h1>系统登录</h1>
-          <p>请输入角色和密码以访问受保护内容</p>
+          <h1>后台登录</h1>
+          <p>站长专属 · 内容管理入口</p>
         </div>
 
         <form id="loginForm" onsubmit="handleLogin(event)">
           <div class="form-group">
-            <label for="roleSelect">选择角色</label>
-            <select id="roleSelect" required>
-              <option value="">-- 请选择 --</option>
-              <option value="admin">管理员</option>
-              <option value="team_leader">团队主管</option>
-              <option value="member">团队成员</option>
-            </select>
-          </div>
-
-          <div class="form-group">
             <label for="passwordInput">密码</label>
-            <input type="password" id="passwordInput" placeholder="请输入密码" required>
+            <input type="password" id="passwordInput" placeholder="请输入后台密码" required autofocus>
           </div>
 
           <button type="submit" class="login-btn">登录</button>
@@ -139,33 +132,24 @@
     </div>
   </main>
 
-  <script src="../js/config/roles.js"></script>
+  <script src="../js/config/roles.js?v=1.8.2"></script>
   <script>
     function handleLogin(e) {
       e.preventDefault();
 
-      const role = document.getElementById('roleSelect').value;
       const password = document.getElementById('passwordInput').value;
       const errorMsg = document.getElementById('errorMsg');
 
-      if (!role || !password) {
-        errorMsg.textContent = '请填写完整信息';
+      if (!password) {
+        errorMsg.textContent = '请输入密码';
         errorMsg.style.display = 'block';
         return;
       }
 
-      const result = Auth.login(role, password);
+      const result = Auth.login('admin', password);
 
       if (result.success) {
-        // 根据角色跳转到对应页面
-        const roleConfig = ROLES[role];
-        if (role === 'admin') {
-          window.location.href = '../pages/admin.html';
-        } else if (role === 'team_leader') {
-          window.location.href = '../pages/team/dashboard.html';
-        } else {
-          window.location.href = '../index.html';
-        }
+        window.location.href = './admin.html';
       } else {
         errorMsg.textContent = result.error;
         errorMsg.style.display = 'block';

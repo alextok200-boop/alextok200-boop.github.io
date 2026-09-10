@@ -26,3 +26,6 @@ tools/v*-showcase/
 
 # 旧版 LOGO 源备份（仅本地留存作回滚，不入公网）
 tools/_source/
+
+# 临时诊断文件暂存（可安全删除）
+.trash-temp/
