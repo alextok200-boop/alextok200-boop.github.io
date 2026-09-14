@@ -1,0 +1,264 @@
+# 戴程鹏个人网站 v1.8.2 交接文档
+
+**创建时间**: 2026-09-11  
+**站点版本**: v1.8.2 (线上已部署)  
+**项目位置**: `C:\Users\alext\Web\personal-site`  
+**远端仓库**: `github.com/alextok200-boop/alextok200-boop.github.io`  
+**线上地址**: https://alextok200-boop.github.io/
+
+---
+
+## 一、站点定位（长期有效）
+
+- **性质**: 个人简历 + 能力展示网站
+- **风格**: 深色霓虹风（黑底 + 霓虹绿/蓝/粉），干净可读字体
+- **语言**: 中英双语（i18n，支持切换）
+- **认证**: 单一站长账号，密码 `admin2026`（明文存储于 `js/config/roles.js`）
+- **内容来源**: 本地知识库《记忆汇总整理/通用型方法论手册》精选公开内容，去敏脱敏
+
+**注意**: 团队协作/权限体系已独立为 `team-portal` 项目（https://alextok200-boop.github.io/team-portal/），本仓库不再承载团队功能。
+
+---
+
+## 二、目录结构
+
+```
+personal-site/
+├── index.html              # 首页（中英双语、lightfall 粒子动画、newsletter 订阅）
+├── about.html              # 简历页（身份头 + 5 数字条 + 工作经历 + 技能标签）
+├── work.html               # 作品集（6 项目案例卡）
+├── brands.html             # 项目经历（v1.7.0 改名，原品牌矩阵）
+├── methods.html            # 方法论栏目列表
+├── methods/*.html          # 方法论详情（11 篇，含脱敏）
+├── blog.html               # 博客列表
+├── posts/*.html            # 博客文章（20 篇）
+├── achievements.html       # 成果展示（6 数据卡）
+├── careers.html            # 加入我们（4 岗位卡）
+├── contact.html            # 联系（FormSubmit 邮箱表单）
+├── downloads/              # 组件示范 + 下载包
+├── pages/
+│   ├── login.html          # 后台登录（单密码，无角色选择）
+│   └── admin.html          # 内容管理导航页（6 卡 + 发布工作流）
+├── css/
+│   ├── style.css           # 主样式（霓虹主题变量）
+│   └── patterns.css        # UI 模式演示
+├── js/
+│   ├── config/roles.js     # ★ 权限配置（仅 admin 角色）
+│   ├── auth.js             # 登录态管理（sessionStorage）
+│   ├── i18n.js             # 中英双语切换
+│   ├── theme.js            # 明暗主题
+│   ├── analytics.js        # Analytics 配置驱动（全留空 = 零加载）
+│   ├── newsletter.js       # 邮件订阅
+│   ├── inquiry.js          # 联系表单
+│   └── ...                 # 其他功能脚本
+├── sw.js                   # Service Worker（CACHE = konllen-site-v1.8.2）
+├── manifest.webmanifest    # PWA 配置
+├── rss.xml / rss-en.xml    # RSS 订阅
+├── tools/                  # 工具脚本（见第三节）
+├── assets/img/             # 图片资源
+├── .github/workflows/ci.yml # CI 门禁
+├── .gitignore              # 忽略规则
+└── README.md               # 站点说明
+```
+
+---
+
+## 三、关键工具脚本
+
+### 3.1 版本门禁
+```bash
+python tools/check_version.py
+```
+- 扫描所有 HTML 的 `?v=` 引用，必须与 `sw.js` 的 `konllen-site-vX.Y.Z` 一致
+- CI 必跑，本地发布前必跑
+
+### 3.2 版本 bump
+```bash
+python tools/bump_v182.py  # 针对本次 1.8.1→1.8.2
+```
+- 批量替换全站 `?v=1.8.1` → `?v=1.8.2`
+- 手动 bump 规则：任何可见改动（含 CSS/JS）都需同步更新 `sw.js` + 所有 HTML
+
+### 3.3 冒烟测试
+```bash
+python tools/smoke_test.py
+```
+- 检查所有页面 200、关键资源 200、DOM 节点存在、JSON-LD 注入、RSS 条目
+
+### 3.4 认证验证（Puppeteer）
+```bash
+node tools/verify_admin_v182.js
+```
+- 验证登录流程：角色下拉已移除、错误密码拦截、正确密码跳转、退出登录、未登录拦截
+
+### 3.5 GitHub API 推送（绕行 git push）
+```bash
+python tools/apipush_v182.py
+```
+- **为什么用**: 本机 `github.com:443` 时通时断，`git push` 常报 SSL eof
+- **原理**: Git Data API 逐文件建 blob → 建 tree → 建 commit → PATCH ref
+- **缓存**: `_blobcache.json`（内容 sha256 → blob sha），遇 502 重跑幂等跳过已建项
+- **校验**: `NEW_TREE == git rev-parse HEAD^{tree}` 逐位比对
+
+### 3.6 截图验证
+```bash
+node tools/shot_admin_v182.js
+```
+- Puppeteer 全页截图（deviceScaleFactor=1.5，fullPage=true）
+
+### 3.7 其他工具
+- `tools/sync_kb.py` —— 从 AnythingLLM 本地知识库同步方法论文章（带脱敏）
+- `tools/gen_posts.py` + `tools/gen_rss.js` —— 博客文章生成 + RSS 同步
+- `tools/build_favicons.py` —— 从 logo.png 生成 6 尺寸 favicon
+- `tools/check_version.py` —— 版本门禁
+
+---
+
+## 四、发布流程
+
+```bash
+# 1. 修改文件（含仅 CSS/JS 改动）
+# 2. Bump 版本
+python tools/bump_v182.py  # 或手动改 sw.js + grep 替换
+# 3. 跑门禁
+python tools/check_version.py
+# 4. 本地冒烟（可选）
+python -m http.server 8099 &
+SITE_BASE=http://127.0.0.1:8099 python tools/smoke_test.py
+# 5. 提交
+git add -A
+git commit -m "vX.Y.Z: 描述"
+# 6. 推送（git push 不通时走 API）
+export GH_CONFIG_DIR="C:/Users/alext/AppData/Roaming/GitHub CLI"
+gh auth status  # 先确认鉴权
+# 正常情况:
+git push origin HEAD
+# 被 reset 时:
+python tools/apipush_v182.py
+# 7. 等 CDN 生效（~50s）
+sleep 50
+curl https://alextok200-boop.github.io/sw.js | grep konllen-site
+```
+
+**关键坑**:
+- 本地 HEAD SHA 与远端可能不同（API 推送固有限制），但 tree 必须一致
+- GitHub token 在 `C:\Users\alext\AppData\Roaming\GitHub CLI\`，必须 `export GH_CONFIG_DIR`
+- `gh blob` / `gh tree` / `gh commit` 不是有效子命令，必须走 `gh api`
+- Windows 下 Python 不认 `/c/Users/...` MSYS 路径，用相对路径或 `C:/` 格式
+
+---
+
+## 五、认证与安全
+
+### 5.1 后台入口
+- 登录页: `/pages/login.html`（密码 `admin2026`，无角色选择）
+- 管理页: `/pages/admin.html`（内容管理导航，6 张卡）
+- 未登录访问受保护页面自动跳转登录页
+
+### 5.2 安全注意
+- **密码明文存储**于 `js/config/roles.js`（`admin2026`），这是公开仓库
+- 建议改为 SHA-256 哈希比对（如需升级可执行：在 roles.js 改 `password: hash("admin2026")`，auth.js 登录时用 `crypto.subtle.digest` 比对）
+- 站点不含用户数据收集，只有联系表单（FormSubmit 转发至 alextok200@gmail.com）
+
+---
+
+## 六、内容管理
+
+### 6.1 方法论文章
+- 来源: 本地 AnythingLLM 知识库 `C:\Users\alext\anythingllm-data\documents\custom-documents\*.json`
+- 同步: `python tools/sync_kb.py --list --dry` 预览，确认后正式同步
+- 脱敏: 脚本自动替换敏感词（KONLLEN→[集团主品牌]、聚水潭→[国内 ERP] 等）
+- 位置: `methods/` 目录，列表页 `methods.html`
+
+### 6.2 博客文章
+- 生成: `python tools/gen_posts.py <markdown_dir>` + `node tools/gen_rss.js`
+- 位置: `posts/` 目录，列表页 `blog.html`
+- 总量: 20 篇（截至 v1.8.2）
+
+### 6.3 RSS 订阅
+- 中英文双版: `rss.xml` / `rss-en.xml`
+- 自动同步博客更新
+
+---
+
+## 七、已知问题与遗留事项
+
+### 7.1 Git 状态（长期）
+- 本地 HEAD `35a0213` 与远端 `653f015` SHA 不同，但 tree `6c3e1103...` 逐位一致
+- 如需彻底对齐，可运行 `bash tools/sync-local.sh --force`（团队门户同步脚本逻辑类似，可参考）
+
+### 7.2 临时工具（untracked，可选入库）
+- `tools/apipush_v182.py` —— Git Data API 推送脚本（通用，可保留）
+- `tools/verify_admin_v182.js` —— 认证流程自动化验证
+- `tools/shot_admin_v182.js` —— 截图脚本
+- `tools/v182-admin.png` —— 后台页截图
+- 建议: 入库方便复用；或删除保持干净
+
+### 7.3 版本门禁
+- CI 已配置 GitHub Actions，push 到 main 自动跑 `check_version.py` + `smoke_test.py`
+- 本地建议每次发布前跑一遍，防止漏 bump
+
+### 7.4  analytics 线
+- `js/config/site-config.js` 中 `analytics.la5 / clarity / ga4` 全留空 = 零加载
+- 未来网络环境修复后可填 ID 启用（当前 51.la / cloudflare / gc.zgo.at 均不可达）
+
+---
+
+## 八、相关项目
+
+| 项目 | 位置 | 关系 |
+|---|---|---|
+| **团队门户（静态版）** | `C:\Users\alext\Web\team-portal` | 独立项目，GitHub Pages |
+| **团队门户（后端版）** | `C:\Users\alext\Web\login-portal` | 独立项目，端口 8900 |
+| **AI 数据中台** | `C:\Users\alext\ai-cockpit\dashboard` | Flask API + ECharts + SQLite |
+| **Konllen Agent** | `C:\Users\alext\WorkBuddy\2026-07-23-16-40-27\konllen-agent` | Agent 框架 |
+
+---
+
+## 九、环境依赖
+
+### 9.1 运行时
+- Python 3.13.12（managed，路径：`C:\Users\alext\.workbuddy\binaries\python\versions\3.13.12\python.exe`）
+- Node.js 22.22.2（managed，路径：`C:\Users\alext\.workbuddy\binaries\node\versions\22.22.2-2\node.exe`）
+- Chromium 缓存：`~/.cache/puppeteer/chrome/win64-150.0.7871.24`
+- GitHub CLI：`C:\Program Files\GitHub CLI\gh.exe`，配置目录 `C:\Users\alext\AppData\Roaming\GitHub CLI`
+
+### 9.2 依赖包
+- Puppeteer：`C:\Users\alext\.workbuddy\binaries\node\workspace\node_modules\puppeteer`
+- 环境变量：`NODE_PATH=C:/Users/alext/.workbuddy/binaries/node/workspace/node_modules`
+- GitHub token：系统凭据管理器（`git credential fill` 读取），无需 gh 登录
+
+---
+
+## 十、常用命令速查
+
+```bash
+# 检查版本
+python tools/check_version.py
+
+# Bump 版本
+python tools/bump_v182.py  # 或新建 bump_vXXX.py
+
+# 冒烟测试
+python -m http.server 8099 &
+SITE_BASE=http://127.0.0.1:8099 python tools/smoke_test.py
+
+# 认证验证
+node tools/verify_admin_v182.js
+
+# 推送（git push 优先，失败走 API）
+export GH_CONFIG_DIR="C:/Users/alext/AppData/Roaming/GitHub CLI"
+git push origin HEAD
+# 或
+python tools/apipush_v182.py
+
+# 线上验证
+curl https://alextok200-boop.github.io/sw.js | grep konllen-site
+curl https://alextok200-boop.github.io/pages/admin.html | grep -c "内容管理"
+```
+
+---
+
+**文档版本**: v1.0.0  
+**生成时间**: 2026-09-11  
+**维护者**: 戴程鹏 (alextok200)

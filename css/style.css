@@ -1,49 +1,59 @@
 /* ============================================
-   Konllen Personal Site - Dark Neon Theme
-   v1.3.5 (静态模式流星随机散布全屏+本体加大加亮, 解决看不见问题)
+   Konllen Personal Site - RGB 星辰大海-璀璨 Theme
+   v1.8.3 (暗色：深邃宇宙蓝黑+RGB渐变流光；亮色：天青璀璨底+RGB三色点缀)
    ============================================ */
 
 :root {
-  --bg: #090711;
-  --bg-card: #120b1f;
-  --border: #2a2040;
-  --text: #eef0ff;
-  --text-dim: #a79fc4;
+  /* 背景层：深邃宇宙蓝黑 */
+  --bg: #0a0b1a;
+  --bg-card: #151832;
+  --border: #2a2d4a;
+  /* 文本层：亮白+冷灰 */
+  --text: #f0f2ff;
+  --text-dim: #8a8fb5;
+  /* 霓虹三色（璀璨版） */
   --neon-green: #00ffa3;
-  --neon-blue: #00c8ff;
+  --neon-blue: #00d4ff;
   --neon-pink: #ff5ec9;
-  --violet-1: #9333ea;
+  /* 紫罗兰系（璀璨星云） */
+  --violet-1: #7c3aed;
   --violet-2: #a855f7;
   --violet-3: #d8b4fe;
+  /* 青色光晕（星辰流光） */
   --cyan-glow: #8df7ff;
   --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
 }
 
-/* ============ 明暗主题（v1.6.24 亮色 RGB 重做）============
-   暗色：霓虹三色（深底+高亮绿/蓝/粉）
-   亮色：RGB 三原色搭配（明亮底+纯正 R/G/B 共同作为点缀系统） */
+/* ============ 明暗主题（v1.8.3 RGB 星辰大海-璀璨）============
+   暗色：深邃宇宙蓝黑底 + RGB流光 + 璀璨星云
+   亮色：天青璀璨底 + RGB三色点缀系统 */
 :root[data-theme="light"] {
-  --bg: #f6f7fb;
+  /* 背景层：天青璀璨底 */
+  --bg: #eef4ff;
   --bg-card: #ffffff;
-  --border: #d8def0;
-  --text: #0e1024;
-  --text-dim: #4a4f6a;
-  --neon-green: #00c853;   /* R-G-B 的 G */
-  --neon-blue: #2962ff;    /* R-G-B 的 B */
-  --neon-pink: #ff1744;    /* R-G-B 的 R（鲜红/品红） */
-  --violet-1: #7c3aed;
-  --violet-2: #8b5cf6;
-  --violet-3: #6d28d9;
+  --border: #c8d0e8;
+  /* 文本层：深蓝黑 */
+  --text: #0e1525;
+  --text-dim: #4a5575;
+  /* 霓虹三色（璀璨版） */
+  --neon-green: #00c853;
+  --neon-blue: #2962ff;
+  --neon-pink: #ff1744;
+  /* 紫罗兰系（璀璨星光） */
+  --violet-1: #6d28d9;
+  --violet-2: #7c3aed;
+  --violet-3: #a78bfa;
+  /* 青色光晕（星辰） */
   --cyan-glow: #00b8d4;
 }
 
 :root[data-theme="light"] body::before {
   background:
-    radial-gradient(800px 500px at 15% -5%, rgba(255, 23, 68, 0.12), transparent 60%),
-    radial-gradient(700px 450px at 50% 0%, rgba(0, 200, 83, 0.10), transparent 60%),
-    radial-gradient(700px 450px at 85% 5%, rgba(41, 98, 255, 0.12), transparent 60%),
-    radial-gradient(900px 600px at 50% 110%, rgba(124, 58, 237, 0.08), transparent 60%),
-    linear-gradient(180deg, #f6f7fb 0%, #eef0fa 50%, #f6f7fb 100%);
+    radial-gradient(800px 500px at 15% -5%, rgba(255, 23, 68, 0.14), transparent 60%),
+    radial-gradient(700px 450px at 50% 0%, rgba(0, 200, 83, 0.12), transparent 60%),
+    radial-gradient(700px 450px at 85% 5%, rgba(41, 98, 255, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(109, 40, 217, 0.10), transparent 60%),
+    linear-gradient(180deg, #eef4ff 0%, #dde6f8 50%, #eef4ff 100%);
 }
 
 :root[data-theme="light"] body::after {
@@ -119,17 +129,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 背景紫罗兰光晕（参考站电影感）- v1.3.1 加强可见度 */
+/* 背景紫罗兰光晕（v1.8.3 星辰大海-璀璨）- 深邃宇宙蓝底+RGB流光 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(800px 500px at 20% -5%, rgba(147, 51, 234, 0.28), transparent 60%),
-    radial-gradient(700px 450px at 80% 5%, rgba(0, 200, 255, 0.16), transparent 60%),
-    radial-gradient(900px 600px at 50% 110%, rgba(168, 85, 247, 0.18), transparent 60%),
-    linear-gradient(180deg, #090711 0%, #1a1130 40%, #120b24 75%, #090711 100%);
+    radial-gradient(900px 550px at 15% -8%, rgba(124, 58, 237, 0.32), transparent 55%),
+    radial-gradient(800px 500px at 85% 5%, rgba(0, 212, 255, 0.20), transparent 55%),
+    radial-gradient(1000px 650px at 50% 115%, rgba(168, 85, 247, 0.22), transparent 55%),
+    radial-gradient(700px 400px at 30% 50%, rgba(0, 255, 163, 0.08), transparent 50%),
+    radial-gradient(700px 400px at 70% 60%, rgba(255, 94, 201, 0.08), transparent 50%),
+    linear-gradient(180deg, #0a0b1a 0%, #12153a 35%, #0e1230 70%, #0a0b1a 100%);
   pointer-events: none;
 }
 

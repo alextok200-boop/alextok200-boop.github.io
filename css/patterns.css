@@ -1,7 +1,7 @@
 /* ============================================
-   Web UI Design Patterns — Neon Theme Edition
-   v1.8.0 | Zero Dependency | Pure CSS
-   配色：霓虹绿/蓝/粉 × 亮暗双主题
+   Web UI Design Patterns — RGB 星辰大海-璀璨 Theme
+   v1.8.3 | Zero Dependency | Pure CSS
+   配色：霓虹绿/蓝/粉 × 亮暗双主题（与 style.css 对齐）
    用法：引入此文件后即可使用 pattern-* 类名
    ============================================ */
 
@@ -24,9 +24,9 @@
   --p-radius-lg: 16px;
   --p-radius-xl: 24px;
 
-  /* 玻璃参数 */
-  --p-glass-bg: rgba(9, 7, 17, 0.82);
-  --p-glass-border: rgba(147, 51, 234, 0.22);
+  /* 玻璃参数（v1.8.3 星辰大海-璀璨） */
+  --p-glass-bg: rgba(10, 11, 26, 0.85);
+  --p-glass-border: rgba(124, 58, 237, 0.28);
   --p-glass-blur: 20px;
   --p-glass-highlight: rgba(255, 255, 255, 0.06);
   --p-glass-saturate: 160%;

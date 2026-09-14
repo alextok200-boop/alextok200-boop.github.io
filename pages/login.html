@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>后台登录 - 戴程鹏</title>
+  <title>后台登录 - 戴程�?/title>
   <meta name="description" content="站长后台登录">
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
-  <link rel="stylesheet" href="../css/style.css?v=1.8.2">
-  <link rel="stylesheet" href="../css/patterns.css?v=1.8.2">
+  <link rel="stylesheet" href="../css/style.css?v=1.8.3">
+  <link rel="stylesheet" href="../css/patterns.css?v=1.8.3">
   <style>
     .login-container {
       min-height: calc(100vh - 200px);
@@ -104,7 +104,7 @@
       <div class="nav-links">
         <a href="../index.html">首页</a>
         <a href="../about.html">关于</a>
-        <a href="../methods.html">方法论</a>
+        <a href="../methods.html">方法�?/a>
       </div>
     </nav>
   </header>
@@ -120,19 +120,19 @@
         <form id="loginForm" onsubmit="handleLogin(event)">
           <div class="form-group">
             <label for="passwordInput">密码</label>
-            <input type="password" id="passwordInput" placeholder="请输入后台密码" required autofocus>
+            <input type="password" id="passwordInput" placeholder="请输入后台密�? required autofocus>
           </div>
 
           <button type="submit" class="login-btn">登录</button>
           <div id="errorMsg" class="error-msg"></div>
         </form>
 
-        <a href="../index.html" class="back-link">← 返回首页</a>
+        <a href="../index.html" class="back-link">�?返回首页</a>
       </div>
     </div>
   </main>
 
-  <script src="../js/config/roles.js?v=1.8.2"></script>
+  <script src="../js/config/roles.js?v=1.8.3"></script>
   <script>
     function handleLogin(e) {
       e.preventDefault();
@@ -141,7 +141,7 @@
       const errorMsg = document.getElementById('errorMsg');
 
       if (!password) {
-        errorMsg.textContent = '请输入密码';
+        errorMsg.textContent = '请输入密�?;
         errorMsg.style.display = 'block';
         return;
       }
