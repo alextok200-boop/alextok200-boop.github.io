@@ -131,7 +131,7 @@
     "resume.certs.title": { zh: "证书 · 驾照", en: "Certifications · License" },
     "resume.cert.1": { zh: "C1 驾照", en: "C1 Driver's License" },
     "resume.cert.2": { zh: "计算机二级", en: "Computer Level 2 Certificate" },
-    "resume.note": { zh: "v1.7.2 已同步双语简历 v1.0.0：补全工作年限 27 年、前司时间线 2018.10 - 2025.10、学历与证书字段；邮箱显示已对齐公开联系邮箱（表单转发仍走站内邮箱）。", en: "v1.7.2 synced with bilingual resume v1.0.0: added 27-year tenure, 2018.10 - 2025.10 prior role timeline, education and certifications; public contact email updated (form forwarding still uses the on-site inbox)." },
+    "resume.note": { zh: "本页为双语简历版，与投递用的 PDF 简历口径一致：工作年限、各段时间线、学历与证书字段均已对齐；邮箱显示已对齐公开联系邮箱（表单转发仍走站内邮箱）。", en: "This page is the bilingual resume and matches the PDF version word for word: tenure, per-role timelines, education and certifications are aligned; the public contact email is shown (form forwarding still uses the on-site inbox)." },
     'resume.related': { zh: '延伸阅读：通用型方法论手册 —— 换项目、换业务线都能直接套用的组织能力沉淀。', en: 'Related: Generic Methodology Handbook — reusable organizational leverage across projects and lines of business.' },
 
     // ---- 作品集页 ----
