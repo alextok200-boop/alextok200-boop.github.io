@@ -737,6 +737,14 @@ body::after {
   padding: 22px 26px;
 }
 
+/* ⚠️ patterns.css 后加载，其 .p-card{display:flex;flex-direction:column} 与 .journey-card 同特异性
+   却更靠后 → 卡片被变成 flex 列容器，子元素被「块级化」：
+   日期独占一行、标签药丸被拉成整卡宽的空横条（2026-09-15 实测）。
+   这里用 (0,2,0) 更高特异性还原 inline-block，让「日期 + 标签」同行、药丸按文字宽度收缩。 */
+.journey .journey-card {
+  display: inline-block;
+}
+
 .journey-date {
   color: var(--neon-blue);
   font-size: 13px;
