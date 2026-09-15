@@ -388,6 +388,24 @@ def backup(root, stamp):
 # --------------------------------------------------------------------------
 # 主流程
 # --------------------------------------------------------------------------
+def dirty_split(root):
+    """把工作区改动分成「受版本管理」与「未跟踪」两类。
+
+    ⚠️ 别把 `??` 也算成危险改动：`git reset --hard` **不动未跟踪文件**。
+       而「刚用 API 推了新文件、本地那份还是未跟踪」正是本脚本最常见的用法，
+       一刀切会让它在该干活的时候拒绝干活（实测踩到）。
+       真正会被 reset 丢弃的只有受版本管理文件的改动/删除。
+    """
+    out = run(["git", "status", "--porcelain", "-z"], cwd=root).stdout
+    tracked, untracked = [], []
+    for rec in out.split("\x00"):
+        if not rec:
+            continue
+        code, _, path = rec.partition(" ")
+        (untracked if code == "??" else tracked).append("%s %s" % (code, path))
+    return tracked, untracked
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=None, help="owner/repo（默认从 origin 推断）")
@@ -411,13 +429,19 @@ def main():
     print("  本地 HEAD    %s" % local[:8])
 
     if local == target:
-        dirty = run(["git", "status", "--porcelain"], cwd=root).stdout.strip()
-        if not dirty:
+        tracked, untracked = dirty_split(root)
+        if not tracked and not untracked:
             print("✅ 本地已与远端一致，工作区干净。")
             return 0
-        print("⚠️ 提交已一致，但工作区有未提交改动：")
-        for ln in dirty.splitlines():
-            print("   " + ln)
+        print("✅ 本地已与远端一致。")
+        if tracked:
+            print("⚠️ 有受版本管理文件的未提交改动：")
+            for ln in tracked:
+                print("   " + ln)
+        if untracked:
+            print("ℹ️ 未跟踪文件（reset 不会动它们）：")
+            for ln in untracked:
+                print("   " + ln)
         return 0
 
     # 落后/领先计数（对象不全时 rev-list 会失败，视为未知）
@@ -431,14 +455,18 @@ def main():
         print("ℹ --check：未改动任何文件。去掉 --check 即执行对齐。")
         return 2 if local != target else 0
 
-    dirty = run(["git", "status", "--porcelain"], cwd=root).stdout.strip()
+    tracked, untracked = dirty_split(root)
     stamp = time.strftime("%Y%m%d-%H%M%S")
-    if dirty:
+    if untracked:
+        print("ℹ️ 未跟踪文件 %d 个（reset 不会动它们，无需处理）：" % len(untracked))
+        for ln in untracked[:10]:
+            print("   " + ln)
+    if tracked:
         if not args.no_backup:
             backup(root, stamp)
         if not args.force:
-            print("⚠️ 工作区有未提交改动（对齐会丢弃）：")
-            for ln in dirty.splitlines():
+            print("⚠️ 有受版本管理文件的未提交改动（对齐会丢弃）：")
+            for ln in tracked:
                 print("   " + ln)
             print("✗ 已停下，未改动任何文件。要保留请先提交；要丢弃加 --force。")
             return 1
