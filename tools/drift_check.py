@@ -77,27 +77,51 @@ def local_files():
     return sorted(out)
 
 
-def ignored_set(paths):
-    """用 git check-ignore 找出被忽略的路径（批量，一次进程）。"""
-    if not paths:
-        return set()
-    r = subprocess.run(["git", "check-ignore", "--stdin"],
-                       input="\n".join(paths), capture_output=True, text=True,
-                       cwd=ROOT, encoding="utf-8", errors="replace")
-    return set(p.strip() for p in (r.stdout or "").splitlines() if p.strip())
+def ignored_set():
+    """返回被 .gitignore 忽略的路径（含目录形式），以及用于判断的辅助集合。
+
+    ⚠️ 两个坑，都实测踩过：
+    1) **别用 `git check-ignore --stdin` + 逐行解析 stdout**：Windows 下
+       `subprocess.run(..., input="a\\nb", text=True)` 会把 `\\n` 翻成 `\\r\\n`
+       写进子进程 stdin，git 于是把 `\\r` 当成路径的一部分 → stdout 变成
+       `"path\\r"`（带引号）→ 逐行匹配全部落空。实测 13 个**已被忽略**的文件
+       被误判成「未忽略需处理」，而其中就有 `tools/kb-source/` 的公司敏感原文，
+       假阳性可能诱导人去删/去推。**教训：给子进程的 stdin 一律传 bytes。**
+    2) `git status --ignored=traditional -uall -z` 是 NUL 分隔、不做引号转义，
+       天然免疫空格/中文/CR。用它取忽略集合最稳。
+    """
+    r = subprocess.run(
+        ["git", "status", "--porcelain", "--ignored=traditional", "-uall", "-z"],
+        cwd=ROOT, capture_output=True)
+    ign = set()
+    for rec in r.stdout.decode("utf-8", "replace").split("\x00"):
+        if rec.startswith("!! "):
+            ign.add(rec[3:])
+    return ign
+
+
+def is_ignored(path, ign):
+    """路径本身或其任一父目录被忽略，都算被忽略。"""
+    if path in ign:
+        return True
+    parts = path.split("/")
+    for i in range(1, len(parts)):
+        if "/".join(parts[:i]) in ign:
+            return True
+    return False
 
 
 def blob_sha(paths):
     """git hash-object --stdin-paths --no-filters 批量取内容 sha。
 
-    ⚠️ --no-filters 必不可少：本仓库开了换行/过滤器时，不加会把 sha 算错，
-       凭空多出一批「已修改」文件。
+    ⚠️ `--no-filters`：仓库开 autocrlf/filter 时，不加会把换行转换后的 sha 当结果，
+       与远端内容寻址 sha 不等 → 凭空多出一批「已修改」假差异。
+    ⚠️ stdin 必须传 bytes（见 ignored_set 的坑 1）。
     """
-    payload = "\n".join(paths) + "\n"
+    payload = ("\n".join(paths) + "\n").encode("utf-8")
     r = subprocess.run(["git", "hash-object", "--stdin-paths", "--no-filters"],
-                       input=payload, capture_output=True, text=True,
-                       cwd=ROOT, encoding="utf-8", errors="replace")
-    return [l.strip() for l in (r.stdout or "").splitlines() if l.strip()]
+                       input=payload, cwd=ROOT, capture_output=True)
+    return [l.strip() for l in r.stdout.decode("utf-8", "replace").splitlines() if l.strip()]
 
 
 def main():
@@ -129,18 +153,24 @@ def main():
 
     print()
     print("=== 3) 内容比对（本地工作区 vs 远端 tree）===")
+    acr = sh("git config --get core.autocrlf").strip()
+    if acr and acr.lower() != "false":
+        print("⚠️ core.autocrlf=%s —— 工作区文本可能被检出成 CRLF 而仓库存 LF，"
+              "会让下面的 sha 比对产生大量**假差异**。" % acr)
+        print("   先跑 `git config core.autocrlf false` 并把文本文件回正为 LF 再解读结果。")
+        print()
     lf = local_files()
     shas = blob_sha(lf)
     if len(shas) != len(lf):
         print("❌ hash-object 行数 %d != 文件数 %d" % (len(shas), len(lf)))
         return 1
     local = dict(zip(lf, shas))
-    ign = ignored_set(sorted(set(local) - set(rb)))
+    ign = ignored_set()
 
     missing = sorted(set(rb) - set(local))
     extra_raw = sorted(set(local) - set(rb))
-    extra_ign = [p for p in extra_raw if p in ign]
-    extra_bad = [p for p in extra_raw if p not in ign]
+    extra_ign = [p for p in extra_raw if is_ignored(p, ign)]
+    extra_bad = [p for p in extra_raw if not is_ignored(p, ign)]
     diff = sorted(p for p in (set(local) & set(rb)) if local[p] != rb[p])
 
     print("本地文件 %d / 远端 blob %d" % (len(local), len(rb)))
