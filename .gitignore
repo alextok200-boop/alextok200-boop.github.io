@@ -29,3 +29,7 @@ tools/_source/
 
 # 临时诊断文件暂存（可安全删除）
 .trash-temp/
+
+# 脚本/AI 产物的本地暂存（防误传：本次曾险些把 _backup_* 同步目录推上线）
+_backup_*/
+_tmp_*
