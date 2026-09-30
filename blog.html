@@ -16,8 +16,9 @@
       } catch (e) { document.documentElement.setAttribute("data-theme", "dark"); }
     })();
   </script>
-<link rel="stylesheet" href="css/style.css?v=1.8.12">
-<link rel="stylesheet" href="css/patterns.css?v=1.8.12">
+<link rel="stylesheet" href="css/style.css?v=1.8.20">
+<link rel="stylesheet" href="css/patterns.css?v=1.8.20">
+<link rel="stylesheet" href="css/glass.css?v=1.8.20">
 
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#9333ea">
@@ -61,7 +62,13 @@
     </nav>
   </header>
 
-  <main>
+  <main class="blog-page">
+    <!-- v1.8.16：博客页背景视频（作背景设定，不拦截交互） -->
+    <video class="blog-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" poster="assets/img/blog-bg-poster.jpg">
+      <source src="assets/video/blog-bg.mp4" type="video/mp4">
+    </video>
+    <div class="blog-bg-overlay" aria-hidden="true"></div>
+
     <section class="page-hero">
       <div class="container">
         <p class="eyebrow" data-i18n="blog.eyebrow">Blog</p>
@@ -119,16 +126,16 @@
     </div>
   </footer>
 
-    <script src="js/site-config.js?v=1.8.12"></script>
-<script src="js/i18n.js?v=1.8.12"></script>
+    <script src="js/site-config.js?v=1.8.20"></script>
+<script src="js/i18n.js?v=1.8.20"></script>
   <script src="js/posts-data.js"></script>
   <script src="js/blog.js"></script>
-  <script src="js/newsletter.js?v=1.8.12"></script>
-  <script src="js/seo.js?v=1.8.12"></script>
-  <script src="js/analytics.js?v=1.8.12"></script>
-  <script src="js/comments.js?v=1.8.12"></script>
-  <script src="js/sw-register.js?v=1.8.12"></script>
-  <script src="js/assistant.js?v=1.8.12"></script>
-  <script src="js/theme.js?v=1.8.12"></script>
+  <script src="js/newsletter.js?v=1.8.20"></script>
+  <script src="js/seo.js?v=1.8.20"></script>
+  <script src="js/analytics.js?v=1.8.20"></script>
+  <script src="js/comments.js?v=1.8.20"></script>
+  <script src="js/sw-register.js?v=1.8.20"></script>
+  <script src="js/assistant.js?v=1.8.20"></script>
+  <script src="js/theme.js?v=1.8.20"></script>
 </body>
 </html>

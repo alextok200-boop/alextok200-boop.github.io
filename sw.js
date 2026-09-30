@@ -5,7 +5,7 @@
       否则用户会一直看到旧缓存（这是 PWA 最常见的坑）。
    ============================================================ */
 
-var CACHE = "konllen-site-v1.8.12";
+var CACHE = "konllen-site-v1.8.20";
 
 // 预缓存：首屏必需，别放视频这种大文件
 var PRECACHE = [
@@ -13,10 +13,11 @@ var PRECACHE = [
   "/index.html",
   "/css/style.css",
   "/css/patterns.css",
-  "/css/patterns.css",
+  "/css/glass.css",
   "/js/site-config.js",
   "/js/i18n.js",
   "/js/main.js",
+  "/js/work-carousel.js",
   "/js/seo.js",
   "/manifest.webmanifest",
   "/assets/img/icon-192.png",

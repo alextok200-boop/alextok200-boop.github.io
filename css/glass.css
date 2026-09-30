@@ -1,0 +1,480 @@
+/* ============================================================
+   glass.css v1.0.0 —— Liquid Glass 卡片语言 + Day & Night 主题开关
+   ------------------------------------------------------------
+   · 亮色主题（data-theme="light"）= A 版：浅色玻璃
+   · 暗色主题（默认，无属性）      = B 版：深色玻璃 + 3D 加深
+   · .theme-toggle 重绘为 Day/Night 胶囊开关（状态由 data-theme 驱动，
+     点击逻辑仍由 js/theme.js 负责，零 JS 改动）
+   级联说明：本文件在 patterns.css 之后加载；
+   主题作用域选择器（暗 (0,2,1) / 亮 (0,4,0)）压过 .card/.p-card (0,1,0)。
+   入场动画 .reveal（translateY 24px→0）的特异性 (0,2,0) 低于本文件
+   hover 规则 —— 静置时入场照常，hover 时 3D 倾角才接管 transform。
+   顶部高光/云层/星点全部走 background 多层渐变，不占用卡片伪元素
+   （patterns.css 的 .p-glow::before / .p-refract::after 保持可用）。
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   1 · Day & Night 开关（重绘 .theme-toggle）
+   ───────────────────────────────────────────── */
+.theme-toggle {
+  width: 58px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  flex: 0 0 auto;
+  /* 暗色主题 = 夜空轨道（默认态）：暗云 + 星点 */
+  background-image:
+    radial-gradient(18px 9px at 74% 30%, rgba(96, 116, 168, 0.85), rgba(96, 116, 168, 0) 72%),
+    radial-gradient(14px 7px at 90% 52%, rgba(70, 88, 136, 0.9), rgba(70, 88, 136, 0) 72%),
+    radial-gradient(1.6px 1.6px at 24% 32%, #ffffff 50%, transparent 55%),
+    radial-gradient(1.2px 1.2px at 36% 62%, rgba(255, 255, 255, 0.92) 50%, transparent 55%),
+    radial-gradient(1.6px 1.6px at 47% 26%, rgba(255, 255, 255, 0.85) 50%, transparent 55%),
+    radial-gradient(1.1px 1.1px at 42% 80%, rgba(255, 255, 255, 0.7) 50%, transparent 55%),
+    linear-gradient(178deg, #243052 0%, #16203c 52%, #0c1226 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(2, 4, 14, 0.6),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.16),
+    0 2px 8px rgba(4, 8, 20, 0.4);
+  transition: box-shadow 0.25s ease;
+}
+
+/* 原日月 SVG 图标退场（胶囊自带日/月滑块）；
+   同特异性 (0,2,0) 但本文件加载在后 → 覆盖 style.css 的显隐规则 */
+.theme-toggle .icon-moon,
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+/* 滑块：暗色主题 = 月亮（驻右端，带三处陨石坑） */
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(circle at 30% 58%, rgba(174, 185, 202, 0.9) 0%, rgba(174, 185, 202, 0.9) 14%, transparent 18%),
+    radial-gradient(circle at 62% 66%, rgba(174, 185, 202, 0.85) 0%, rgba(174, 185, 202, 0.85) 10%, transparent 14%),
+    radial-gradient(circle at 58% 30%, rgba(190, 200, 216, 0.7) 0%, rgba(190, 200, 216, 0.7) 8%, transparent 12%),
+    radial-gradient(circle at 36% 30%, #ffffff 0%, #edf1f7 46%, #c6cedc 82%, #b7c1d2 100%);
+  box-shadow:
+    inset 0 -2px 3px rgba(110, 126, 158, 0.55),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95),
+    0 2px 5px rgba(2, 4, 14, 0.5);
+  transform: translateX(30px); /* 58 - 22 - 6 = 30 → 驻右端 */
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+
+.theme-toggle:hover::before {
+  box-shadow:
+    inset 0 -2px 3px rgba(110, 126, 158, 0.55),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95),
+    0 3px 9px rgba(2, 4, 14, 0.6);
+}
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--bg, #0c1120),
+    0 0 0 4px rgba(0, 200, 255, 0.6);
+}
+
+/* 亮色主题 = 白天轨道：蓝天 + 白云，太阳滑块（驻左端） */
+:root[data-theme="light"] .theme-toggle {
+  background-image:
+    radial-gradient(20px 10px at 70% 74%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(14px 8px at 88% 58%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(12px 6px at 56% 84%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(178deg, #7cc0f2 0%, #5aa6ea 46%, #3f8fdd 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(20, 70, 130, 0.4),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.5),
+    0 2px 8px rgba(40, 90, 160, 0.35);
+}
+
+:root[data-theme="light"] .theme-toggle::before {
+  transform: translateX(0);
+  background-image:
+    radial-gradient(circle at 34% 30%, #ffefae 0%, #ffd84e 40%, #f6bc0f 78%, #e9a300 100%);
+  box-shadow:
+    inset 0 -2px 3px rgba(190, 120, 0, 0.5),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+    0 2px 5px rgba(150, 95, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle::before { transition: none; }
+}
+
+/* ─────────────────────────────────────────────
+   2 · A 版浅色玻璃卡片（亮色主题）
+   参数源自 outputs/liquid-glass/liquid-glass-demo.html
+   ───────────────────────────────────────────── */
+:root[data-theme="light"] .card {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.14) 18%, rgba(255, 255, 255, 0) 42%),
+    linear-gradient(152deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.34) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+  backdrop-filter: blur(18px) saturate(165%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.35),
+    0 20px 44px -16px rgba(56, 58, 92, 0.34),
+    0 8px 18px -10px rgba(56, 58, 92, 0.22);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1),
+    box-shadow 0.45s ease,
+    border-color 0.25s ease,
+    opacity 0.6s ease;
+}
+
+:root[data-theme="light"] .card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.35),
+    0 30px 60px -20px rgba(56, 58, 92, 0.42),
+    0 12px 26px -12px rgba(56, 58, 92, 0.28),
+    0 0 24px rgba(139, 92, 246, 0.1);
+}
+
+/* ─────────────────────────────────────────────
+   3 · B 版深色玻璃卡片 + 3D（暗色主题，默认）
+   参数源自 outputs/liquid-glass-b/（v6 终态）
+   落地影朝左下（光源右上，v5 口径），RGB 底光取站点三霓虹色
+   ───────────────────────────────────────────── */
+html:not([data-theme="light"]) .card {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.1) 12%, rgba(255, 255, 255, 0) 36%),
+    radial-gradient(120% 60% at 12% 0%, rgba(255, 255, 255, 0.18), transparent 55%),
+    linear-gradient(172deg, rgba(44, 46, 60, 0.82) 0%, rgba(14, 14, 22, 0.92) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  backdrop-filter: blur(14px) saturate(170%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow:
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.55),
+    inset 0 -12px 22px -14px rgba(0, 0, 0, 0.45),
+    -20px 28px 48px -24px rgba(4, 2, 12, 0.66),
+    0 30px 54px -26px rgba(6, 4, 16, 0.55),
+    0 16px 44px -20px rgba(0, 255, 163, 0.13),
+    0 12px 40px -20px rgba(0, 200, 255, 0.11);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1),
+    box-shadow 0.45s ease,
+    border-color 0.25s ease,
+    opacity 0.6s ease;
+}
+
+html:not([data-theme="light"]) .card:hover {
+  transform: perspective(1150px) rotateX(3.6deg) translateY(-8px) scale(1.012);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.55),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.55),
+    inset 0 -12px 22px -14px rgba(0, 0, 0, 0.45),
+    -24px 34px 56px -26px rgba(4, 2, 12, 0.7),
+    0 36px 64px -28px rgba(6, 4, 16, 0.6),
+    0 18px 50px -20px rgba(0, 255, 163, 0.2),
+    0 14px 46px -20px rgba(0, 200, 255, 0.17),
+    0 10px 40px -18px rgba(255, 94, 201, 0.12);
+}
+
+/* 卡内霓虹徽标在深玻璃上略提亮度（loop-badge / blog-tag 等不动，
+   仅在透明度上补一档，避免被 .82 玻璃面吃掉对比度） */
+html:not([data-theme="light"]) .card .loop-badge {
+  background: rgba(0, 255, 163, 0.08);
+}
+
+/* 玻璃语言接管后关闭旧霓虹呼吸动画：p-neon-breathe 会无限覆盖
+   box-shadow，与玻璃多层投影（含 RGB 底光）互相打架 */
+html:not([data-theme="light"]) .card.p-card--neon,
+:root[data-theme="light"] .card.p-card--neon {
+  animation: none;
+}
+
+/* ─────────────────────────────────────────────
+   4 · 兜底与降级
+   ───────────────────────────────────────────── */
+/* 不支持 backdrop-filter：提高本体不透明度保可读性 */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root[data-theme="light"] .card {
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.14) 18%, rgba(255, 255, 255, 0) 42%),
+      linear-gradient(152deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.8) 100%);
+  }
+  html:not([data-theme="light"]) .card {
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.1) 12%, rgba(255, 255, 255, 0) 36%),
+      linear-gradient(172deg, rgba(44, 46, 60, 0.96) 0%, rgba(14, 14, 22, 0.98) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="light"] .card,
+  html:not([data-theme="light"]) .card {
+    transition: none;
+  }
+  :root[data-theme="light"] .card:hover,
+  html:not([data-theme="light"]) .card:hover {
+    transform: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   5 · 作品集页「三悬浮面板」卡片语言（v1.8.18，多模态目检修正版）
+   设计元素源自动态 GIF 的目检确认（替代 v1.8.17 的无视觉报告推断）：
+   实际为智能家居仪表盘场景——三张竖向悬浮面板：
+   珊瑚 ALERT / 紫罗兰 SEOUL / 青蓝 SHOP（双色调照片染色），
+   悬浮于天空渐变场景、下方带地面倒影，动态为面板滑动交换。
+   落法：三色轮换（3n+1 珊瑚 / 3n+2 紫 / 3n+3 青）侧缘面板条
+   （向内藕荷过渡）；hover 面板条滑入 + 卡下倒影增强；
+   序号芯片与技能徽标跟随本卡面板色；统计条三数字
+   = 珊瑚 / 紫 / 青（对应三面板）。
+   ───────────────────────────────────────────── */
+.work-page {
+  /* 暗色主题：提亮降饱和变体，保证深玻璃上可读 */
+  --panel-a: #fc8b85;
+  --panel-b: #74c6de;
+  --panel-c: #a89ede;
+  --panel-seam: #b0b0dc;
+  --panel-a-bd: rgba(252, 139, 133, 0.5);
+  --panel-b-bd: rgba(116, 198, 222, 0.5);
+  --panel-c-bd: rgba(168, 158, 222, 0.5);
+  --panel-ink: #1b2030;
+}
+
+:root[data-theme="light"] .work-page {
+  /* 亮色主题：GIF 实测原始色值（珊瑚/青=报告 §5 采样，紫取自目检面板） */
+  --panel-a: #fb7770;
+  --panel-b: #5eb3cc;
+  --panel-c: #9186c9;
+  --panel-seam: #9a9ac2;
+  --panel-a-bd: rgba(251, 119, 112, 0.45);
+  --panel-b-bd: rgba(94, 179, 204, 0.45);
+  --panel-c-bd: rgba(145, 134, 201, 0.45);
+  --panel-ink: #222638;
+}
+
+/* 三色轮换：pc-a 珊瑚 / pc-b 青(蓝) / pc-c 紫；side-r 侧缘在右
+   （类由 work.html 静态标记 + work-carousel.js 克隆复制，不再依赖 nth-child） */
+.work-page .card.loop-card {
+  position: relative;
+  --pc: var(--panel-a);
+  --pc-bd: var(--panel-a-bd);
+  --bar-dir: 90deg;
+}
+
+.work-page .card.loop-card.pc-c {
+  --pc: var(--panel-c);
+  --pc-bd: var(--panel-c-bd);
+}
+
+.work-page .card.loop-card.pc-b {
+  --pc: var(--panel-b);
+  --pc-bd: var(--panel-b-bd);
+}
+
+.work-page .card.loop-card.side-r {
+  --bar-dir: 270deg;
+}
+
+/* 面板条 */
+.work-page .card.loop-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: linear-gradient(var(--bar-dir), var(--pc) 55%, var(--panel-seam));
+  border-radius: 19px 0 0 19px;
+  pointer-events: none;
+  transition: width 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.work-page .card.loop-card.side-r::before {
+  left: auto;
+  right: 0;
+  border-radius: 0 19px 19px 0;
+}
+
+/* hover：面板条向内滑入（呼应 GIF 的面板滑动） */
+.work-page .card.loop-card:hover::before {
+  width: 13px;
+}
+
+/* 地面倒影：卡下同色渐隐光带（GIF 悬浮面板的镜像反射） */
+.work-page .card.loop-card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  right: 5%;
+  height: 54px;
+  background: linear-gradient(180deg, var(--pc), transparent 85%);
+  opacity: 0.16;
+  filter: blur(8px);
+  border-radius: 0 0 18px 18px;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.45s ease;
+}
+
+.work-page .card.loop-card:hover::after {
+  opacity: 0.38;
+}
+
+/* 序号芯片 = 本卡面板色块 */
+.work-page .loop-no {
+  color: var(--panel-ink);
+  background: var(--pc);
+  border-radius: 8px;
+  padding: 2px 10px;
+}
+
+/* 技能徽标：跟随本卡面板色 */
+.work-page .loop-badge {
+  color: var(--pc);
+  border-color: var(--pc-bd);
+}
+
+/* 落点行：紫面板色（GIF 中紫卡 = 信息/天气位） */
+.work-page .loop-out {
+  color: var(--panel-c);
+  border-top-color: rgba(154, 154, 194, 0.3);
+}
+
+:root[data-theme="light"] .work-page .loop-out {
+  border-top-color: rgba(154, 154, 194, 0.4);
+}
+
+/* 统计条三数字 = 三面板色（珊瑚 / 紫 / 青）
+   亮色主题需带 :root[data-theme] 前缀，否则被全局
+   `:root[data-theme="light"] .stat-grid ...`（0,6,0）压过 */
+.work-page .stat-grid .stat:nth-child(1) .stat-num { color: var(--panel-a); }
+.work-page .stat-grid .stat:nth-child(2) .stat-num { color: var(--panel-c); }
+.work-page .stat-grid .stat:nth-child(3) .stat-num { color: var(--panel-b); }
+
+:root[data-theme="light"] .work-page .stat-grid .stat:nth-child(1) .stat-num { color: var(--panel-a); }
+:root[data-theme="light"] .work-page .stat-grid .stat:nth-child(2) .stat-num { color: var(--panel-c); }
+:root[data-theme="light"] .work-page .stat-grid .stat:nth-child(3) .stat-num { color: var(--panel-b); }
+
+@media (prefers-reduced-motion: reduce) {
+  .work-page .card.loop-card::before,
+  .work-page .card.loop-card::after,
+  .work-page .loop-no {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   SECTION 6 —— 作品集三联轮播（v1.8.19，学习源 GIF 整页滑动构图）
+   结构由 js/work-carousel.js 注入：
+   .carousel > .carousel-viewport > .carousel-track > (.card.loop-card + clones)
+   ============================================================ */
+.work-page .carousel-viewport {
+  overflow: hidden;
+  /* 底部留白让 ::after 地面倒影不被裁切，负 margin 收回布局占位 */
+  padding-bottom: 58px;
+  margin-bottom: -34px;
+}
+
+.work-page .carousel-track {
+  display: flex;
+  column-gap: 24px; /* 与 .card-grid 原 gap 一致 */
+  will-change: transform;
+}
+
+/* 每视图张数：桌面 3 / ≤1023px 2 / ≤767px 1 */
+.work-page .card.loop-card {
+  flex: 0 0 calc((100% - 48px) / 3);
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  .work-page .card.loop-card { flex-basis: calc((100% - 24px) / 2); }
+}
+
+@media (max-width: 767px) {
+  .work-page .card.loop-card { flex-basis: 100%; }
+}
+
+/* 克隆补位卡：纯视觉，不可交互 */
+.work-page .card.loop-card.is-clone {
+  pointer-events: none;
+}
+
+/* 控件行 */
+.work-page .carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.work-page .carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.work-page .carousel-btn:hover {
+  border-color: var(--pc, var(--panel-a));
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.work-page .carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.work-page .carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--border);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+/* 当前指示点 = 对应卡的面板色（点不参与克隆，nth-child 安全） */
+.work-page .carousel-dot:nth-child(3n+1).on { background: var(--panel-a); }
+.work-page .carousel-dot:nth-child(3n+2).on { background: var(--panel-c); }
+.work-page .carousel-dot:nth-child(3n).on   { background: var(--panel-b); }
+.work-page .carousel-dot.on {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-page .carousel-track,
+  .work-page .carousel-btn,
+  .work-page .carousel-dot {
+    transition: none;
+  }
+}

@@ -142,6 +142,8 @@
     "work.s2": { zh: "项技能串联成环", en: "skills wired in" },
     "work.s3": { zh: "项技能资产 · 自研 38 + 半自研 57", en: "skill assets · 38 in-house + 57 adapted" },
     "work.unit": { zh: "项技能", en: "skills" },
+    "work.prev": { zh: "上一组", en: "Previous" },
+    "work.next": { zh: "下一组", en: "Next" },
     "work.c1.title": { zh: "投流投放闭环", en: "Ad Delivery Loop" },
     "work.c1.chain": { zh: "对标分析 → 计划生成 → 台球专项 → 合规审核 → 执行方案 → 汇率核算 → 数据复盘 → 回灌下一轮", en: "Competitor ads → Plan generation → Billiards edition → Compliance audit → Execution plan → FX costing → Review → Next round" },
     "work.c1.desc": { zh: "从竞品广告对标到复盘回灌的自动投流流水线：台球专版生成器 + 7 维审核器 + 执行方案，覆盖 12 个投放平台，汇率核算进投放成本。", en: "An automated ad pipeline from competitor ad mining to review feedback: billiards-specific generator, 7-dimension auditor and execution plans across 12 platforms, with FX costing built in." },
@@ -567,8 +569,8 @@
     }
   });
 
-  // 暴露给其它脚本
-  window.i18n = { t: t, lang: function () { return current; } };
+  // 暴露给其它脚本（apply 供运行时注入 DOM 的脚本补翻译）
+  window.i18n = { t: t, lang: function () { return current; }, apply: apply };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", apply);

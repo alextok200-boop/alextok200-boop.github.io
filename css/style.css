@@ -338,6 +338,93 @@ body::after {
   z-index: 1;
 }
 
+/* ---------- 联系页背景视频（Pinterest 视频作背景设定） ---------- */
+.contact-page {
+  position: relative;
+  overflow: hidden;
+  /* 视频 + 暗遮罩下统一用浅色文字，明暗主题均保证可读 */
+  color: #f0f2ff;
+}
+
+.contact-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.32;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.contact-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 22%, rgba(9, 7, 17, 0.42), rgba(9, 7, 17, 0.86));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact-page > .page-hero,
+.contact-page > .section {
+  position: relative;
+  z-index: 2;
+}
+
+/* 视频背景上的文字色：覆盖明暗主题的默认深色，保证可读 */
+.contact-page .page-hero h1,
+.contact-page .contact-info h2,
+.contact-page .contact-form h2,
+.contact-page .hero-sub {
+  color: #f0f2ff;
+}
+
+.contact-page .contact-info p,
+.contact-page .contact-label {
+  color: rgba(240, 242, 255, 0.72);
+}
+
+/* 半透明深色玻璃卡片，视频背景上托住内容 */
+.contact-page .contact-info,
+.contact-page .contact-form {
+  background: rgba(13, 11, 22, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 28px;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.contact-page .contact-form input,
+.contact-page .contact-form textarea,
+.contact-page .contact-form select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f0f2ff;
+}
+
+.contact-page .contact-form input::placeholder,
+.contact-page .contact-form textarea::placeholder {
+  color: rgba(240, 242, 255, 0.45);
+}
+
+/* 亮色主题下覆盖默认的浅色表单底色，保持视频背景可读 */
+:root[data-theme="light"] .contact-page .contact-form select {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 尊重「减少动态效果」偏好：直接隐藏背景视频，仅留静态暗遮罩 */
+@media (prefers-reduced-motion: reduce) {
+  .contact-bg-video {
+    display: none;
+  }
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -2655,3 +2742,105 @@ body::after {
   transform: translateY(-1px);
 }
 .nav-login svg { display: block; }
+
+/* ============================================
+   v1.8.16：博客页背景视频（作背景设定，同联系页模式）
+   ============================================ */
+.blog-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.32;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blog-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 22%, rgba(9, 7, 17, 0.42), rgba(9, 7, 17, 0.86));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blog-page > .page-hero,
+.blog-page > .section {
+  position: relative;
+  z-index: 2;
+}
+
+/* 直接落在视频背景上的文字（hero 区）：明暗主题统一浅色保可读；
+   博客卡片(.blog-item)自身有玻璃面，保持主题原生文字色不动 */
+.blog-page .page-hero .eyebrow,
+.blog-page .page-hero h1,
+.blog-page .page-hero .hero-sub {
+  color: #f0f2ff;
+}
+
+/* 订阅条 / 搜索框 / 筛选器：半透明深玻璃托底 + 浅色文字 */
+.blog-page .newsletter-inline {
+  background: rgba(13, 11, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.blog-page .newsletter-inline h3,
+.blog-page .newsletter-inline .newsletter-sub {
+  color: #f0f2ff;
+}
+
+.blog-page .newsletter-inline .form-note,
+.blog-page .newsletter-inline .newsletter-privacy {
+  color: rgba(240, 242, 255, 0.72);
+}
+
+.blog-page .newsletter-inline input[type="email"] {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f0f2ff;
+}
+
+.blog-page .search-box input {
+  background: rgba(13, 11, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f0f2ff;
+}
+
+.blog-page .search-box input::placeholder {
+  color: rgba(240, 242, 255, 0.45);
+}
+
+.blog-page .tag-filter {
+  background: rgba(13, 11, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(240, 242, 255, 0.85);
+}
+
+.blog-page .tag-filter.active {
+  color: #f0f2ff;
+}
+
+.blog-page .empty-state {
+  color: rgba(240, 242, 255, 0.72);
+}
+
+/* 尊重「减少动态效果」偏好：直接隐藏背景视频，仅留静态暗遮罩 */
+@media (prefers-reduced-motion: reduce) {
+  .blog-bg-video {
+    display: none;
+  }
+}
