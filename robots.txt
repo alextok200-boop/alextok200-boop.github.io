@@ -2,4 +2,27 @@ User-agent: *
 Allow: /
 Disallow: /posts/*.html?preview=1
 
+# ── reverse-geo：内部门户 /team-portal/ 退出 AI 搜索与训练（2026-10-12）──
+# 原则：根域个人站保持公开可引用；内部门户（登录后才见数据）不进 AI 答案、不进模型训练。
+# 检索类 AI 爬虫（拦了即不出现在对应平台 AI 答案）：
+User-agent: OAI-SearchBot
+Disallow: /team-portal/
+User-agent: Claude-SearchBot
+Disallow: /team-portal/
+User-agent: PerplexityBot
+Disallow: /team-portal/
+# 训练类 AI 爬虫（内容授权政策：内部站不进训练）：
+User-agent: GPTBot
+Disallow: /team-portal/
+User-agent: ClaudeBot
+Disallow: /team-portal/
+User-agent: Google-Extended
+Disallow: /team-portal/
+User-agent: Applebot-Extended
+Disallow: /team-portal/
+# Googlebot 同步屏蔽 /team-portal/：内部门户不应出现在公开搜索（含 AI Overviews，
+# 其取自 Googlebot 索引；AI Overviews 专用开关在 Search Console，静态站以 robots 为准）。
+User-agent: Googlebot
+Disallow: /team-portal/
+
 Sitemap: https://alextok200-boop.github.io/sitemap.xml
